@@ -5,6 +5,7 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SekolahController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -40,6 +41,16 @@ Route::middleware('auth', 'verified', 'Administrator')->group(function () {
     Route::put('/periode/{id}', [PeriodeController::class, 'update'])->name('periode.update');
     Route::delete('/periode/{id}', [PeriodeController::class, 'destroy'])->name('periode.destroy');
     Route::put('/periode/{id}/set-aktif', [PeriodeController::class, 'setAktif'])->name('periode.setAktif');
+
+    Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah.index');
+    Route::post('/sekolah', [SekolahController::class, 'store'])->name('sekolah.store');
+    Route::put('/sekolah/{id}', [SekolahController::class, 'update'])->name('sekolah.update');
+    Route::delete('/sekolah/{id}', [SekolahController::class, 'destroy'])->name('sekolah.destroy');
+
+
+
+
+
 });
 
 // ROLE OPERATOR SEKOLAH

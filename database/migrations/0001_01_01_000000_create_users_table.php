@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
-            // $table->string('sekolah')
+
             $table->string('role')->nullable()->comment('1. Administrator | 2. Verifikator | 3. Operator Sekolah | 4. Kabalai');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

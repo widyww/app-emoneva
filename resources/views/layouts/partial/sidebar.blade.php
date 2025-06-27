@@ -25,7 +25,7 @@
                         Periode
                     </a>
                     <div class="sidenav-menu-heading">Data Sekolah</div>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('sekolah.index') }}">
                         <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
                         Sekolah
                     </a>
