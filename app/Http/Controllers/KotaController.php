@@ -10,7 +10,7 @@ class KotaController extends Controller
     public function index()
     {
         $data = Kota::all();
-        return view('kota.index', compact('data'));
+        return view('pages.kota.index', compact('data'));
     }
 
     public function store(Request $request)

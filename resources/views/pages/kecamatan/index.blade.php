@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@yield('title','Pengaturan Data Kecamatan')
+@section('title','Pengaturan Data Kecamatan')
 
 @section('content')
     <main>

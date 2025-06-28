@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@yield('title', 'Pengaturan Periode Tahun')
+@section('title','Pengaturan Data Kabupaten/Kota')
 
 @section('content')
     <main>
@@ -9,10 +9,11 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
-                                <div class="page-header-icon"><i data-feather="calendar"></i></div>
-                                Pengaturan Periode Tahun
+                                <div class="page-header-icon"><i data-feather="home"></i></div>
+                                Pengaturan Data Kabupaten/Kota
                             </h1>
                         </div>
+                        <div class="col-12 col-xl-auto mt-4">Kabupaten/Kota</div>
                     </div>
                 </div>
             </div>
@@ -21,53 +22,32 @@
         <div class="container-xl px-4 mt-n10">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Data Periode</span>
+                    <span>Tabel Kabupaten/Kota</span>
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">
                         + Tambah
                     </button>
                 </div>
+
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="tabel-periode">
+                        <table class="table table-bordered" id="tabel-kota">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tahun</th>
-                                    <th>Status</th>
+                                    <th>Nama Kota</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $index => $periode)
+                                @foreach ($data as $index => $kota)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $periode->tahun }}</td>
-                                        <td>
-                                            @if ($periode->status == 1)
-                                                <span class="badge bg-success">Aktif</span>
-                                            @else
-                                                <span class="badge bg-secondary">Tidak Aktif</span>
-                                            @endif
-                                        </td>
+                                        <td>{{ $kota->nama }}</td>
                                         <td>
                                             <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#modalEdit{{ $periode->id }}">
-                                                <i data-feather="edit-2"></i>
-                                            </button>
+                                                data-bs-target="#modalEdit{{ $kota->id }}"><i data-feather="edit" class="me-1"></i>Edit</button>
                                             <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#modalHapus{{ $periode->id }}">
-                                                <i data-feather="trash-2"></i>
-                                            </button>
-                                            @if ($periode->status == 0)
-                                                <form action="{{ route('periode.setAktif', $periode->id) }}" method="POST"
-                                                    class="d-inline">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <button type="submit" class="btn btn-sm btn-success">
-                                                        <i data-feather="check-circle"></i> Set Aktif
-                                                    </button>
-                                                </form>
-                                            @endif
+                                                data-bs-target="#modalHapus{{ $kota->id }}"><i data-feather="trash" class="me-1"></i>Hapus</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -78,44 +58,21 @@
             </div>
         </div>
 
-        {{-- Modal Tambah --}}
-        <div class="modal fade" id="modalTambah" tabindex="-1">
-            <div class="modal-dialog">
-                <form action="{{ route('periode.store') }}" method="POST" class="modal-content">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title">Tambah Periode</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label>Tahun</label>
-                            <input type="text" name="tahun" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button class="btn btn-primary" type="submit">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        {{-- Modal Edit --}}
-        @foreach ($data as $periode)
-            <div class="modal fade" id="modalEdit{{ $periode->id }}" tabindex="-1">
+        @foreach ($data as $kota)
+            {{-- Modal Edit --}}
+            <div class="modal fade" id="modalEdit{{ $kota->id }}" tabindex="-1">
                 <div class="modal-dialog">
-                    <form action="{{ route('periode.update', $periode->id) }}" method="POST" class="modal-content">
+                    <form action="{{ route('kota.update', $kota->id) }}" method="POST" class="modal-content">
                         @csrf
                         @method('PUT')
                         <div class="modal-header">
-                            <h5 class="modal-title">Edit Periode</h5>
+                            <h5 class="modal-title">Edit Kota</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label>Tahun</label>
-                                <input type="text" name="tahun" class="form-control" value="{{ $periode->tahun }}"
+                                <label>Nama Kota</label>
+                                <input type="text" name="nama" value="{{ $kota->nama }}" class="form-control"
                                     required>
                             </div>
                         </div>
@@ -128,17 +85,17 @@
             </div>
 
             {{-- Modal Hapus --}}
-            <div class="modal fade" id="modalHapus{{ $periode->id }}" tabindex="-1">
+            <div class="modal fade" id="modalHapus{{ $kota->id }}" tabindex="-1">
                 <div class="modal-dialog">
-                    <form action="{{ route('periode.destroy', $periode->id) }}" method="POST" class="modal-content">
+                    <form action="{{ route('kota.destroy', $kota->id) }}" method="POST" class="modal-content">
                         @csrf
                         @method('DELETE')
                         <div class="modal-header">
-                            <h5 class="modal-title">Hapus Periode</h5>
+                            <h5 class="modal-title">Hapus Kota</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Yakin ingin menghapus <strong>{{ $periode->tahun }}</strong>?</p>
+                            <p>Yakin ingin menghapus <strong>{{ $kota->nama }}</strong>?</p>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -148,10 +105,35 @@
                 </div>
             </div>
         @endforeach
+
+
+        {{-- Modal Tambah --}}
+        <div class="modal fade" id="modalTambah" tabindex="-1">
+            <div class="modal-dialog">
+                <form action="{{ route('kota.store') }}" method="POST" class="modal-content">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambah Kota</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label>Nama Kota</label>
+                            <input type="text" name="nama" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button class="btn btn-primary" type="submit">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 @endsection
 
 @section('scripts')
+    {{-- SweetAlert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         @if (session('success'))
@@ -163,8 +145,17 @@
                 showConfirmButton: false
             });
         @endif
+
+        @if (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+            });
+        @endif
     </script>
 
+    {{-- jQuery & DataTables --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -172,8 +163,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#tabel-periode').DataTable();
-            feather.replace();
+            $('#tabel-kota').DataTable();
         });
     </script>
 @endsection

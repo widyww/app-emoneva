@@ -50,24 +50,20 @@
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
                     href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false"><img class="img-fluid"
-                        src="{{ asset('assets/sbadmin/assets/img/illustrations/profiles/profile-9.png') }}" /></a>
+                        src="{{ asset('sbadmin/assets/img/illustrations/profiles/profile-1.png') }}" /></a>
                 <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up"
                     aria-labelledby="navbarDropdownUserImage">
 
                     <a>
 
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
                             @csrf
-
-
-
-                            <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                                    this.closest('form').submit();"><i
-                                    data-feather="log-out"></i>
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
+                            <button type="submit" class="dropdown-item d-flex align-items-center"
+                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                <i data-feather="log-out" class="me-2"></i> {{ __('Log Out') }}
+                            </button>
                         </form>
+
                     </a>
                 </div>
             </li>

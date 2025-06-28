@@ -12,7 +12,7 @@ class SekolahController extends Controller
     public function index()
     {
         $data = Sekolah::all();
-        return view('sekolah.index', compact('data'));
+        return view('pages.sekolah.index', compact('data'));
     }
 
     public function store(Request $request)
@@ -21,6 +21,7 @@ class SekolahController extends Controller
             'npsn' => 'required|string|unique:sekolah,npsn',
             'tingkatan' => 'required|string',
             'nama' => 'required|string',
+
         ]);
 
 
@@ -29,6 +30,7 @@ class SekolahController extends Controller
             'npsn' => $request->npsn,
             'tingkatan' => $request->tingkatan,
             'nama' => $request->nama,
+
         ]);
 
         // Simpan user operator sekolah
@@ -58,7 +60,8 @@ class SekolahController extends Controller
         $sekolah->update([
             'npsn' => $request->npsn,
             'tingkatan' => $request->tingkatan,
-            'nama' => $request->tingkatan,
+            'nama' => $request->nama,
+
         ]);
 
         // Cari user berdasarkan sekolah_id

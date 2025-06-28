@@ -10,9 +10,9 @@ class KecamatanController extends Controller
 {
     public function index()
     {
-        $data = Kecamatan::with('kota')->get(); // relasi dengan kota
+        $data = Kecamatan::with('kota')->orderBy('kota_id')->get(); // relasi dengan kota
         $kotaList = Kota::all(); // untuk select option
-        return view('kecamatan.index', compact('data', 'kotaList'));
+        return view('pages.kecamatan.index', compact('data', 'kotaList'));
     }
 
     public function store(Request $request)

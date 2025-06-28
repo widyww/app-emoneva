@@ -3,9 +3,14 @@
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaController;
+use App\Http\Controllers\ManajemenUserController;
+use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SekolahController;
+use App\Http\Controllers\SekolahDataController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VerifikatorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -47,14 +52,27 @@ Route::middleware('auth', 'verified', 'Administrator')->group(function () {
     Route::put('/sekolah/{id}', [SekolahController::class, 'update'])->name('sekolah.update');
     Route::delete('/sekolah/{id}', [SekolahController::class, 'destroy'])->name('sekolah.destroy');
 
+    Route::get('/operator-sekolah', [UserController::class, 'index'])->name('operator-sekolah.index');
+    Route::post('/operator-sekolah', [UserController::class, 'store'])->name('operator-sekolah.store');
+    Route::put('/operator-sekolah/{id}', [UserController::class, 'update'])->name('operator-sekolah.update');
+    Route::delete('/operator-sekolah/{id}', [UserController::class, 'destroy'])->name('operator-sekolah.destroy');
 
-
+    Route::get('/user-manajemen', [ManajemenUserController::class, 'index'])->name('manajemen-user.index');
+    Route::post('/user-manajemen', [ManajemenUserController::class, 'store'])->name('manajemen-user.store');
+    Route::put('/user-manajemen/{id}', [ManajemenUserController::class, 'update'])->name('manajemen-user.update');
+    Route::delete('/user-manajemen/{id}', [ManajemenUserController::class, 'destroy'])->name('manajemen-user.destroy');
 
 
 });
 
 // ROLE OPERATOR SEKOLAH
+Route::middleware('auth', 'verified', 'Operator')->group(function () {
 
+     Route::get('/dashboard-operator', [OperatorController::class, 'index'])->name('operator.dashboard');
+
+     Route::get('/data-sekolah',[SekolahDataController::class, 'index'])->name('operator-input.store');
+
+});
 
 
 

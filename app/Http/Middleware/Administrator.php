@@ -27,15 +27,15 @@ class Administrator
         {
             return $next($request);
         }
-        //ROLE OPERATOR
+        //ROLE VERIFIKATOR
         if($userRole == 2)
         {
-            return redirect()->route('operator.dashboard');
+            return redirect()->route('verifikator.dashboard');
         }
-        //ROLE VERIFIKATOR
+        //ROLE OPERATOR
         if($userRole == 3)
         {
-            return redirect()->route('verifikator.dashboard');
+            return redirect()->route('operator.dashboard');
         }
         //ROLE KABALAI
         if($userRole == 4)

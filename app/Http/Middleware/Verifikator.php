@@ -26,16 +26,15 @@ class Verifikator
         {
             return redirect()->route('administrator.dashboard');
         }
-        //ROLE OPERATOR
+        //ROLE VERIFIKATOR
         if($userRole == 2)
         {
-            return redirect()->route('verifikator.dashboard');
+            return $next($request);
         }
-        //ROLE VERIFIKATOR
+        //ROLE OPERATOR
         if($userRole == 3)
         {
-            return $next($request);
-
+            return redirect()->route('operator.dashboard');
         }
         //ROLE KABALAI
         if($userRole == 4)

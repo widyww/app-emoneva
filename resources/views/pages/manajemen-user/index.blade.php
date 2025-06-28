@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@yield('title','Pengaturan Data Kabupaten/Kota')
+@section('title', 'Pengaturan User Verifikator dan Kabalai')
 
 @section('content')
     <main>
@@ -9,11 +9,11 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
-                                <div class="page-header-icon"><i data-feather="home"></i></div>
-                                Pengaturan Data Kabupaten/Kota
+                                <div class="page-header-icon"><i data-feather="user-check"></i></div>
+                                Pengaturan Data User Verifikator dan Kabalai
                             </h1>
                         </div>
-                        <div class="col-12 col-xl-auto mt-4">Kabupaten/Kota</div>
+                        <div class="col-12 col-xl-auto mt-4">User Verifikator & Kabalai</div>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
         <div class="container-xl px-4 mt-n10">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Tabel Kabupaten/Kota</span>
+                    <span>Tabel Data Verifikator dan Kabalai</span>
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">
                         + Tambah
                     </button>
@@ -30,24 +30,42 @@
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="tabel-kota">
+                        <table class="table table-bordered" id="tabel-user">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Kota</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Telepon</th>
+                                    <th>Role</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $index => $kota)
+                                @foreach ($data as $index => $user)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $kota->nama }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->phone }}</td>
+                                        <td>
+                                            @if ($user->role == 2)
+                                                <span class="badge bg-primary">Verifikator</span>
+                                            @elseif ($user->role == 4)
+                                                <span class="badge bg-success">Kepala BTKI</span>
+                                            @else
+                                                <span class="badge bg-secondary">Tidak Dikenal</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#modalEdit{{ $kota->id }}"><i data-feather="edit" class="me-1"></i>Edit</button>
+                                                data-bs-target="#modalEdit{{ $user->id }}">
+                                                <i data-feather="edit" class="me-1"></i>Edit
+                                            </button>
                                             <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#modalHapus{{ $kota->id }}"><i data-feather="trash" class="me-1"></i>Hapus</button>
+                                                data-bs-target="#modalHapus{{ $user->id }}">
+                                                <i data-feather="trash" class="me-1"></i>Hapus
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -58,22 +76,38 @@
             </div>
         </div>
 
-        @foreach ($data as $kota)
-            {{-- Modal Edit --}}
-            <div class="modal fade" id="modalEdit{{ $kota->id }}" tabindex="-1">
+        @foreach ($data as $user)
+            <!-- Modal Edit -->
+            <div class="modal fade" id="modalEdit{{ $user->id }}" tabindex="-1">
                 <div class="modal-dialog">
-                    <form action="{{ route('kota.update', $kota->id) }}" method="POST" class="modal-content">
+                    <form action="{{ route('manajemen-user.update', $user->id) }}" method="POST" class="modal-content">
                         @csrf
                         @method('PUT')
                         <div class="modal-header">
-                            <h5 class="modal-title">Edit Kota</h5>
+                            <h5 class="modal-title">Edit User</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label>Nama Kota</label>
-                                <input type="text" name="nama" value="{{ $kota->nama }}" class="form-control"
+                                <label>Nama</label>
+                                <input type="text" name="name" value="{{ $user->name }}" class="form-control"
                                     required>
+                            </div>
+                            <div class="mb-3">
+                                <label>Email</label>
+                                <input type="text" name="email" value="{{ $user->email }}" class="form-control"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label>Telepon</label>
+                                <input type="text" name="phone" value="{{ $user->phone }}" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label>Role</label>
+                                <select name="role" class="form-control" required>
+                                    <option value="2" {{ $user->role == 2 ? 'selected' : '' }}>Verifikator</option>
+                                    <option value="4" {{ $user->role == 4 ? 'selected' : '' }}>Kepala BTKI</option>
+                                </select>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -84,18 +118,19 @@
                 </div>
             </div>
 
-            {{-- Modal Hapus --}}
-            <div class="modal fade" id="modalHapus{{ $kota->id }}" tabindex="-1">
+
+            <!-- Modal Hapus -->
+            <div class="modal fade" id="modalHapus{{ $user->id }}" tabindex="-1">
                 <div class="modal-dialog">
-                    <form action="{{ route('kota.destroy', $kota->id) }}" method="POST" class="modal-content">
+                    <form action="{{ route('manajemen-user.destroy', $user->id) }}" method="POST" class="modal-content">
                         @csrf
                         @method('DELETE')
                         <div class="modal-header">
-                            <h5 class="modal-title">Hapus Kota</h5>
+                            <h5 class="modal-title">Hapus Verifikator atau Kabalai</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Yakin ingin menghapus <strong>{{ $kota->nama }}</strong>?</p>
+                            <p>Yakin ingin menghapus <strong>{{ $user->name }}</strong>?</p>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -106,20 +141,27 @@
             </div>
         @endforeach
 
-
-        {{-- Modal Tambah --}}
+        <!-- Modal Tambah -->
         <div class="modal fade" id="modalTambah" tabindex="-1">
             <div class="modal-dialog">
-                <form action="{{ route('kota.store') }}" method="POST" class="modal-content">
+                <form action="{{ route('manajemen-user.store') }}" method="POST" class="modal-content">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambah Kota</h5>
+                        <h5 class="modal-title">Tambah Verifikator atau Kabalai</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label>Nama Kota</label>
-                            <input type="text" name="nama" class="form-control" required>
+                            <label>Nama</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Email</label>
+                            <input type="text" name="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Telepon</label>
+                            <input type="text" name="phone" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -145,7 +187,6 @@
                 showConfirmButton: false
             });
         @endif
-
         @if (session('error'))
             Swal.fire({
                 icon: 'error',
@@ -163,7 +204,8 @@
 
     <script>
         $(document).ready(function() {
-            $('#tabel-kota').DataTable();
+            $('#tabel-user').DataTable();
+            feather.replace();
         });
     </script>
 @endsection

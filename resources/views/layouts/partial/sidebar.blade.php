@@ -2,7 +2,7 @@
     <nav class="sidenav shadow-right sidenav-light">
         <div class="sidenav-menu">
             {{-- ADMINISTRATOR --}}
-            @if (Auth::user()->role == '1')
+            @if (Auth::check() && Auth::user()->role == '1')
                 <div class="nav accordion" id="accordionSidenav">
 
 
@@ -30,18 +30,18 @@
                         Sekolah
                     </a>
                     <div class="sidenav-menu-heading">Pengguna</div>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('operator-sekolah.index') }}">
                         <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
                         Operator Sekolah
                     </a>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('manajemen-user.index') }}">
                         <div class="nav-link-icon"><i data-feather="filter"></i></div>
-                        Verifikator
+                        Verifikator & Kabalai
                     </a>
                 </div>
             @endif
             {{-- OPERATOR SEKOLAH --}}
-            @if (Auth::user()->role == '2')
+            @if (Auth::check() && Auth::user()->role == '3')
                 <div class="nav accordion" id="accordionSidenav">
 
 
@@ -50,33 +50,25 @@
                         <div class="nav-link-icon"><i data-feather="home"></i></div>
                         Dashboard
                     </a>
-                    <div class="sidenav-menu-heading">Pengaturan</div>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Kabupaten/Kota
+
+                    <div class="sidenav-menu-heading">DATA SEKOLAH</div>
+
+                    <a class="nav-link" href="{{ route('operator-input.store') }}">
+                        <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                        Data Umum & TIK
                     </a>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Kecamatan
-                    </a>
-                    <div class="sidenav-menu-heading">Data Sekolah</div>
+
+                    <div class="sidenav-menu-heading">DATA GURU</div>
                     <a class="nav-link" href="#">
                         <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                        Sekolah
+                        Data Guru
                     </a>
-                    <div class="sidenav-menu-heading">Pengguna</div>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                        Operator Sekolah
-                    </a>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="filter"></i></div>
-                        Verifikator
-                    </a>
+
+
                 </div>
             @endif
             {{-- VERIFIKATOR --}}
-            @if (Auth::user()->role == '3')
+            @if (Auth::check() && Auth::user()->role == '2')
                 <div class="nav accordion" id="accordionSidenav">
 
 
@@ -111,7 +103,7 @@
                 </div>
             @endif
             {{-- KEPALA BTKI --}}
-            @if (Auth::user()->role == '4')
+            @if (Auth::check() && Auth::user()->role == '4')
                 <div class="nav accordion" id="accordionSidenav">
 
 
@@ -150,8 +142,8 @@
         <!-- Sidenav Footer-->
         <div class="sidenav-footer">
             <div class="sidenav-footer-content">
-                <div class="sidenav-footer-subtitle">Logged in as:</div>
-                <div class="sidenav-footer-title">Valerie Luna</div>
+                <div class="sidenav-footer-subtitle">Login Sebagai:</div>
+                <div class="sidenav-footer-title">{{ Auth::user()->name }}</div>
             </div>
         </div>
     </nav>

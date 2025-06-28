@@ -10,7 +10,7 @@ class PeriodeController extends Controller
     public function index()
     {
         $data = Periode::orderBy('tahun', 'desc')->get();
-        return view('periode.index', compact('data'));
+        return view('pages.periode.index', compact('data'));
     }
 
     public function store(Request $request)
