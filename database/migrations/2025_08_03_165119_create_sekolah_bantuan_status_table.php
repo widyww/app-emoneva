@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('email')->change(); // dari email() ke string()
+        Schema::create('sekolah_bantuan_status', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('sekolah_id')->constrained('sekolah')->onDelete('cascade');
+            $table->enum('status',['ya','tidak'])->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('email')->unique()->change(); // restore ke email unik
-        });
+        Schema::dropIfExists('sekolah_bantuan_status');
     }
 };

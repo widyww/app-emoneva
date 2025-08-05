@@ -123,6 +123,11 @@
                                     required>
                             </div>
                             <div class="mb-3">
+                                <label>Password</label>
+                                <input type="text" name="password" class="form-control"
+                                    required>
+                            </div>
+                            <div class="mb-3">
                                 <label>Sekolah</label>
                                 <select name="sekolah_id" class="form-control" required>
                                     @foreach ($sekolah as $s)

@@ -31,7 +31,7 @@ class UserController extends Controller
             'phone' => $request->phone,
             'role' => 3,
             'sekolah_id' => $request->sekolah_id,
-             'password' => Hash::make($request->email), // Password = email (hashed)
+            'password' => Hash::make($request->email), // Password = email (hashed)
         ]);
 
         return redirect()->back()->with('success', 'Operator sekolah berhasil ditambahkan.');
@@ -46,14 +46,22 @@ class UserController extends Controller
             'email' => 'required|string|unique:users,email,' . $id,
             'phone' => 'nullable|string',
             'sekolah_id' => 'required|exists:sekolah,id',
+            'password' => 'nullable|string|min:6', // tambahkan ini
         ]);
 
-        $user->update([
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'sekolah_id' => $request->sekolah_id,
-        ]);
+        ];
+
+        // Hanya update password jika diisi
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
 
         return redirect()->back()->with('success', 'Data operator diperbarui.');
     }

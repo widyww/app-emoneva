@@ -53,9 +53,21 @@
 
                     <div class="sidenav-menu-heading">DATA SEKOLAH</div>
 
-                    <a class="nav-link" href="{{ route('operator-input.store') }}">
-                        <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                        Data Umum & TIK
+                    <a class="nav-link" href="{{ route('identitas-sekolah.index') }}">
+                        <div class="nav-link-icon"><i data-feather="info"></i></div>
+                        Identitas
+                    </a>
+                    <a class="nav-link" href="{{ route('sosekbud-sekolah.index') }}">
+                        <div class="nav-link-icon"><i data-feather="aperture"></i></div>
+                        Sosekbud
+                    </a>
+                    <a class="nav-link" href="{{ route('bantuan-sekolah.index') }}">
+                        <div class="nav-link-icon"><i data-feather="airplay"></i></div>
+                        Bantuan
+                    </a>
+                    <a class="nav-link" href="{{ route('fasilitas-sekolah.index') }}">
+                        <div class="nav-link-icon"><i data-feather="battery-charging"></i></div>
+                        Listrik dan Internet
                     </a>
 
                     <div class="sidenav-menu-heading">DATA GURU</div>

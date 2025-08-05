@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sekolah;
+use App\Models\SekolahSosekbud;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,23 +15,25 @@ class SekolahController extends Controller
         $data = Sekolah::all();
         return view('pages.sekolah.index', compact('data'));
     }
-
     public function store(Request $request)
     {
         $request->validate([
             'npsn' => 'required|string|unique:sekolah,npsn',
             'tingkatan' => 'required|string',
             'nama' => 'required|string',
-
         ]);
-
 
         // Simpan ke tabel sekolah
         $sekolah = Sekolah::create([
             'npsn' => $request->npsn,
             'tingkatan' => $request->tingkatan,
             'nama' => $request->nama,
+        ]);
 
+        // Simpan ke tabel sosekbud
+        SekolahSosekbud::create([
+            'sekolah_id' => $sekolah->id,
+            
         ]);
 
         // Simpan user operator sekolah
@@ -44,6 +47,7 @@ class SekolahController extends Controller
 
         return redirect()->back()->with('success', 'Data sekolah dan user operator berhasil ditambahkan');
     }
+
 
     public function update(Request $request, $id)
     {

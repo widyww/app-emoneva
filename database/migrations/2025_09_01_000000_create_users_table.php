@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
-
             $table->string('role')->nullable()->comment('1. Administrator | 2. Verifikator | 3. Operator Sekolah | 4. Kabalai');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('sekolah_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('sekolah_id')->references('id')->on('sekolah')->onDelete('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdministratorController;
+use App\Http\Controllers\BantuanSekolahController;
+use App\Http\Controllers\DataSekolahController;
+use App\Http\Controllers\FasilitasSekolahController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\ManajemenUserController;
@@ -61,17 +64,22 @@ Route::middleware('auth', 'verified', 'Administrator')->group(function () {
     Route::post('/user-manajemen', [ManajemenUserController::class, 'store'])->name('manajemen-user.store');
     Route::put('/user-manajemen/{id}', [ManajemenUserController::class, 'update'])->name('manajemen-user.update');
     Route::delete('/user-manajemen/{id}', [ManajemenUserController::class, 'destroy'])->name('manajemen-user.destroy');
-
-
 });
 
 // ROLE OPERATOR SEKOLAH
 Route::middleware('auth', 'verified', 'Operator')->group(function () {
 
-     Route::get('/dashboard-operator', [OperatorController::class, 'index'])->name('operator.dashboard');
-
-     Route::get('/data-sekolah',[SekolahDataController::class, 'index'])->name('operator-input.store');
-
+    Route::get('/dashboard-operator', [OperatorController::class, 'index'])->name('operator.dashboard');
+    Route::get('/identitas-sekolah', [DataSekolahController::class, 'index_identitas'])->name('identitas-sekolah.index');
+    Route::put('/identitas-sekolah', [DataSekolahController::class, 'update_identitas'])->name('identitas-sekolah.update');
+    Route::get('/identitas-sosekbud', [DataSekolahController::class, 'index_sosekbud'])->name('sosekbud-sekolah.index');
+    Route::put('/identitas-sosekbud', [DataSekolahController::class, 'update_sosekbud'])->name('sosekbud-sekolah.update');
+    Route::get('/bantuan-sekolah', [BantuanSekolahController::class, 'index'])->name('bantuan-sekolah.index');
+    Route::post('/bantuan-sekolah', [BantuanSekolahController::class, 'store'])->name('bantuan-sekolah.store');
+    Route::delete('/bantuan-sekolah/{id}', [BantuanSekolahController::class, 'destroy'])->name('bantuan-sekolah.destroy');
+    Route::get('/fasilitas', [FasilitasSekolahController::class, 'index'])->name('fasilitas-sekolah.index');
+    Route::post('/fasilitas', [FasilitasSekolahController::class, 'store'])->name('fasilitas-sekolah.store');
+    Route::delete('/fasilitas/{id}', [FasilitasSekolahController::class, 'destroy'])->name('fasilitas-sekolah.destroy');
 });
 
 
