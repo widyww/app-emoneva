@@ -71,9 +71,13 @@
                     </a>
 
                     <div class="sidenav-menu-heading">DATA GURU</div>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('guru.index') }}">
                         <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                        Data Guru
+                        Lihat
+                    </a>
+                    <a class="nav-link" href="{{ route('guru.index') }}">
+                        <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                        Input 
                     </a>
 
 

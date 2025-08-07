@@ -4,6 +4,7 @@ use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\BantuanSekolahController;
 use App\Http\Controllers\DataSekolahController;
 use App\Http\Controllers\FasilitasSekolahController;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\ManajemenUserController;
@@ -80,6 +81,8 @@ Route::middleware('auth', 'verified', 'Operator')->group(function () {
     Route::get('/fasilitas', [FasilitasSekolahController::class, 'index'])->name('fasilitas-sekolah.index');
     Route::post('/fasilitas', [FasilitasSekolahController::class, 'store'])->name('fasilitas-sekolah.store');
     Route::delete('/fasilitas-lab/{id}', [FasilitasSekolahController::class, 'destroy_lab'])->name('fasilitas-sekolah-lab.destroy');
+
+    Route::get('/data-guru',[GuruController::class, 'index'])->name('guru.index');
 });
 
 
