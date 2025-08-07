@@ -79,7 +79,7 @@ Route::middleware('auth', 'verified', 'Operator')->group(function () {
     Route::delete('/bantuan-sekolah/{id}', [BantuanSekolahController::class, 'destroy'])->name('bantuan-sekolah.destroy');
     Route::get('/fasilitas', [FasilitasSekolahController::class, 'index'])->name('fasilitas-sekolah.index');
     Route::post('/fasilitas', [FasilitasSekolahController::class, 'store'])->name('fasilitas-sekolah.store');
-    Route::delete('/fasilitas/{id}', [FasilitasSekolahController::class, 'destroy'])->name('fasilitas-sekolah.destroy');
+    Route::delete('/fasilitas-lab/{id}', [FasilitasSekolahController::class, 'destroy_lab'])->name('fasilitas-sekolah-lab.destroy');
 });
 
 

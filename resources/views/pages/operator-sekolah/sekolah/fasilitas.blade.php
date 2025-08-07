@@ -175,12 +175,15 @@
                                             placeholder="Jumlah PC">
                                     </div>
                                     <div class="col-md-2">
-                                        <button type="button"
-                                            class="btn btn-danger btn-remove-labkom w-100">Hapus</button>
+                                        <button type="button" class="btn btn-danger btn-remove-labkom w-10"> X</button>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary" id="btn-tambah-labkom">Tambah Lab</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="btn-tambah-labkom"
+                                title="Tambah Lab">
+                                <i data-feather="plus"></i>
+                            </button>
+
                         </div>
 
                         <div class="mt-4">
@@ -188,31 +191,43 @@
                         </div>
                     </form>
 
-                    @if ($fasilitas && $fasilitas->labkoms->count())
-                        <div class="mt-4">
-                            <h5>Daftar Lab Komputer</h5>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Lab</th>
-                                            <th>Jumlah PC</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($fasilitas->labkoms as $i => $lab)
-                                            <tr>
-                                                <td>{{ $i + 1 }}</td>
-                                                <td>{{ $lab->labkom_nama }}</td>
-                                                <td>{{ $lab->labkom_jumlah_pc }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <hr>
+                    @if ($fasilitas && $fasilitas->labkom_status === 'ada' && $fasilitas->SekolahFasilitasLab->count())
+                        <h5>Daftar Laboratorium Komputer</h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Lab Komputer</th>
+                                    <th>Jumlah PC</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($fasilitas->SekolahFasilitasLab as $i => $lab)
+                                    <tr>
+                                        <td>{{ $i + 1 }}</td>
+                                        <td>{{ $lab->labkom_nama }}</td>
+                                        <td>{{ $lab->labkom_jumlah_pc }}</td>
+                                        <td>
+                                            <form action="{{ route('fasilitas-sekolah-lab.destroy', $lab->id) }}"
+                                                method="POST" class="form-delete-lab">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-sm btn-danger btn-delete-lab">
+                                                    <i data-feather="trash-2"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                        <p class="text-muted">Tidak ada data lab komputer yang tersedia.</p>
                     @endif
+
+
 
 
                 </div>
@@ -268,7 +283,7 @@
             const newRow = document.createElement('div');
             newRow.className = 'row mb-2';
             newRow.innerHTML =
-                '<div class = "col-md-6" ><input type = "text" name = "labkom_nama[]" class = "form-control" placeholder = "Nama Lab Komputer" ></div> <div class = "col-md-4" ><input type = "number" name = "labkom_jumlah_pc[]" class = "form-control" placeholder = "Jumlah PC" ></div> <div class = "col-md-2" ><button type = "button" class = "btn btn-danger btn-remove-labkom w-100" > Hapus < /button> </div>';
+                '<div class = "col-md-6" ><input type = "text" name = "labkom_nama[]" class = "form-control" placeholder = "Nama Lab Komputer" ></div> <div class = "col-md-4" ><input type = "number" name = "labkom_jumlah_pc[]" class = "form-control" placeholder = "Jumlah PC" ></div> <div class = "col-md-2" ><button type="button" class="btn btn-danger btn-remove-labkom w-10"> X</button> </div>';
             container.appendChild(newRow);
         });
 
@@ -280,5 +295,30 @@
             }
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.btn-delete-lab').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const form = this.closest('form');
+                    Swal.fire({
+                        title: 'Yakin ingin menghapus?',
+                        text: "Data tidak bisa dikembalikan!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
 
 @endsection

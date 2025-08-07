@@ -17,7 +17,7 @@ class SekolahFasilitasLab extends Model
 
     public function SekolahFasilitas()
     {
-        return $this->belongsTo(SekolahFasilitas::class);
+        return $this->belongsTo(SekolahFasilitas::class, 'sekolah_fasilitastik_id');
     }
 
 }

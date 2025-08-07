@@ -27,6 +27,6 @@ class SekolahFasilitas extends Model
 
     public function SekolahFasilitasLab()
     {
-        return $this->hasMany(SekolahFasilitasLab::class);
+        return $this->hasMany(SekolahFasilitasLab::class,'sekolah_fasilitastik_id');
     }
 }
