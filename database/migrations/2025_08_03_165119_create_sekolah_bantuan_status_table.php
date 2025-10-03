@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sekolah_bantuan_status', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sekolah_id')->constrained('sekolah')->onDelete('cascade');
-            $table->enum('status',['ya','tidak'])->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

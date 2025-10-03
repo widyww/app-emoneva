@@ -22,14 +22,14 @@ return new class extends Migration
             $table->string('agama')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('pendidikan_terakhir')->nullable();
-            $table->date('tmt_pns_tahun')->nullable(); 
+            $table->date('tmt_pns_tahun')->nullable();
             $table->string('telepon')->nullable();
-            
+
             //data kompetensi
-            $table->string('mapel')->nullable(); 
-            $table->string('sertifiaksi_status')->nullable(); 
-            $table->string('sertifikasi_tahun')->nullable(); 
-            $table->string('sertifikasi_alasan')->nullable(); 
+            $table->string('mapel')->nullable();
+            $table->string('sertifikasi_status')->nullable();
+            $table->string('sertifikasi_tahun')->nullable();
+            $table->string('sertifikasi_alasan')->nullable();
             //kompetensi office
             $table->string('kompetensi_word')->nullable();
             $table->string('kompetensi_powerpoin')->nullable();
@@ -41,8 +41,13 @@ return new class extends Migration
             // pelatihan
             $table->string('pelatihan_status')->nullable()->comment('1. Ya, 2.Tidak'); // relasi
             $table->string('pelatihan_kebutuhan')->nullable()->comment('1. Ya, 2.Tidak'); // relasi
-            
-            
+            //status verifikasi
+            $table->string('status_verifikasi')->nullable();
+            $table->string('catatan_verifikasi')->nullable();
+
+            // relasi ke sekolah
+            $table->foreignId('sekolah_id')->constrained('sekolah')->onDelete('cascade');
+
 
             $table->timestamps();
         });

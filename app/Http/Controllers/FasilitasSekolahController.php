@@ -17,7 +17,7 @@ class FasilitasSekolahController extends Controller
         $sekolah = Sekolah::find($idsekolah);
         // $fasilitas = SekolahFasilitas::with('sekolah_fasilitastik_lab')->where('sekolah_id', Auth::user()->sekolah_id)->first();
 
-        $fasilitas = SekolahFasilitas::with('SekolahFasilitasLab')
+        $fasilitas = SekolahFasilitas::with('labs')
             ->where('sekolah_id', Auth::user()->sekolah_id)
             ->first();
 

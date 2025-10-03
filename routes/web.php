@@ -14,6 +14,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\SekolahDataController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserVerifikatorController;
+use App\Http\Controllers\VerifikasiGuruController;
+use App\Http\Controllers\VerifikasiProsesController;
 use App\Http\Controllers\VerifikatorController;
 use Illuminate\Support\Facades\Route;
 
@@ -82,13 +85,24 @@ Route::middleware('auth', 'verified', 'Operator')->group(function () {
     Route::post('/fasilitas', [FasilitasSekolahController::class, 'store'])->name('fasilitas-sekolah.store');
     Route::delete('/fasilitas-lab/{id}', [FasilitasSekolahController::class, 'destroy_lab'])->name('fasilitas-sekolah-lab.destroy');
 
-    Route::get('/data-guru',[GuruController::class, 'index'])->name('guru.index');
+    Route::resource('data-guru', GuruController::class);
 });
 
 
 
 
 // ROLE VERIFIKATOR
+
+Route::middleware('auth', 'verified', 'Verifikator')->group(function(){
+    Route::get('/dashboard-verifikator',[UserVerifikatorController::class, 'index'])->name('verifikator.dashboard');
+    
+    Route::resource('verifikasi-proses', VerifikasiProsesController::class);
+    Route::put('/verifikasi-proses/approve/{id}', [VerifikasiProsesController::class, 'approve'])->name('verifikasi-proses.approve');
+
+    Route::resource('verifikasi-guru', VerifikasiGuruController::class);
+
+    
+});
 
 
 // ROLE KEPALA BTKI

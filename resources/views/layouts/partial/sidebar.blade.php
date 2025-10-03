@@ -71,12 +71,12 @@
                     </a>
 
                     <div class="sidenav-menu-heading">DATA GURU</div>
-                    <a class="nav-link" href="{{ route('guru.index') }}">
-                        <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                        Lihat
+                    <a class="nav-link" href="{{ route('data-guru.index') }}">
+                        <div class="nav-link-icon"><i data-feather="eye"></i></div>
+                        View
                     </a>
-                    <a class="nav-link" href="{{ route('guru.index') }}">
-                        <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                    <a class="nav-link" href="{{ route('data-guru.create') }}">
+                        <div class="nav-link-icon"><i data-feather="user-plus"></i></div>
                         Input 
                     </a>
 
@@ -93,28 +93,15 @@
                         <div class="nav-link-icon"><i data-feather="home"></i></div>
                         Dashboard
                     </a>
-                    <div class="sidenav-menu-heading">Pengaturan</div>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Kabupaten/Kota
+                   
+                    <a class="nav-link" href="{{ route('verifikasi-proses.index') }}">
+                        <div class="nav-link-icon"><i data-feather="edit"></i></div>
+                        Verifikasi Sekolah
                     </a>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Kecamatan
-                    </a>
-                    <div class="sidenav-menu-heading">Data Sekolah</div>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                        Sekolah
-                    </a>
-                    <div class="sidenav-menu-heading">Pengguna</div>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                        Operator Sekolah
-                    </a>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="filter"></i></div>
-                        Verifikator
+                    
+                    <a class="nav-link" href="{{ route('verifikasi-guru.index') }}">
+                        <div class="nav-link-icon"><i data-feather="edit"></i></div>
+                        Verifikasi Data Guru
                     </a>
                 </div>
             @endif

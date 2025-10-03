@@ -15,9 +15,8 @@ class SekolahFasilitasLab extends Model
         'labkom_jumlah_pc',
     ];
 
-    public function SekolahFasilitas()
+    public function fasilitas()
     {
-        return $this->belongsTo(SekolahFasilitas::class, 'sekolah_fasilitastik_id');
+        return $this->belongsTo(SekolahFasilitas::class, 'sekolah_fasilitastik_id', 'id');
     }
-
 }

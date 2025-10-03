@@ -29,20 +29,30 @@ class Guru extends Model
         'kompetensi_powerpoin',
         'kompetensi_excel',
         'kompetensi_pemrogramman',
-        'kompetensi_jaringan',
-        'kompetensi_multimedia',
+        'kompetensi_jaringan',      // ✅ tambahkan
+        'kompetensi_multimedia',    // ✅ tambahkan
         'pelatihan_status',
         'pelatihan_kebutuhan',
-        
+        'sekolah_id',
+        'status_verifikasi',
+        'catatan_verifikasi',
+
     ];
 
-    public function gurukebutuhan()
+    public function pelatihan()
     {
-        return $this->hasMany(GuruKebutuhan::class);
+        return $this->hasMany(GuruPelatihan::class); // sesuaikan nama model & foreign key
     }
 
-    public function gurupelatihan()
+    public function kebutuhanPelatihan()
     {
-        return $this->hasMany(GuruPelatihan::class);
+        return $this->hasMany(GuruKebutuhan::class); // sesuaikan nama model & foreign key
     }
+    // App\Models\Guru.php
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class, 'sekolah_id', 'id');
+    }
+
+    
 }

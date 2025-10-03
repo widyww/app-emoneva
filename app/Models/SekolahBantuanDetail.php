@@ -15,7 +15,8 @@ class SekolahBantuanDetail extends Model
         'keterangan_bantuan',
     ];
 
-    public function SekolahBantuanStatus()
+     // relasi ke status
+    public function status()
     {
         return $this->belongsTo(SekolahBantuanStatus::class, 'sekolah_bantuan_status_id');
     }

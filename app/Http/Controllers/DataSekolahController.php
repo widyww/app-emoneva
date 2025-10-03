@@ -38,9 +38,7 @@ class DataSekolahController extends Controller
             'jum_siswa_pria' => 'nullable|integer|min:0',
             'jum_siswa_wanita' => 'nullable|integer|min:0',
             'unbk_status' => 'nullable|in:Mandiri,Menumpang,Gabungan,Belum UNBK,Tidak Berlaku',
-            'unbk_tahun' => 'nullable|digits:4',
-            'status_verifikasi' => 'nullable|in:sukses,revisi,menunggu',
-            'keterangan_verifikasi' => 'nullable|string',
+            'unbk_tahun' => 'nullable|digits:4',  
             'kecamatan_id' => 'required|exists:kecamatan,id',
         ]);
 
@@ -63,7 +61,7 @@ class DataSekolahController extends Controller
             'jum_siswa_wanita' => $request->jum_siswa_wanita,
             'unbk_status' => $request->unbk_status,
             'unbk_tahun' => $request->unbk_tahun,
-            'status_verifikasi' => $request->status_verifikasi,
+            'status_verifikasi' => 0,
             'keterangan_verifikasi' => $request->keterangan_verifikasi,
             'kecamatan_id' => $request->kecamatan_id,
             'kota_id' => $request->kecamatan_id ? Kecamatan::find($request->kecamatan_id)->kota_id : null,

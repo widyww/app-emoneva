@@ -25,8 +25,14 @@ class SekolahFasilitas extends Model
         'saran_pengembangan',
     ];
 
-    public function SekolahFasilitasLab()
+    public function labs()
     {
-        return $this->hasMany(SekolahFasilitasLab::class,'sekolah_fasilitastik_id');
+        return $this->hasMany(SekolahFasilitasLab::class, 'sekolah_fasilitastik_id', 'id');
+    }
+
+
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class, 'sekolah_id');
     }
 }

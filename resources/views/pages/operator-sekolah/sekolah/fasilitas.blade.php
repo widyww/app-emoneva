@@ -192,7 +192,7 @@
                     </form>
 
                     <hr>
-                    @if ($fasilitas && $fasilitas->labkom_status === 'ada' && $fasilitas->SekolahFasilitasLab->count())
+                    @if ($fasilitas && $fasilitas->labkom_status === 'ada' && $fasilitas->labs->count())
                         <h5>Daftar Laboratorium Komputer</h5>
                         <table class="table table-bordered">
                             <thead>
@@ -204,7 +204,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($fasilitas->SekolahFasilitasLab as $i => $lab)
+                                @foreach ($fasilitas->labs as $i => $lab)
                                     <tr>
                                         <td>{{ $i + 1 }}</td>
                                         <td>{{ $lab->labkom_nama }}</td>
