@@ -22,11 +22,21 @@
         <div class="container-xl px-4 mt-n10">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Daftar Sekolah</span>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">
-                        + Tambah Sekolah
-                    </button>
+                    <span class="fw-bold">Daftar Sekolah</span>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-primary d-flex align-items-center" data-bs-toggle="modal"
+                            data-bs-target="#modalTambah">
+                            <i data-feather="plus" class="me-1"></i>
+                            <span>Tambah</span>
+                        </button>
+                        <button class="btn btn-sm btn-success d-flex align-items-center" data-bs-toggle="modal"
+                            data-bs-target="#modalUpload">
+                            <i data-feather="upload" class="me-1"></i>
+                            <span>Upload Excel</span>
+                        </button>
+                    </div>
                 </div>
+
 
                 <div class="card-body">
                     <div class="table-responsive">
@@ -135,8 +145,10 @@
                             <div class="mb-3">
                                 <label>Tingkatan</label>
                                 <select name="tingkatan" class="form-control" required>
-                                    <option value="TKLB" {{ $item->tingkatan == 'TKLB' ? 'selected' : '' }}>TKLB</option>
-                                    <option value="SDLB" {{ $item->tingkatan == 'SDLB' ? 'selected' : '' }}>SDLB</option>
+                                    <option value="TKLB" {{ $item->tingkatan == 'TKLB' ? 'selected' : '' }}>TKLB
+                                    </option>
+                                    <option value="SDLB" {{ $item->tingkatan == 'SDLB' ? 'selected' : '' }}>SDLB
+                                    </option>
                                     <option value="SMPLB" {{ $item->tingkatan == 'SMPLB' ? 'selected' : '' }}>SMPLB
                                     </option>
                                     <option value="SMALB" {{ $item->tingkatan == 'SMALB' ? 'selected' : '' }}>SMALB
@@ -180,6 +192,36 @@
                 </div>
             </div>
         @endforeach
+
+
+        {{-- Modal Upload Excel --}}
+        <div class="modal fade" id="modalUpload" tabindex="-1">
+            <div class="modal-dialog">
+                <form action="{{ route('sekolah.import') }}" method="POST" enctype="multipart/form-data"
+                    class="modal-content">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title">Upload Data Sekolah dari Excel</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-3 text-muted">
+                            Pastikan file Excel memiliki kolom:
+                            <strong>NPSN, Nama Sekolah, Tingkatan</strong>.
+                        </p>
+                        <div class="mb-3">
+                            <label class="form-label">Pilih File Excel (.xlsx / .xls)</label>
+                            <input type="file" name="file" accept=".xlsx,.xls" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button class="btn btn-success" type="submit">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </main>
 @endsection
 

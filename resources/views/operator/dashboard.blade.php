@@ -10,7 +10,7 @@
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i data-feather="home"></i></div>
-                                Dashboard
+                                Dashboard : {{ Auth::user()->sekolah->nama }}
                             </h1>
                             <div class="page-header-subtitle">Dashboard Operator Sekolah</div>
                         </div>
@@ -25,6 +25,7 @@
                 </div>
             </div>
         </header>
+
         <!-- Main page content-->
         <div class="container-xl px-4 mt-n10">
             <div class="row">
@@ -49,32 +50,58 @@
                                             yang dikembangkan oleh Balai Teknologi Informasi dan Komunikasi (BTKI)
                                             Dinas Pendidikan dan Kebudayaan Provinsi Maluku
                                         </p>
+                                        <hr>
+                                        <h1 class="text-primary mt-3">
+                                            Status Verifikasi Data Sekolah:
+                                            @if ($statusSekolah == 0)
+                                                <span class="badge bg-warning">Menunggu Inputan</span>
+                                            @elseif ($statusSekolah == 1)
+                                                <span class="badge bg-success text-white">Menunggu Verifikasi</span>
+                                            @elseif ($statusSekolah == 2)
+                                                <span class="badge bg-success text-white">
+                                                    <i data-feather="check-circle"></i> Terverifikasi
+                                                </span>
+                                            @elseif ($statusSekolah == 3)
+                                                <span class="badge bg-danger">Revisi</span>
+                                            @else
+                                                <span class="badge bg-success">Menunggu Inputan</span>
+                                            @endif
+
+                                        </h1>
+
+                                        <hr>
+
+                                        {{-- Tombol Ajukan Verifikasi --}}
+                                        <form id="formVerifikasi" action="{{ route('sekolah.ajukanVerifikasi') }}"
+                                            method="POST">
+                                            @csrf
+                                            <button type="button" id="btnAjukan" class="btn btn-primary btn-sm">
+                                                <i data-feather="send"></i> Ajukan Verifikasi Data
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
-
-                                {{-- <div class="col-xl-4 col-xxl-12 text-center"></div> --}}
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-            <!-- Example Colored Cards for Dashboard Demo-->
+
+            <!-- Kartu Statistik -->
             <div class="row">
                 <div class="col-lg-6 col-xl-3 mb-4">
                     <div class="card bg-primary text-white h-100">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="me-3">
-                                    <div class="text-white-75 small">Earnings (Monthly)</div>
-                                    <div class="text-lg fw-bold">$40,000</div>
+                                    <div class="text-white-75 small">JUMLAH DATA GURU :</div>
+                                    <div class="text-lg fw-bold">{{ $totalGuru }}</div>
                                 </div>
-                                <i class="feather-xl text-white-50" data-feather="calendar"></i>
+                                <i class="feather-xl text-white-50" data-feather="users"></i>
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="#!">View Report</a>
+                            <a class="text-white stretched-link" href="{{ route('data-guru.index') }}">DETAIL</a>
                             <div class="text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -84,14 +111,14 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="me-3">
-                                    <div class="text-white-75 small">Earnings (Annual)</div>
-                                    <div class="text-lg fw-bold">$215,000</div>
+                                    <div class="text-white-75 small">DATA GURU TERVERIFIKASI</div>
+                                    <div class="text-lg fw-bold">{{ $terverifikasi }}</div>
                                 </div>
-                                <i class="feather-xl text-white-50" data-feather="dollar-sign"></i>
+                                <i class="feather-xl text-white-50" data-feather="user"></i>
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="#!">View Report</a>
+                            <a class="text-white stretched-link" href="{{ route('data-guru.index') }}">DETAIL</a>
                             <div class="text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -101,14 +128,14 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="me-3">
-                                    <div class="text-white-75 small">Task Completion</div>
-                                    <div class="text-lg fw-bold">24</div>
+                                    <div class="text-white-75 small">DATA GURU HARUS DIREVISI</div>
+                                    <div class="text-lg fw-bold">{{ $perluPerbaikan }}</div>
                                 </div>
-                                <i class="feather-xl text-white-50" data-feather="check-square"></i>
+                                <i class="feather-xl text-white-50" data-feather="user"></i>
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="#!">View Tasks</a>
+                            <a class="text-white stretched-link" href="{{ route('data-guru.index') }}">DETAIL</a>
                             <div class="text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -118,69 +145,15 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="me-3">
-                                    <div class="text-white-75 small">Pending Requests</div>
-                                    <div class="text-lg fw-bold">17</div>
+                                    <div class="text-white-75 small">DATA GURU MENUNGGU VERIFIKASI</div>
+                                    <div class="text-lg fw-bold">{{ $menunggu }}</div>
                                 </div>
-                                <i class="feather-xl text-white-50" data-feather="message-circle"></i>
+                                <i class="feather-xl text-white-50" data-feather="user"></i>
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="#!">View Requests</a>
+                            <a class="text-white stretched-link" href="{{ route('data-guru.index') }}">DETAIL</a>
                             <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Example Charts for Dashboard Demo-->
-            <div class="row">
-                <div class="col-xl-6 mb-4">
-                    <div class="card card-header-actions h-100">
-                        <div class="card-header">
-                            Earnings Breakdown
-                            <div class="dropdown no-caret">
-                                <button class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                    id="areaChartDropdownExample" type="button" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false"><i class="text-gray-500"
-                                        data-feather="more-vertical"></i></button>
-                                <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                    aria-labelledby="areaChartDropdownExample">
-                                    <a class="dropdown-item" href="#!">Last 12 Months</a>
-                                    <a class="dropdown-item" href="#!">Last 30 Days</a>
-                                    <a class="dropdown-item" href="#!">Last 7 Days</a>
-                                    <a class="dropdown-item" href="#!">This Month</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#!">Custom Range</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-area"><canvas id="myAreaChart" width="100%" height="30"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 mb-4">
-                    <div class="card card-header-actions h-100">
-                        <div class="card-header">
-                            Monthly Revenue
-                            <div class="dropdown no-caret">
-                                <button class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                    id="areaChartDropdownExample" type="button" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false"><i class="text-gray-500"
-                                        data-feather="more-vertical"></i></button>
-                                <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                    aria-labelledby="areaChartDropdownExample">
-                                    <a class="dropdown-item" href="#!">Last 12 Months</a>
-                                    <a class="dropdown-item" href="#!">Last 30 Days</a>
-                                    <a class="dropdown-item" href="#!">Last 7 Days</a>
-                                    <a class="dropdown-item" href="#!">This Month</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#!">Custom Range</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-bar"><canvas id="myBarChart" width="100%" height="30"></canvas></div>
                         </div>
                     </div>
                 </div>
@@ -189,4 +162,42 @@
         </div>
     </main>
 
+    {{-- SweetAlert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('btnAjukan').addEventListener('click', function() {
+            Swal.fire({
+                title: 'Ajukan Verifikasi Data?',
+                text: 'Pastikan Anda telah melengkapi data Identitas, SOSEKBUD, Bantuan, dan Fasilitas sekolah sebelum mengajukan verifikasi.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Ajukan Sekarang',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('formVerifikasi').submit();
+                }
+            });
+        });
+
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        @endif
+
+        @if (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: '{{ session('error') }}',
+            });
+        @endif
+    </script>
 @endsection

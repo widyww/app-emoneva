@@ -36,11 +36,13 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
+                                    <th>Asal Sekolah</th>
                                     <th>Status</th>
                                     <th>NIP</th>
                                     <th>NUPTK</th>
                                     <th>Edit/Hapus</th>
                                     <th>Status</th>
+                                    <th>Catatan Verifikasi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,36 +50,65 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $item->nama }}</td>
+                                        <td>{{ $item->sekolah->nama }}</td>
                                         <td>{{ $item->status }}</td>
                                         <td>{{ $item->nip }}</td>
                                         <td>{{ $item->nuptk }}</td>
-                                        <td>
-                                            {{-- Tombol Edit --}}
-                                            <a href="{{ route('data-guru.edit', $item->id) }}"
-                                                class="btn btn-sm btn-warning" title="Edit">
-                                                <i data-feather="edit"></i>
-                                            </a>
-                                            {{-- Tombol Hapus --}}
-                                            <button class="btn btn-sm btn-danger btn-delete" data-id="{{ $item->id }}"
-                                                title="Hapus">
-                                                <i data-feather="trash-2"></i>
-                                            </button>
+                                        <td class="text-center">
+                                            @if ($item->status_verifikasi != 1)
+                                                {{-- ✅ Bisa edit & hapus kalau belum terverifikasi --}}
+                                                <a href="{{ route('data-guru.edit', $item->id) }}"
+                                                    class="btn btn-sm btn-warning" title="Edit">
+                                                    <i data-feather="edit"></i>
+                                                </a>
 
+                                                <button class="btn btn-sm btn-danger btn-delete"
+                                                    data-id="{{ $item->id }}" title="Hapus">
+                                                    <i data-feather="trash-2"></i>
+                                                </button>
+                                            @else
+                                                {{-- ❌ Sudah terverifikasi, nonaktifkan tombol --}}
+                                                <button class="btn btn-sm btn-secondary" disabled
+                                                    title="Tidak dapat diubah">
+                                                    <i data-feather="lock"></i>
+                                                </button>
+                                            @endif
                                         </td>
+
                                         <td>
                                             @switch($item->status_verifikasi)
                                                 @case(0)
-                                                    <span class="badge bg-warning">Waiting</span>
+                                                    <span class="badge bg-warning d-inline-flex align-items-center">
+                                                        <i data-feather="clock" class="me-1"></i> Menunggu Verifikasi
+                                                    </span>
                                                 @break
 
                                                 @case(1)
-                                                    <span class="badge bg-success">Approved</span>
+                                                    <span class="badge bg-success d-inline-flex align-items-center">
+                                                        <i data-feather="check-circle" class="me-1"></i> Terverifikasi
+                                                    </span>
+                                                @break
+
+                                                @case(2)
+                                                    <span class="badge bg-danger d-inline-flex align-items-center">
+                                                        <i data-feather="x-circle" class="me-1"></i> Ditolak
+                                                    </span>
+                                                @break
+
+                                                @case(3)
+                                                    <span class="badge bg-primary d-inline-flex align-items-center">
+                                                        <i data-feather="edit" class="me-1"></i> Revisi
+                                                    </span>
                                                 @break
 
                                                 @default
-                                                    <span class="badge bg-secondary">-</span>
+                                                    <span class="badge bg-secondary d-inline-flex align-items-center">
+                                                        <i data-feather="minus-circle" class="me-1"></i> -
+                                                    </span>
                                             @endswitch
+
                                         </td>
+                                        <td>{{ $item->catatan_verifikasi }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

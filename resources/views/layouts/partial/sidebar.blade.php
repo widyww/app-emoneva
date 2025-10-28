@@ -92,16 +92,22 @@
                     <a class="nav-link" href="{{ route('dashboard') }}">
                         <div class="nav-link-icon"><i data-feather="home"></i></div>
                         Dashboard
-                    </a>
-                   
-                    <a class="nav-link" href="{{ route('verifikasi-proses.index') }}">
-                        <div class="nav-link-icon"><i data-feather="edit"></i></div>
-                        Verifikasi Sekolah
-                    </a>
-                    
+                    </a> 
                     <a class="nav-link" href="{{ route('verifikasi-guru.index') }}">
-                        <div class="nav-link-icon"><i data-feather="edit"></i></div>
+                        <div class="nav-link-icon"><i data-feather="check"></i></div>
                         Verifikasi Data Guru
+                    </a>
+                    <a class="nav-link" href="{{ route('verifikasi-sekolah.index') }}">
+                        <div class="nav-link-icon"><i data-feather="check"></i></div>
+                        Verifikasi Data Sekolah
+                    </a>
+                       <a class="nav-link" href="{{ route('verifikasi-sekolah.index') }}">
+                        <div class="nav-link-icon"><i data-feather="edit"></i></div>
+                        Monev Data Sekolah
+                    </a>                    
+                    <a class="nav-link" href="{{ route('monitoring-guru.index') }}">
+                        <div class="nav-link-icon"><i data-feather="edit"></i></div>
+                        Monev Data Guru
                     </a>
                 </div>
             @endif

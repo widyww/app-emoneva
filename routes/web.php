@@ -8,6 +8,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\ManajemenUserController;
+use App\Http\Controllers\MonitoringGuruController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\ProfileController;
@@ -22,7 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('homepage');
+
 
 
 
@@ -56,6 +58,7 @@ Route::middleware('auth', 'verified', 'Administrator')->group(function () {
 
     Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah.index');
     Route::post('/sekolah', [SekolahController::class, 'store'])->name('sekolah.store');
+    Route::post('/sekolah/import', [SekolahController::class, 'import'])->name('sekolah.import');
     Route::put('/sekolah/{id}', [SekolahController::class, 'update'])->name('sekolah.update');
     Route::delete('/sekolah/{id}', [SekolahController::class, 'destroy'])->name('sekolah.destroy');
 
@@ -86,6 +89,9 @@ Route::middleware('auth', 'verified', 'Operator')->group(function () {
     Route::delete('/fasilitas-lab/{id}', [FasilitasSekolahController::class, 'destroy_lab'])->name('fasilitas-sekolah-lab.destroy');
 
     Route::resource('data-guru', GuruController::class);
+    Route::post('/sekolah/ajukan-verifikasi', [DataSekolahController::class, 'ajukanVerifikasi'])
+    ->name('sekolah.ajukanVerifikasi');
+
 });
 
 
@@ -96,10 +102,12 @@ Route::middleware('auth', 'verified', 'Operator')->group(function () {
 Route::middleware('auth', 'verified', 'Verifikator')->group(function(){
     Route::get('/dashboard-verifikator',[UserVerifikatorController::class, 'index'])->name('verifikator.dashboard');
     
-    Route::resource('verifikasi-proses', VerifikasiProsesController::class);
-    Route::put('/verifikasi-proses/approve/{id}', [VerifikasiProsesController::class, 'approve'])->name('verifikasi-proses.approve');
+    Route::resource('verifikasi-sekolah', VerifikasiProsesController::class);
+    // Route::put('/verifikasi-sekolah/approve/{id}', [VerifikasiProsesController::class, 'approve'])->name('verifikasi-sekolah.approve');
 
     Route::resource('verifikasi-guru', VerifikasiGuruController::class);
+    // Route::put('/verifikasi-guru/{id}', [VerifikasiGuruController::class, 'proses_verifikasi'])->name('verifikator.verifikasi.guru');
+    Route::resource('monitoring-guru', MonitoringGuruController::class);
 
     
 });

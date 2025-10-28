@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Verifikator Echa',
                 'email' => 'verif@gmail.com',
                 'phone' => '081187651237',
-                'role' => '3',
+                'role' => '2',
                 'password' => bcrypt('12345678'),
             ],
             [

@@ -9,11 +9,11 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
-                                <div class="page-header-icon"><i data-feather="home"></i></div>
-                                Verifikasi Data Sekolah
+                                <div class="page-header-icon"><i data-feather="list"></i></div>
+                                Monitoring dan Verifikasi Data Sekolah
                             </h1>
                         </div>
-                        <div class="col-12 col-xl-auto mt-4">Verifikasi Data Sekolah</div>
+                        <div class="col-12 col-xl-auto mt-4">Monitoring dan Verifikasi Data Sekolah</div>
                     </div>
                 </div>
             </div>
@@ -52,38 +52,43 @@
                                         <td>{{ $item->kecamatan->nama ?? '-' }}</td>
                                         <td>{{ $item->kota->nama ?? '-' }}</td>
                                         <td>
-                                            <a href="{{ route('verifikasi-proses.show', $item->id) }}"
-                                                class="btn btn-info btn-sm">
-                                                LIHAT
-                                            </a>
-                                            <form action="{{ route('verifikasi-proses.approve', $item->id) }}" method="POST"
-                                                style="display:inline;">
-                                                @csrf
-                                                @method('PUT')
-                                                <button type="submit" class="btn btn-success btn-sm">
-                                                    SETUJU
-                                                </button>
-                                            </form>
-
-                                            <a href="{{ route('verifikasi-proses.update', $item->id) }}"
-                                                class="btn btn-danger btn-sm">
-                                                TOLAK
-                                            </a>
+                                            @if (in_array($item->status_verifikasi, [1, 2, 3]))
+                                                <a href="{{ route('verifikasi-sekolah.show', $item->id) }}"
+                                                    class="btn btn-info btn-sm">
+                                                    Lihat
+                                                </a>
+                                            @else
+                                                -
+                                            @endif
 
                                         </td>
+
                                         <td>
                                             @switch($item->status_verifikasi)
-                                                @case(0)
-                                                    <span class="badge bg-warning">Waiting</span>
+                                                @case(1)
+                                                    <span class="badge bg-warning d-inline-flex align-items-center">
+                                                        <i data-feather="clock" class="me-1"></i> Menunggu Verifikasi
+                                                    </span>
                                                 @break
 
-                                                @case(1)
-                                                    <span class="badge bg-success">Approved</span>
+                                                @case(2)
+                                                    <span class="badge bg-success d-inline-flex align-items-center">
+                                                        <i data-feather="check-circle" class="me-1"></i> Terverifikasi
+                                                    </span>
+                                                @break
+
+                                                @case(3)
+                                                    <span class="badge bg-primary d-inline-flex align-items-center">
+                                                        <i data-feather="edit" class="me-1"></i> Revisi
+                                                    </span>
                                                 @break
 
                                                 @default
-                                                    <span class="badge bg-secondary">-</span>
+                                                    <span class="badge bg-secondary d-inline-flex align-items-center">
+                                                        <i data-feather="minus-circle" class="me-1"></i> Menunggu Inputan
+                                                    </span>
                                             @endswitch
+
                                         </td>
 
                                         <td>{{ $item->catatan_verifikasi ?? '-' }}</td>

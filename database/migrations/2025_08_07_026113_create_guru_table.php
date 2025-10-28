@@ -44,6 +44,7 @@ return new class extends Migration
             //status verifikasi
             $table->string('status_verifikasi')->nullable();
             $table->string('catatan_verifikasi')->nullable();
+            $table->string('tahun')->nullable();
 
             // relasi ke sekolah
             $table->foreignId('sekolah_id')->constrained('sekolah')->onDelete('cascade');

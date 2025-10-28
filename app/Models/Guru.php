@@ -48,7 +48,7 @@ class Guru extends Model
     {
         return $this->hasMany(GuruKebutuhan::class); // sesuaikan nama model & foreign key
     }
-    // App\Models\Guru.php
+   
     public function sekolah()
     {
         return $this->belongsTo(Sekolah::class, 'sekolah_id', 'id');

@@ -26,9 +26,32 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('identitas-sekolah.update') }}" method="POST">
+                    <form action="{{ route('identitas-sekolah.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+
+                        <!-- FOTO SEKOLAH -->
+                        <div class="text-center mb-4">
+                            <label for="foto_sekolah" class="form-label fw-bold d-block mb-2">Foto Sekolah</label>
+
+                            <!-- Area klik gambar -->
+                            <label for="foto_sekolah" style="cursor:pointer;">
+                                <img id="preview_foto_sekolah"
+                                    src="{{ $sekolah->foto_sekolah ? asset('storage/' . $sekolah->foto_sekolah) : asset('images/default-school.jpg') }}"
+                                    alt="Foto Sekolah" class="img-thumbnail mb-2 shadow-sm"
+                                    style="max-width: 400px; height: auto;">
+                            </label>
+
+                            <div class="small text-muted mb-3">
+                                Klik gambar untuk mengupload atau mengganti foto sekolah
+                            </div>
+
+                            <!-- Input file tersembunyi -->
+                            <input type="file" class="form-control d-none" name="foto_sekolah" id="foto_sekolah"
+                                accept="image/*" onchange="previewFotoSekolah(event)">
+                        </div>
+
+                        <hr>
                         <div class="row">
                             <!-- Kolom kiri -->
                             <div class="col-md-6">
@@ -68,6 +91,34 @@
                                         value="{{ old('website', $sekolah->website) }}">
                                 </div>
                                 <div class="mb-3">
+                                    <label for="kepsek_nama" class="form-label">Nama Kepala Sekolah</label>
+                                    <input type="text" class="form-control" name="kepsek_nama" id="kepsek_nama"
+                                        value="{{ old('website', $sekolah->kepsek_nama) }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="kepsek_hp" class="form-label">Nomor Telepon Kepala Sekolah</label>
+                                    <input type="text" class="form-control" name="kepsek_hp" id="kepsek_hp"
+                                        value="{{ old('website', $sekolah->kepsek_hp) }}">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="kepsek_foto" class="form-label">Foto Kepsek</label>
+                                    <input type="file" class="form-control" name="kepsek_foto" id="kepsek_foto"
+                                        accept="image/*" onchange="previewKepsekFoto(event)">
+
+                                    <!-- Preview -->
+                                    <div class="mt-3">
+                                        <img id="preview_kepsek_foto"
+                                            src="{{ $sekolah->kepsek_foto ? asset('storage/' . $sekolah->kepsek_foto) : 'https://via.placeholder.com/150?text=Preview+Foto' }}"
+                                            alt="Preview Foto" class="img-thumbnail" style="max-height: 150px;">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Kolom kanan -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
                                     <label for="sk_ijin" class="form-label">SK Ijin</label>
                                     <input type="text" class="form-control" name="sk_ijin" id="sk_ijin"
                                         value="{{ old('sk_ijin', $sekolah->sk_ijin) }}">
@@ -84,15 +135,6 @@
                                             Swasta</option>
                                     </select>
                                 </div>
-
-
-
-
-
-                            </div>
-
-                            <!-- Kolom kanan -->
-                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="jum_siswa_pria" class="form-label">Jumlah Siswa Pria</label>
                                     <input type="number" class="form-control" name="jum_siswa_pria" id="jum_siswa_pria"
@@ -232,5 +274,29 @@
             });
         @endif
     </script>
-@endsection
+    <script>
+        function previewKepsekFoto(event) {
+            const input = event.target;
+            const preview = document.getElementById('preview_kepsek_foto');
 
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    preview.src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <script>
+        function previewFotoSekolah(event) {
+            const input = event.target;
+            const preview = document.getElementById('preview_foto_sekolah');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = e => preview.src = e.target.result;
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+@endsection

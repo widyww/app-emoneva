@@ -149,6 +149,7 @@ class GuruController extends Controller
             'tahun' => $request->tahun,
             'mapel' => $request->mapel,
             'sertifikasi_tahun' => $request->sertifikasi_tahun,
+            'status_verifikasi' => 0,
         ]);
 
         // ===== Update Pelatihan =====

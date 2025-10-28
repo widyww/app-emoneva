@@ -11,6 +11,7 @@ class Sekolah extends Model
     protected $table = 'sekolah';
     protected $fillable = [
         'npsn',
+        'foto_sekolah',
         'tingkatan',
         'nama',
         'alamat',
@@ -18,6 +19,9 @@ class Sekolah extends Model
         'email',
         'website',
         'sk_ijin',
+        'kepsek_nama',
+        'kepsek_hp',
+        'kepsek_foto',
         'status_sekolah',
         'status_akreditasi',
         'status_tanah',
@@ -36,6 +40,12 @@ class Sekolah extends Model
         return $this->hasMany(User::class);
     }
 
+    // ✅ Relasi ke Guru
+    public function guru()
+    {
+        return $this->hasMany(Guru::class, 'sekolah_id', 'id');
+    }
+
     public function sekolah_sosekbud()
     {
         return $this->hasOne(SekolahSosekbud::class, 'sekolah_id');
@@ -51,5 +61,4 @@ class Sekolah extends Model
     {
         return $this->belongsTo(Kota::class);
     }
-
 }
