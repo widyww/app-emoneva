@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Sekolah extends Model
 {
     use HasFactory;
+
     protected $table = 'sekolah';
+
     protected $fillable = [
         'npsn',
         'foto_sekolah',
@@ -27,6 +29,7 @@ class Sekolah extends Model
         'status_tanah',
         'jum_siswa_pria',
         'jum_siswa_wanita',
+        'jum_guru',
         'unbk_status',
         'unbk_tahun',
         'status_verifikasi',
@@ -40,7 +43,18 @@ class Sekolah extends Model
         return $this->hasMany(User::class);
     }
 
-    // ✅ Relasi ke Guru
+    // STATUS
+    public function bantuanStatus()
+    {
+        return $this->hasOne(SekolahBantuanStatus::class, 'sekolah_id');
+    }
+
+    // DETAIL (via status)
+    public function bantuanDetails()
+    {
+        return $this->hasMany(SekolahBantuanDetail::class, 'sekolah_bantuan_status_id', 'id');
+    }
+
     public function guru()
     {
         return $this->hasMany(Guru::class, 'sekolah_id', 'id');
@@ -50,7 +64,6 @@ class Sekolah extends Model
     {
         return $this->hasOne(SekolahSosekbud::class, 'sekolah_id');
     }
-
 
     public function kecamatan()
     {

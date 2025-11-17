@@ -53,7 +53,7 @@
                                         <td>{{ $item->kota->nama ?? '-' }}</td>
                                         <td>
                                             @if (in_array($item->status_verifikasi, [1, 2, 3]))
-                                                <a href="{{ route('verifikasi-sekolah.show', $item->id) }}"
+                                                <a href="{{ route('verifikasi-sekolah.show', $item->id) }}" target="_blank"
                                                     class="btn btn-info btn-sm">
                                                     Lihat
                                                 </a>

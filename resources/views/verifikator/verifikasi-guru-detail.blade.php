@@ -60,57 +60,158 @@
                     <div class="tab-content" id="cardTabContent">
                         <!-- Step 1 -->
                         <div class="tab-pane py-5 fade show active" id="wizard1" role="tabpanel">
-                            <h5 class="mb-4">Identitas Guru</h5>
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th>Nama</th>
-                                    <td>{{ $guru->nama }}</td>
-                                </tr>
-                                <tr>
-                                    <th>NUPTK</th>
-                                    <td>{{ $guru->nuptk ?? '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>NIP</th>
-                                    <td>{{ $guru->nip ?? '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Tempat, Tanggal Lahir</th>
-                                    <td>{{ $guru->tempat }}, {{ $guru->tgl_lahir }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Jenis Kelamin</th>
-                                    <td>{{ ucfirst($guru->jenis_kelamin) }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Pendidikan Terakhir</th>
-                                    <td>{{ $guru->pendidikan_terakhir }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Mapel</th>
-                                    <td>{{ $guru->mapel ?? '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Sekolah</th>
-                                    <td>{{ $guru->sekolah->nama ?? '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Kecamatan</th>
-                                    <td>{{ $guru->sekolah->kecamatan->nama ?? '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Kota/Kabupaten</th>
-                                    <td>{{ $guru->sekolah->kecamatan->kota->nama ?? '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Status Sertifikasi</th>
-                                    <td>{{ $guru->sertifikasi_status == 'ya' ? 'Sudah' : 'Belum' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Tahun Sertifikasi</th>
-                                    <td>{{ $guru->sertifikasi_tahun ?? '-' }}</td>
-                                </tr>
-                            </table>
+                            <div class="row">
+
+                                {{-- Kolom Kiri: Identitas Guru --}}
+                                <div class="col-md-6">
+                                    <h5 class="mb-4">Identitas Guru</h5>
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>Nama</th>
+                                            <td>{{ $guru->nama }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Status PNS/PPPK</th>
+                                            <td>{{ $guru->status }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>NUPTK</th>
+                                            <td>{{ $guru->nuptk ?? '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>NIP</th>
+                                            <td>{{ $guru->nip ?? '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tempat, Tanggal Lahir</th>
+                                            <td>{{ $guru->tempat }},
+                                                {{ \Carbon\Carbon::parse($guru->tgl_lahir)->translatedFormat('j F Y') }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Agama</th>
+                                            <td>{{ $guru->agama ?? '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Jenis Kelamin</th>
+                                            <td>{{ ucfirst($guru->jenis_kelamin) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Pendidikan Terakhir</th>
+                                            <td>{{ $guru->pendidikan_terakhir }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Mapel</th>
+                                            <td>{{ $guru->mapel ?? '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Sekolah</th>
+                                            <td>{{ $guru->sekolah->nama ?? '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Kecamatan</th>
+                                            <td>{{ $guru->sekolah->kecamatan->nama ?? '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Kota/Kabupaten</th>
+                                            <td>{{ $guru->sekolah->kecamatan->kota->nama ?? '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Status Sertifikasi</th>
+                                            <td>{{ $guru->sertifikasi_status == 'Ya' ? 'Sudah' : 'Belum' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tahun Sertifikasi</th>
+                                            <td>{{ $guru->sertifikasi_tahun ?? '-' }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                {{-- Kolom Kanan: Kompetensi --}}
+                                <div class="col-md-6">
+                                    <h5 class="mb-4">Kompetensi</h5>
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>Microsoft Word</th>
+                                            <td>
+                                                {{-- Menerjemahkan nilai numerik Word ke teks --}}
+                                                {{ $guru->kompetensi_word == 3
+                                                    ? 'Mahir'
+                                                    : ($guru->kompetensi_word == 2
+                                                        ? 'Menengah'
+                                                        : ($guru->kompetensi_word == 1
+                                                            ? 'Dasar'
+                                                            : 'Tidak Memiliki')) }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Microsoft Powerpoint</th>
+                                            <td>
+                                                {{-- Menerjemahkan nilai numerik PowerPoint ke teks --}}
+                                                {{ $guru->kompetensi_powerpoin == 3
+                                                    ? 'Mahir'
+                                                    : ($guru->kompetensi_powerpoin == 2
+                                                        ? 'Menengah'
+                                                        : ($guru->kompetensi_powerpoin == 1
+                                                            ? 'Dasar'
+                                                            : 'Tidak Memiliki')) }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Microsoft Excel</th>
+                                            <td>
+                                                {{-- Menerjemahkan nilai numerik PowerPoint ke teks --}}
+                                                {{ $guru->kompetensi_excel == 3
+                                                    ? 'Mahir'
+                                                    : ($guru->kompetensi_excel == 2
+                                                        ? 'Menengah'
+                                                        : ($guru->kompetensi_excel == 1
+                                                            ? 'Dasar'
+                                                            : 'Tidak Memiliki')) }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Pemrogramman</th>
+                                            <td>
+                                                {{-- Menerjemahkan nilai numerik PowerPoint ke teks --}}
+                                                {{ $guru->kompetensi_pemrogramman == 3
+                                                    ? 'Mahir'
+                                                    : ($guru->kompetensi_pemrogramman == 2
+                                                        ? 'Menengah'
+                                                        : ($guru->kompetensi_pemrogramman == 1
+                                                            ? 'Dasar'
+                                                            : 'Tidak Memiliki')) }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Jaringan</th>
+                                            <td>
+                                                {{-- Menerjemahkan nilai numerik PowerPoint ke teks --}}
+                                                {{ $guru->kompetensi_jaringan == 3
+                                                    ? 'Mahir'
+                                                    : ($guru->kompetensi_jaringan == 2
+                                                        ? 'Menengah'
+                                                        : ($guru->kompetensi_jaringan == 1
+                                                            ? 'Dasar'
+                                                            : 'Tidak Memiliki')) }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Multimedia</th>
+                                            <td>
+                                                {{-- Menerjemahkan nilai numerik PowerPoint ke teks --}}
+                                                {{ $guru->kompetensi_multimedia == 3
+                                                    ? 'Mahir'
+                                                    : ($guru->kompetensi_multimedia == 2
+                                                        ? 'Menengah'
+                                                        : ($guru->kompetensi_multimedia == 1
+                                                            ? 'Dasar'
+                                                            : 'Tidak Memiliki')) }}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Step 2 -->

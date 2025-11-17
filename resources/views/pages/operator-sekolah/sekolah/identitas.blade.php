@@ -136,6 +136,13 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="jum_guru" class="form-label">Jumlah Guru/Tenaga Pendidik</label>
+                                    <input type="number" class="form-control" name="jum_guru" id="jum_guru"
+                                        value="{{ old('jum_guru', $sekolah->jum_guru) }}">
+                                </div>
+                                
+
+                                <div class="mb-3">
                                     <label for="jum_siswa_pria" class="form-label">Jumlah Siswa Pria</label>
                                     <input type="number" class="form-control" name="jum_siswa_pria" id="jum_siswa_pria"
                                         value="{{ old('jum_siswa_pria', $sekolah->jum_siswa_pria) }}">

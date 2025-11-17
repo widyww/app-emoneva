@@ -121,29 +121,21 @@
                         <div class="nav-link-icon"><i data-feather="home"></i></div>
                         Dashboard
                     </a>
-                    <div class="sidenav-menu-heading">Pengaturan</div>
+                    <div class="sidenav-menu-heading">Data Statistik Guru</div>
                     <a class="nav-link" href="#">
                         <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Kabupaten/Kota
+                        Status Guru 
                     </a>
-                    <a class="nav-link" href="#">
+                    <div class="sidenav-menu-heading">Data Statistik Sekolah</div>
+                    <a class="nav-link" href="{{ route('sekolah.sort.akreditasi') }}">
                         <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Kecamatan
+                        Status Akreditasi
                     </a>
-                    <div class="sidenav-menu-heading">Data Sekolah</div>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                        Sekolah
+                    <a class="nav-link" href="{{ route('bantuan.index') }}">
+                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
+                        Status Penerima Bantuan
                     </a>
-                    <div class="sidenav-menu-heading">Pengguna</div>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                        Operator Sekolah
-                    </a>
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-icon"><i data-feather="filter"></i></div>
-                        Verifikator
-                    </a>
+              
                 </div>
             @endif
 

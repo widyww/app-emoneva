@@ -13,7 +13,8 @@ class GuruController extends Controller
 {
     public function index()
     {
-        $data = Guru::all();
+        // $data = Guru::all();
+        $data = Guru::where('sekolah_id', auth()->user()->sekolah_id)->get();
         return view('pages.operator-sekolah.guru.index', compact('data'));
     }
     public function store(Request $request)
@@ -91,6 +92,8 @@ class GuruController extends Controller
     public function edit($id)
     {
         $guru = Guru::with(['pelatihan', 'kebutuhanPelatihan'])->findOrFail($id);
+        // dd($guru);
+
         return view('pages.operator-sekolah.guru.edit', compact('guru'));
     }
 

@@ -3,7 +3,11 @@
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\BantuanSekolahController;
 use App\Http\Controllers\DataSekolahController;
+use App\Http\Controllers\DataStatistikGuruController;
+use App\Http\Controllers\DataStatistikSekolahController;
 use App\Http\Controllers\FasilitasSekolahController;
+use App\Http\Controllers\FilterAkreditasiController;
+use App\Http\Controllers\FilterStatusBantuanController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaController;
@@ -15,6 +19,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\SekolahDataController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\USerKabalaiController;
 use App\Http\Controllers\UserVerifikatorController;
 use App\Http\Controllers\VerifikasiGuruController;
 use App\Http\Controllers\VerifikasiProsesController;
@@ -115,7 +120,21 @@ Route::middleware('auth', 'verified', 'Verifikator')->group(function(){
 
 // ROLE KEPALA BTKI
 
+Route::middleware('auth','verified','Kabalai')->group(function(){
+    Route::get('kabalai-dashboard', [USerKabalaiController::class, 'index'])->name('kabalai.dashboard');
+    Route::get('sort-akreditasi',[FilterAkreditasiController::class, 'sortAkreditasi'])->name('sekolah.sort.akreditasi');
+    Route::get('api/akreditasi-data', [FilterAkreditasiController::class, 'getAkreditasiData'])->name('sekolah.getakreditasidata');
+    Route::get('api/sekolah-detail', [FilterAkreditasiController::class, 'getSekolahDetail'])->name('sekolah.getdetail');
 
+      // 1. Route untuk menampilkan halaman view
+    Route::get('/', [FilterStatusBantuanController::class, 'sortBantuan'])->name('bantuan.index');
+    // 2. Route API untuk mengambil data statistik Chart (Digunakan oleh JS: API_URL_CHART)
+    Route::get('/datastatuspegawai-chart', [FilterStatusBantuanController::class, 'getBantuanData'])->name('bantuan.getdata');
+    // 3. Route API untuk mengambil data detail sekolah (Digunakan oleh JS: API_URL_DETAIL)
+    Route::get('/datastatuspegawai-detail', [FilterStatusBantuanController::class, 'getSekolahBantuanDetail'])->name('bantuan.getdetail');
+
+
+});
 
 
 

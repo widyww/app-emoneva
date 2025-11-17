@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('status_tanah')->nullable();
             $table->string('jum_siswa_pria')->nullable();
             $table->string('jum_siswa_wanita')->nullable();
+            $table->string('jum_guru')->nullable();
             $table->string('status_verifikasi')->nullable();
             $table->string('keterangan_verifikasi')->nullable();
             $table->string('tahun')->nullable();

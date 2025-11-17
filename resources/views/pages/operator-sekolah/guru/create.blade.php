@@ -151,23 +151,11 @@
 
                                 <div class="mb-3 row">
                                     <label class="col-sm-4 col-form-label">TMT PNS</label>
-                                    <div class="col-sm-4">
-                                        <select name="bulan" class="form-select">
-                                            @foreach (range(1, 12) as $b)
-                                                <option value="{{ str_pad($b, 2, '0', STR_PAD_LEFT) }}">
-                                                    {{ DateTime::createFromFormat('!m', $b)->format('F') }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <select name="tahun" class="form-select">
-                                            @for ($y = date('Y'); $y >= 1970; $y--)
-                                                <option value="{{ $y }}">{{ $y }}</option>
-                                            @endfor
-                                        </select>
+                                    <div class="col-sm-8">
+                                        <input type="date" name="tmt_pns_tahun" class="form-control">
                                     </div>
                                 </div>
+
 
                                 <div class="mb-3 row">
                                     <label for="mapel" class="col-sm-4 col-form-label">Mata Pelajaran</label>
@@ -362,7 +350,7 @@
                                         <div class="col-md-10">
                                             <input type="text" name="nama_kebutuhan[]" class="form-control"
                                                 placeholder="Nama Pelatihan" required>
-                                          
+
 
                                         </div>
                                         <div class="col-md-2 d-grid">
@@ -373,21 +361,24 @@
                                 <button type="button" class="btn btn-success mt-2"
                                     id="add_kebutuhan_row">+Tambah</button>
                             </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                            </div>
 
-
-
-
-
-                        </div>
-
-                        <button type="submit" class="btn btn-primary mt-3">Simpan</button>
                     </form>
+
+
 
 
                 </div>
 
+
+
+
             </div>
+
         </div>
+
 
 
 

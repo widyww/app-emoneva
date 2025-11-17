@@ -72,6 +72,17 @@
                             <h5 class="mb-4">Identitas Sekolah</h5>
                             <table class="table table-bordered">
                                 <tr>
+                                    <th>Foto Sekolah</th>
+                                    <td>
+                                        @if ($identitasSekolah->foto_sekolah)
+                                            <img src="{{ asset('uploads/kepsek/' . $identitasSekolah->foto_sekolah) }}"
+                                                alt="Foto  Sekolah" style="max-width: 150px; border-radius: 8px;">
+                                        @else
+                                            <span class="text-muted">Tidak ada foto</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>NPSN</th>
                                     <td>{{ $identitasSekolah->npsn }}</td>
                                 </tr>
@@ -80,8 +91,20 @@
                                     <td>{{ $identitasSekolah->nama }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Status</th>
+                                    <td>{{ $identitasSekolah->status_sekolah }}</td>
+                                </tr>
+                                <tr>
                                     <th>Tingkatan</th>
                                     <td>{{ $identitasSekolah->tingkatan }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Status Akreditasi</th>
+                                    <td>{{ $identitasSekolah->status_akreditasi }}</td>
+                                </tr>
+                                <tr>
+                                    <th>SK Ijin Operasional</th>
+                                    <td>{{ $identitasSekolah->sk_ijin }}</td>
                                 </tr>
                                 <tr>
                                     <th>Alamat</th>
@@ -99,8 +122,37 @@
                                     <th>Website</th>
                                     <td>{{ $identitasSekolah->website }}</td>
                                 </tr>
+                                <tr>
+                                    <th>Jumlah Guru (Tenaga Pendidik)</th>
+                                    <td>{{ $identitasSekolah->jum_guru }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Kepemilikian Tanah</th>
+                                    <td>{{ $identitasSekolah->status_tanah }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Nama Kepala Sekolah</th>
+                                    <td>{{ $identitasSekolah->kepsek_nama }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Foto Kepala Sekolah</th>
+                                    <td>
+                                        @if ($identitasSekolah->kepsek_foto)
+                                            <img src="{{ asset('uploads/kepsek/' . $identitasSekolah->kepsek_foto) }}"
+                                                alt="Foto Kepala Sekolah" style="max-width: 150px; border-radius: 8px;">
+                                        @else
+                                            <span class="text-muted">Tidak ada foto</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>No Kontak Kepala Sekolah</th>
+                                    <td>{{ $identitasSekolah->kepsek_hp }}</td>
+                                </tr>
+
                             </table>
-                            
+
                         </div>
 
                         <!-- Step 2 -->
@@ -120,7 +172,7 @@
                                     <td>{{ $sosekbudSekolah->akses_transportasi }}</td>
                                 </tr>
                             </table>
-                            
+
                         </div>
 
                         <!-- Step 3 -->
@@ -161,7 +213,7 @@
                             @else
                                 <div class="alert alert-warning">Data fasilitas belum tersedia.</div>
                             @endif
-                            
+
                         </div>
 
                         <!-- Step 4 -->
@@ -204,7 +256,7 @@
                                 </div>
                             @endif
 
-                            
+
                         </div>
 
                         <!-- Step 5 -->
@@ -228,7 +280,7 @@
                                         <textarea class="form-control" name="keterangan_verifikasi" rows="3"></textarea>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                       
+
                                         <button type="submit" class="btn btn-success">Simpan</button>
                                     </div>
                                 </form>
