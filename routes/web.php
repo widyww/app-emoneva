@@ -7,6 +7,7 @@ use App\Http\Controllers\DataStatistikGuruController;
 use App\Http\Controllers\DataStatistikSekolahController;
 use App\Http\Controllers\FasilitasSekolahController;
 use App\Http\Controllers\FilterAkreditasiController;
+use App\Http\Controllers\FilterLabkomputerController;
 use App\Http\Controllers\FilterStatusBantuanController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KecamatanController;
@@ -126,14 +127,15 @@ Route::middleware('auth','verified','Kabalai')->group(function(){
     Route::get('api/akreditasi-data', [FilterAkreditasiController::class, 'getAkreditasiData'])->name('sekolah.getakreditasidata');
     Route::get('api/sekolah-detail', [FilterAkreditasiController::class, 'getSekolahDetail'])->name('sekolah.getdetail');
 
-      // 1. Route untuk menampilkan halaman view
-    Route::get('/', [FilterStatusBantuanController::class, 'sortBantuan'])->name('bantuan.index');
-    // 2. Route API untuk mengambil data statistik Chart (Digunakan oleh JS: API_URL_CHART)
-    Route::get('/datastatuspegawai-chart', [FilterStatusBantuanController::class, 'getBantuanData'])->name('bantuan.getdata');
-    // 3. Route API untuk mengambil data detail sekolah (Digunakan oleh JS: API_URL_DETAIL)
-    Route::get('/datastatuspegawai-detail', [FilterStatusBantuanController::class, 'getSekolahBantuanDetail'])->name('bantuan.getdetail');
+    
+    Route::get('/status-bantuan', [FilterStatusBantuanController::class, 'sortBantuan'])->name('sekolah.sort.bantuan');   
+    Route::get('/datastatusbantuan-chart', [FilterStatusBantuanController::class, 'getBantuanData'])->name('bantuan.getdata');
+    Route::get('/datastatusbantuan-detail', [FilterStatusBantuanController::class, 'getSekolahBantuanDetail'])->name('bantuan.getdetail');
 
 
+    Route::get('/status-labkomputer',[FilterLabkomputerController::class, 'sortLabKomputer'])->name('sekolah.sort.labkomputer');
+    Route::get('/datastatuslabkomputer-chart', [FilterLabkomputerController::class, 'getLabKomputer'])->name('labkomputer.getdata');
+    Route::get('/datastatuslabkomputer-detail',[FilterLabkomputerController::class, 'getLabKomputerDetail'])->name('labkomputer.getdetail');
 });
 
 

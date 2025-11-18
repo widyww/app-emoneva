@@ -129,11 +129,15 @@
                     <div class="sidenav-menu-heading">Data Statistik Sekolah</div>
                     <a class="nav-link" href="{{ route('sekolah.sort.akreditasi') }}">
                         <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Status Akreditasi
+                        Akreditasi
                     </a>
-                    <a class="nav-link" href="{{ route('bantuan.index') }}">
+                    <a class="nav-link" href="{{ route('sekolah.sort.bantuan') }}">
                         <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Status Penerima Bantuan
+                        Bantuan
+                    </a>
+                    <a class="nav-link" href="{{ route('sekolah.sort.labkomputer') }}">
+                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
+                        Lab Komputer
                     </a>
               
                 </div>

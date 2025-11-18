@@ -38,9 +38,28 @@ class Sekolah extends Model
         'kota_id',
     ];
 
+    /** === Relasi langsung ke lab komputer === */
+    public function labKomputers()
+    {
+        return $this->hasManyThrough(
+            SekolahFasilitasLab::class,
+            SekolahFasilitas::class,
+            'sekolah_id',               // Foreign key di SekolahFasilitas
+            'sekolah_fasilitastik_id',  // Foreign key di SekolahFasilitasLab
+            'id',                        // PK di Sekolah
+            'id'                         // PK di SekolahFasilitas
+        );
+    }
+
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function fasilitas()
+    {
+        // Pastikan nama model 'SekolahFasilitas' sesuai dengan nama file/class yang akan Anda buat
+        return $this->hasOne(SekolahFasilitas::class, 'sekolah_id');
     }
 
     // STATUS

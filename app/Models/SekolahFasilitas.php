@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SekolahFasilitas extends Model
 {
     use HasFactory;
+
     protected $table = 'sekolah_fasilitastik';
+
     protected $fillable = [
         'sekolah_id',
         'listrik_status',
@@ -25,16 +27,13 @@ class SekolahFasilitas extends Model
         'saran_pengembangan',
     ];
 
-    public function labs()
-    {
-        return $this->hasMany(SekolahFasilitasLab::class, 'sekolah_fasilitastik_id', 'id');
-    }
-
-    
-
-
     public function sekolah()
     {
         return $this->belongsTo(Sekolah::class, 'sekolah_id');
+    }
+
+    public function labs()
+    {
+        return $this->hasMany(SekolahFasilitasLab::class, 'sekolah_fasilitastik_id');
     }
 }

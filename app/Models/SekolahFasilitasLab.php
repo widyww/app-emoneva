@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SekolahFasilitasLab extends Model
 {
     use HasFactory;
+
     protected $table = 'sekolah_fasilitastik_lab';
+
     protected $fillable = [
         'sekolah_fasilitastik_id',
         'labkom_nama',
@@ -17,6 +19,6 @@ class SekolahFasilitasLab extends Model
 
     public function fasilitas()
     {
-        return $this->belongsTo(SekolahFasilitas::class, 'sekolah_fasilitastik_id', 'id');
+        return $this->belongsTo(SekolahFasilitas::class, 'sekolah_fasilitastik_id');
     }
 }
