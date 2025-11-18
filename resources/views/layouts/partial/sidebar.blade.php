@@ -77,7 +77,7 @@
                     </a>
                     <a class="nav-link" href="{{ route('data-guru.create') }}">
                         <div class="nav-link-icon"><i data-feather="user-plus"></i></div>
-                        Input 
+                        Input
                     </a>
 
 
@@ -92,7 +92,7 @@
                     <a class="nav-link" href="{{ route('dashboard') }}">
                         <div class="nav-link-icon"><i data-feather="home"></i></div>
                         Dashboard
-                    </a> 
+                    </a>
                     <a class="nav-link" href="{{ route('verifikasi-guru.index') }}">
                         <div class="nav-link-icon"><i data-feather="check"></i></div>
                         Verifikasi Data Guru
@@ -101,10 +101,10 @@
                         <div class="nav-link-icon"><i data-feather="check"></i></div>
                         Verifikasi Data Sekolah
                     </a>
-                       <a class="nav-link" href="{{ route('verifikasi-sekolah.index') }}">
+                    <a class="nav-link" href="{{ route('verifikasi-sekolah.index') }}">
                         <div class="nav-link-icon"><i data-feather="edit"></i></div>
                         Monev Data Sekolah
-                    </a>                    
+                    </a>
                     <a class="nav-link" href="{{ route('monitoring-guru.index') }}">
                         <div class="nav-link-icon"><i data-feather="edit"></i></div>
                         Monev Data Guru
@@ -122,10 +122,29 @@
                         Dashboard
                     </a>
                     <div class="sidenav-menu-heading">Data Statistik Guru</div>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('sortgurupendidikan.index') }}">
                         <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Status Guru 
+                        Pendidikan
                     </a>
+                    <a class="nav-link" href="{{ route('sortgurustatus.index') }}">
+                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
+                        Status
+                    </a>
+                    <a class="nav-link" href="{{ route('sortgurusertifikasi.index') }}">
+                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
+                        Sertifikasi
+                    </a>
+                        <a class="nav-link" href="{{ route('sortgurupelatihan.index') }}">
+                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
+                        Kebutuhan Pelatihan
+                    </a>
+
+                    
+
+
+
+
+
                     <div class="sidenav-menu-heading">Data Statistik Sekolah</div>
                     <a class="nav-link" href="{{ route('sekolah.sort.akreditasi') }}">
                         <div class="nav-link-icon"><i data-feather="settings"></i></div>
@@ -139,7 +158,15 @@
                         <div class="nav-link-icon"><i data-feather="settings"></i></div>
                         Lab Komputer
                     </a>
-              
+                    <a class="nav-link" href="{{ route('internet.sort') }}">
+                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
+                        Internet
+                    </a>
+                    <a class="nav-link" href="{{ route('listrik.index') }}">
+                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
+                        Listrik
+                    </a>
+
                 </div>
             @endif
 

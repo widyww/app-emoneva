@@ -31,21 +31,16 @@ class FilterLabkomputerController extends Controller
     {
         $kotaId = $request->query('kota_id');
 
-        // Query dasar sekolah
+        // Semua sekolah
         $qSekolah = Sekolah::query();
-
         if ($kotaId) {
             $qSekolah->where('kota_id', $kotaId);
         }
-
         $total = $qSekolah->count();
 
-        // Ambil sekolah yang punya lab
-        $sekolahAdaLab = SekolahFasilitasLab::select('sekolah_id')
-            ->distinct()
-            ->when($kotaId, function ($q) use ($kotaId) {
-                $q->whereIn('sekolah_id', Sekolah::where('kota_id', $kotaId)->pluck('id'));
-            })
+        // Ambil sekolah yang punya fasilitas dan punya lab
+        $sekolahAdaLab = Sekolah::whereHas('fasilitas.labs')
+            ->when($kotaId, fn($q) => $q->where('kota_id', $kotaId))
             ->count();
 
         $sekolahTidakAda = $total - $sekolahAdaLab;
@@ -67,36 +62,31 @@ class FilterLabkomputerController extends Controller
         $kotaId = $request->query('kota_id');
         $status = $request->query('status'); // Ada / Tidak Ada
 
-        $sekolahAdaLabIds = SekolahFasilitasLab::select('sekolah_id')->distinct()->pluck('sekolah_id');
-
-        // Base query
         $query = Sekolah::with('kota');
 
-        // Filter Kota
         if ($kotaId) {
             $query->where('kota_id', $kotaId);
         }
 
-        // Filter status Lab Komputer
         if ($status === 'Ada') {
-            $query->whereIn('id', $sekolahAdaLabIds)
-                ->with(['labKomputers' => function ($q) {
-                    $q->select('id', 'sekolah_id', 'nama_lab', 'kapasitas');
-                }]);
+            $query->whereHas('fasilitas.labs');
         } elseif ($status === 'Tidak Ada') {
-            $query->whereNotIn('id', $sekolahAdaLabIds);
-        } else {
-            return response()->json([]); // invalid status
+            $query->whereDoesntHave('fasilitas.labs');
         }
 
         $data = $query->get()->map(function ($s) use ($status) {
             return [
-                'npsn'        => $s->npsn,
-                'nama'        => $s->nama,
-                'tingkatan'   => $s->tingkatan,
-                'alamat'      => $s->alamat,
+                'npsn'      => $s->npsn,
+                'nama'      => $s->nama,
+                'tingkatan' => $s->tingkatan,
+                'alamat'    => $s->alamat,
                 'lab_details' => $status === 'Ada'
-                    ? $s->labKomputers->toArray()
+                    ? $s->fasilitas->labs->map(function ($lab) {
+                        return [
+                            'nama_lab'     => $lab->labkom_nama,
+                            'jumlah_pc'    => $lab->labkom_jumlah_pc,
+                        ];
+                    })
                     : [],
             ];
         });

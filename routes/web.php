@@ -7,7 +7,13 @@ use App\Http\Controllers\DataStatistikGuruController;
 use App\Http\Controllers\DataStatistikSekolahController;
 use App\Http\Controllers\FasilitasSekolahController;
 use App\Http\Controllers\FilterAkreditasiController;
+use App\Http\Controllers\FilterGuruKebutuhanPelatihanController;
+use App\Http\Controllers\FilterGuruPendidikanController;
+use App\Http\Controllers\FilterGuruStatusController;
+use App\Http\Controllers\FilterKuotaInternetController;
 use App\Http\Controllers\FilterLabkomputerController;
+use App\Http\Controllers\FilterListrikController;
+use App\Http\Controllers\FilterSertifikasiStatusController;
 use App\Http\Controllers\FilterStatusBantuanController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KecamatanController;
@@ -96,8 +102,7 @@ Route::middleware('auth', 'verified', 'Operator')->group(function () {
 
     Route::resource('data-guru', GuruController::class);
     Route::post('/sekolah/ajukan-verifikasi', [DataSekolahController::class, 'ajukanVerifikasi'])
-    ->name('sekolah.ajukanVerifikasi');
-
+        ->name('sekolah.ajukanVerifikasi');
 });
 
 
@@ -105,37 +110,61 @@ Route::middleware('auth', 'verified', 'Operator')->group(function () {
 
 // ROLE VERIFIKATOR
 
-Route::middleware('auth', 'verified', 'Verifikator')->group(function(){
-    Route::get('/dashboard-verifikator',[UserVerifikatorController::class, 'index'])->name('verifikator.dashboard');
-    
+Route::middleware('auth', 'verified', 'Verifikator')->group(function () {
+    Route::get('/dashboard-verifikator', [UserVerifikatorController::class, 'index'])->name('verifikator.dashboard');
+
     Route::resource('verifikasi-sekolah', VerifikasiProsesController::class);
     // Route::put('/verifikasi-sekolah/approve/{id}', [VerifikasiProsesController::class, 'approve'])->name('verifikasi-sekolah.approve');
 
     Route::resource('verifikasi-guru', VerifikasiGuruController::class);
     // Route::put('/verifikasi-guru/{id}', [VerifikasiGuruController::class, 'proses_verifikasi'])->name('verifikator.verifikasi.guru');
     Route::resource('monitoring-guru', MonitoringGuruController::class);
-
-    
 });
 
 
 // ROLE KEPALA BTKI
 
-Route::middleware('auth','verified','Kabalai')->group(function(){
+Route::middleware('auth', 'verified', 'Kabalai')->group(function () {
     Route::get('kabalai-dashboard', [USerKabalaiController::class, 'index'])->name('kabalai.dashboard');
-    Route::get('sort-akreditasi',[FilterAkreditasiController::class, 'sortAkreditasi'])->name('sekolah.sort.akreditasi');
+    Route::get('sort-akreditasi', [FilterAkreditasiController::class, 'sortAkreditasi'])->name('sekolah.sort.akreditasi');
     Route::get('api/akreditasi-data', [FilterAkreditasiController::class, 'getAkreditasiData'])->name('sekolah.getakreditasidata');
     Route::get('api/sekolah-detail', [FilterAkreditasiController::class, 'getSekolahDetail'])->name('sekolah.getdetail');
 
-    
-    Route::get('/status-bantuan', [FilterStatusBantuanController::class, 'sortBantuan'])->name('sekolah.sort.bantuan');   
+
+    Route::get('/status-bantuan', [FilterStatusBantuanController::class, 'sortBantuan'])->name('sekolah.sort.bantuan');
     Route::get('/datastatusbantuan-chart', [FilterStatusBantuanController::class, 'getBantuanData'])->name('bantuan.getdata');
     Route::get('/datastatusbantuan-detail', [FilterStatusBantuanController::class, 'getSekolahBantuanDetail'])->name('bantuan.getdetail');
 
+    Route::get('/sort/internet', [FilterKuotaInternetController::class, 'sortInternet'])->name('internet.sort');
+    Route::get('/sort/internet/data', [FilterKuotaInternetController::class, 'getInternet'])
+        ->name('internet.getdata');
+    Route::get('/sort/internet/detail', [FilterKuotaInternetController::class, 'getInternetDetail'])
+        ->name('internet.getdetail');
 
-    Route::get('/status-labkomputer',[FilterLabkomputerController::class, 'sortLabKomputer'])->name('sekolah.sort.labkomputer');
+    Route::get('/sort/listrik', [FilterListrikController::class, 'index'])->name('listrik.index');
+    Route::get('/sort/listrik/get', [FilterListrikController::class, 'getData'])->name('listrik.getdata');
+    Route::get('/sort/listrik/detail', [FilterListrikController::class, 'getDetail'])->name('listrik.getdetail');
+
+
+    Route::get('/status-labkomputer', [FilterLabkomputerController::class, 'sortLabKomputer'])->name('sekolah.sort.labkomputer');
     Route::get('/datastatuslabkomputer-chart', [FilterLabkomputerController::class, 'getLabKomputer'])->name('labkomputer.getdata');
-    Route::get('/datastatuslabkomputer-detail',[FilterLabkomputerController::class, 'getLabKomputerDetail'])->name('labkomputer.getdetail');
+    Route::get('/datastatuslabkomputer-detail', [FilterLabkomputerController::class, 'getLabKomputerDetail'])->name('labkomputer.getdetail');
+
+    // FILTER GURU
+    Route::get('/sort-gurustatus', [FilterGuruStatusController::class, 'index'])->name('sortgurustatus.index');
+    Route::get('/sort-gurustatus/get', [FilterGuruStatusController::class, 'getData'])->name('sortgurustatus.getdata');
+    Route::get('/sort-gurustatus/detail', [FilterGuruStatusController::class, 'getDetail'])->name('sortgurustatus.getdetail');
+
+    Route::get('/sort-gurupendidikan', [FilterGuruPendidikanController::class, 'index'])->name('sortgurupendidikan.index');
+    Route::get('/sort-gurupendidikan/get', [FilterGuruPendidikanController::class, 'getData'])->name('sortgurupendidikan.getdata');
+    Route::get('/sort-gurupendidikan/detail', [FilterGuruPendidikanController::class, 'getDetail'])->name('sortgurupendidikan.getdetail');
+
+    Route::get('/sort-gurusertifikasi', [FilterSertifikasiStatusController::class, 'index'])->name('sortgurusertifikasi.index');
+    Route::get('/sort-gurusertifikasi/get', [FilterSertifikasiStatusController::class, 'getData'])->name('sortgurusertifikasi.getdata');
+    Route::get('/sort-gurusertifikasi/detail', [FilterSertifikasiStatusController::class, 'getDetail'])->name('sortgurusertifikasi.getdetail');
+
+    Route::get('/sort-gurupelatihan', [FilterGuruKebutuhanPelatihanController::class, 'index'])->name('sortgurupelatihan.index');
+    Route::get('/sort-gurupelatihan/get', [FilterGuruKebutuhanPelatihanController::class, 'getData'])->name('sortgurupelatihan.getdata');
 });
 
 

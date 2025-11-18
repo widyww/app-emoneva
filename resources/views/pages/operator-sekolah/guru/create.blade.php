@@ -121,6 +121,7 @@
                                         <select class="form-select" name="status">
                                             <option value="PNS">PNS</option>
                                             <option value="PPPK">PPPK</option>
+                                            <option value="Honor">Honor</option>
                                         </select>
                                     </div>
                                 </div>
