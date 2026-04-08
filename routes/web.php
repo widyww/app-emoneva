@@ -122,7 +122,7 @@ Route::middleware('auth', 'verified', 'Verifikator')->group(function () {
 });
 
 
-// ROLE KEPALA BTKI
+// ROLE KEPALA BTIK
 
 Route::middleware('auth', 'verified', 'Kabalai')->group(function () {
     Route::get('kabalai-dashboard', [USerKabalaiController::class, 'index'])->name('kabalai.dashboard');

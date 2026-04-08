@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>EMON DAN EVA (e-Monitoring dan e-Evaluasi Berbasis TIK | Balai Teknologi Informasi dan Komunikasi |
+    <title>E-MONITORING DAN EVALUASI (e-Monitoring dan e-Evaluasi Berbasis TIK | Balai Teknologi Informasi dan Komunikasi |
         Dinas Pendidikan Provinsi Maluku) - Halaman Login</title>
     <link href="{{ asset('sbadmin/css/styles.css') }}" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="{{ asset('sbadmin/assets/img/favicon.png') }}" />
@@ -30,9 +30,8 @@
                                     <img src="{{ asset('sbadmin/assets/img/logo_pemprov.png') }}" alt="Logo Pemprov"
                                         class="mb-3" style="max-height: 120px;">
 
-                                    <h1 class="text-uppercase text-dark mb-2">EMON & EVA PAKE BATIK</h1>
+                                    <h1 class="text-uppercase text-dark mb-2">E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku</h1>
 
-                                    <h5 class="text-uppercase fst-italic">(e-Monitoring dan e-Evaluasi Berbasis TIK)</h5>
                                     <h4 class="text-uppercase">Balai Teknologi Informasi dan Komunikasi</h4>
                                     <h3 class="text-uppercase mb-3">Dinas Pendidikan Provinsi Maluku</h3>
 
@@ -81,7 +80,7 @@
                                             class="text-success text-decoration-none">
                                             <img src="{{ asset('sbadmin/assets/img/logo_wa.png') }}" alt="WhatsApp"
                                                 width="20" class="me-1">
-                                            Jika ada pertanyaan? SILAHKAN HUBUNGI ADMIN EMON & EVA via WhatsApp
+                                            Jika ada pertanyaan? SILAHKAN HUBUNGI ADMIN E-Monitoring dan Evaluasi via WhatsApp
                                         </a>
 
                                     </div>
@@ -97,8 +96,7 @@
             <footer class="footer-admin mt-auto footer-dark">
                 <div class="container-xl px-4">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright &copy; EMON & EVA PAKE BATIK (e-Monitoring dan e-Evaluasi
-                            Berbasis TIK) {{ now()->year }}</div>
+                        <div class="col-md-6 small">Copyright &copy; E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku {{ now()->year }}</div>
                         <div class="col-md-6 text-md-end small">
                             <a href="#!">Privacy Policy</a>
                             &middot;

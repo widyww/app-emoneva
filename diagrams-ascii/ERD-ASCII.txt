@@ -1,0 +1,195 @@
+╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                          ENTITY RELATIONSHIP DIAGRAM (ERD)                                                ║
+║                     Sistem Informasi Manajemen Data Sekolah dan Guru                                     ║
+╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+
+┌─────────────────┐
+│      KOTA       │
+├─────────────────┤
+│ PK  id          │
+│     nama        │
+│     created_at  │
+│     updated_at  │
+└─────────────────┘
+         │
+         │ 1
+         │
+         │ N
+         ▼
+┌─────────────────┐
+│   KECAMATAN     │
+├─────────────────┤
+│ PK  id          │
+│     nama        │
+│ FK  kota_id     │◄──────────┐
+│     created_at  │           │
+│     updated_at  │           │
+└─────────────────┘           │
+         │                    │
+         │ 1                  │
+         │                    │
+         │ N                  │
+         ▼                    │
+┌──────────────────────────────────────────┐
+│              SEKOLAH                     │
+├──────────────────────────────────────────┤
+│ PK  id                                   │
+│ UK  npsn                                 │
+│     tingkatan                            │
+│     nama                                 │
+│     alamat                               │
+│     telepon, email, website              │
+│     foto_sekolah                         │
+│     kepsek_nama, kepsek_hp, kepsek_foto  │
+│     sk_ijin                              │
+│     status_sekolah                       │
+│     status_akreditasi                    │
+│     status_tanah                         │
+│     jum_siswa_pria, jum_siswa_wanita     │
+│     jum_guru                             │
+│     status_verifikasi                    │
+│     keterangan_verifikasi                │
+│     tahun                                │
+│ FK  kecamatan_id                         │
+│ FK  kota_id ─────────────────────────────┘
+│     created_at, updated_at               │
+└──────────────────────────────────────────┘
+         │
+         ├──────────────────────────────────────────────────────────────────────────────┐
+         │                                                                              │
+         │ 1:1                                                                          │ 1:1
+         ▼                                                                              ▼
+┌─────────────────────────┐                                              ┌──────────────────────────────┐
+│  SEKOLAH_SOSEKBUD       │                                              │  SEKOLAH_BANTUAN_STATUS      │
+├─────────────────────────┤                                              ├──────────────────────────────┤
+│ PK  id                  │                                              │ PK  id                       │
+│ FK  sekolah_id          │                                              │ FK  sekolah_id               │
+│     kondisi_geografis   │                                              │     status                   │
+│     kondisi_sosekbud    │                                              │     created_at, updated_at   │
+│     akses_transportasi  │                                              └──────────────────────────────┘
+│     created_at          │                                                           │
+│     updated_at          │                                                           │ 1
+└─────────────────────────┘                                                           │
+                                                                                      │ N
+         │                                                                            ▼
+         │ 1:1                                              ┌──────────────────────────────────────┐
+         ▼                                                  │  SEKOLAH_BANTUAN_DETAIL              │
+┌──────────────────────────────────┐                       ├──────────────────────────────────────┤
+│  SEKOLAH_FASILITASTIK            │                       │ PK  id                               │
+├──────────────────────────────────┤                       │ FK  sekolah_bantuan_status_id        │
+│ PK  id                           │                       │     nama_lembaga                     │
+│ FK  sekolah_id                   │                       │     keterangan_bantuan               │
+│     listrik_status (enum)        │                       │     created_at, updated_at           │
+│     listrik_sumber               │                       └──────────────────────────────────────┘
+│     listrik_durasi               │
+│     jumlah_kom                   │
+│     labkom_status (enum)         │
+│     internet_status (enum)       │
+│     internet_sumber              │
+│     internet_bandwith            │
+│     topologi_jaringan            │
+│     internet_kesesuaian          │
+│     internet_alasankuota         │
+│     saran_pengembangan           │
+│     created_at, updated_at       │
+└──────────────────────────────────┘
+         │
+         │ 1
+         │
+         │ N
+         ▼
+┌──────────────────────────────────┐
+│  SEKOLAH_FASILITASTIK_LAB        │
+├──────────────────────────────────┤
+│ PK  id                           │
+│ FK  sekolah_fasilitastik_id      │
+│     labkom_nama                  │
+│     labkom_jumlah_pc             │
+│     created_at, updated_at       │
+└──────────────────────────────────┘
+
+
+         ┌──────────────────────────────────────────────────────────────┐
+         │                         SEKOLAH                              │
+         └──────────────────────────────────────────────────────────────┘
+                  │                                    │
+                  │ 1:N                                │ 1:N
+                  ▼                                    ▼
+┌──────────────────────────────────┐    ┌──────────────────────────────────────────┐
+│           USER                   │    │              GURU                        │
+├──────────────────────────────────┤    ├──────────────────────────────────────────┤
+│ PK  id                           │    │ PK  id                                   │
+│ UK  email                        │    │     nama                                 │
+│     name                         │    │     status (PNS/PPPK)                    │
+│     phone                        │    │     nip, nuptk                           │
+│     role (1,2,3,4)               │    │     tempat, tgl_lahir                    │
+│     email_verified_at            │    │     agama, jenis_kelamin                 │
+│     password                     │    │     pendidikan_terakhir                  │
+│ FK  sekolah_id                   │    │     tmt_pns_tahun                        │
+│     remember_token               │    │     telepon, mapel                       │
+│     created_at, updated_at       │    │     sertifikasi_status                   │
+└──────────────────────────────────┘    │     sertifikasi_tahun                    │
+                                        │     sertifikasi_alasan                   │
+Role:                                   │     kompetensi_word                      │
+1 = Administrator                       │     kompetensi_powerpoin                 │
+2 = Verifikator                         │     kompetensi_excel                     │
+3 = Operator Sekolah                    │     kompetensi_pemrogramman              │
+4 = Kepala Balai (Kabalai)              │     kompetensi_jaringan                  │
+                                        │     kompetensi_multimedia                │
+                                        │     pelatihan_status                     │
+┌─────────────────┐                     │     pelatihan_kebutuhan                  │
+│    PERIODE      │                     │     status_verifikasi                    │
+├─────────────────┤                     │     catatan_verifikasi                   │
+│ PK  id          │                     │     tahun                                │
+│     tahun       │                     │ FK  sekolah_id                           │
+│     created_at  │                     │     created_at, updated_at               │
+│     updated_at  │                     └──────────────────────────────────────────┘
+└─────────────────┘                                  │
+                                                     ├────────────────────────────┐
+                                                     │                            │
+                                                     │ 1:N                        │ 1:N
+                                                     ▼                            ▼
+                                    ┌─────────────────────────────┐  ┌──────────────────────────┐
+                                    │    GURU_PELATIHAN           │  │   GURU_KEBUTUHAN         │
+                                    ├─────────────────────────────┤  ├──────────────────────────┤
+                                    │ PK  id                      │  │ PK  id                   │
+                                    │ FK  guru_id                 │  │ FK  guru_id              │
+                                    │     nama_pelatihan          │  │     nama_pelatihan       │
+                                    │     tingkatan               │  │     created_at           │
+                                    │     level                   │  │     updated_at           │
+                                    │     tahun_pelatihan         │  └──────────────────────────┘
+                                    │     jam_pelatihan           │
+                                    │     created_at, updated_at  │
+                                    └─────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+KETERANGAN RELASI:
+
+1:1   = One to One (Satu ke Satu)
+1:N   = One to Many (Satu ke Banyak)
+PK    = Primary Key
+FK    = Foreign Key
+UK    = Unique Key
+enum  = Enumeration (pilihan terbatas)
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+RELASI UTAMA:
+
+1. KOTA (1) ──→ (N) KECAMATAN
+2. KOTA (1) ──→ (N) SEKOLAH
+3. KECAMATAN (1) ──→ (N) SEKOLAH
+4. SEKOLAH (1) ──→ (1) SEKOLAH_SOSEKBUD
+5. SEKOLAH (1) ──→ (1) SEKOLAH_BANTUAN_STATUS
+6. SEKOLAH (1) ──→ (1) SEKOLAH_FASILITASTIK
+7. SEKOLAH (1) ──→ (N) USER
+8. SEKOLAH (1) ──→ (N) GURU
+9. SEKOLAH_BANTUAN_STATUS (1) ──→ (N) SEKOLAH_BANTUAN_DETAIL
+10. SEKOLAH_FASILITASTIK (1) ──→ (N) SEKOLAH_FASILITASTIK_LAB
+11. GURU (1) ──→ (N) GURU_PELATIHAN
+12. GURU (1) ──→ (N) GURU_KEBUTUHAN
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════

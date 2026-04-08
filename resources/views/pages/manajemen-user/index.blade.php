@@ -52,7 +52,7 @@
                                             @if ($user->role == 2)
                                                 <span class="badge bg-primary">Verifikator</span>
                                             @elseif ($user->role == 4)
-                                                <span class="badge bg-success">Kepala BTKI</span>
+                                                <span class="badge bg-success">Kepala BTIK</span>
                                             @else
                                                 <span class="badge bg-secondary">Tidak Dikenal</span>
                                             @endif
@@ -106,7 +106,7 @@
                                 <label>Role</label>
                                 <select name="role" class="form-control" required>
                                     <option value="2" {{ $user->role == 2 ? 'selected' : '' }}>Verifikator</option>
-                                    <option value="4" {{ $user->role == 4 ? 'selected' : '' }}>Kepala BTKI</option>
+                                    <option value="4" {{ $user->role == 4 ? 'selected' : '' }}>Kepala BTIK</option>
                                 </select>
                             </div>
                         </div>

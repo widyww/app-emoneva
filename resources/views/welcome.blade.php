@@ -66,7 +66,7 @@
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <img src="{{ asset('images/logo/logo_pemprov.png') }}"
                         alt="Logo Balai Teknologi Informasi dan Komunikasi" style="width: 40px;">
-                    <h1 class="sitename">EMON & EVA</h1>
+                    <h1 class="sitename">E-Monitoring & Evaluasi</h1>
                 </a>
 
                 <nav id="navmenu" class="navmenu">
@@ -96,10 +96,9 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="hero-content" data-aos="fade-right" data-aos-delay="200">
-                            <span class="subtitle">EMON & EVA</span>
-                            <h1>E-Monitoring dan Evaluasi Berbasis TIK</h1>
+                            <h1>E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku</h1>
                             <p>"Data yang akurat adalah kunci menuju pendidikan yang lebih maju.
-                                Melalui Emon & Eva, sekolah di Maluku bergerak bersama menuju transformasi digital."</p>
+                                Melalui E-monitoring & E-evaluasi, sekolah di Maluku bergerak bersama menuju transformasi digital."</p>
 
 
                             <div class="hero-buttons">
@@ -114,7 +113,7 @@
                     <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
                         <div class="hero-image">
                             <img src="{{ asset('images/logo/emnitoringicon.png') }}"
-                                alt="E-Monitoring dan E-Evaluasi Berbasis TIK" class="img-fluid">
+                                alt="E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru" class="img-fluid">
                             <div class="image-badge">
                                 <span>Balai Teknologi Informasi dan Komunikasi</span>
                                 <p>Dinas Pendidikan Provinsi Maluku</p>
@@ -135,9 +134,9 @@
                 <div class="row align-items-center g-5">
                     <div class="col-lg-12">
                         <div class="about-content" data-aos="fade-right" data-aos-delay="200">
-                            <h2 class="fw-bold text-primary">Tentang Emon dan Eva</h2>
+                            <h2 class="fw-bold text-primary">Tentang E-monitoring dan Evaluasi</h2>
                             <p class="lead">
-                                <strong>Emon dan Eva</strong> (Emonitoring dan Evaluasi) merupakan aplikasi berbasis
+                                <strong>E-monitoring dan Evaluasi</strong> merupakan aplikasi berbasis
                                 Teknologi Informasi dan Komunikasi (TIK)
                                 yang dikembangkan oleh <strong>Balai Teknologi Informasi dan Komunikasi (BTIK)</strong>,
                                 Dinas Pendidikan Provinsi Maluku.
@@ -207,8 +206,7 @@
 
                             <h2>Butuh Bantuan atau Informasi Lebih Lanjut?</h2>
                             <p>Jika Anda memiliki pertanyaan, saran, atau membutuhkan bantuan teknis terkait penggunaan
-                                aplikasi
-                                <strong>Emon &amp; Eva</strong>, silakan hubungi tim kami melalui formulir berikut atau
+                                aplikasi ini, silakan hubungi tim kami melalui formulir berikut atau
                                 lewat kontak di bawah ini.
                             </p>
 
@@ -313,10 +311,10 @@
             <div class="row gy-4">
                 <div class="col-lg-5 col-md-12 footer-about">
                     <a href="index.html" class="logo d-flex align-items-center">
-                        <span class="sitename">EMON DAN EVA PAKE BATIK</span>
+                        <span class="sitename">E-MONITORING DAN EVALUASI FASILITAS TIK DAN KOMPETENSI GURU </span>
                     </a>
                     <p class="lead">
-                        <strong>Emon dan Eva</strong> (Emonitoring dan Evaluasi) merupakan aplikasi berbasis Teknologi
+                        <strong>E-monitoring dan Evaluasi</strong> merupakan aplikasi berbasis Teknologi
                         Informasi dan Komunikasi (TIK)
                         yang dikembangkan oleh <strong>Balai Teknologi Informasi dan Komunikasi (BTIK)</strong>,
                         Dinas Pendidikan Provinsi Maluku.
@@ -353,11 +351,7 @@
         </div>
 
         <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span>
-                <strong class="px-1 sitename">Balai Teknologi Informasi dan Komunikasi - Dinas Pendidikan dan
-                    Kebudayaan Provinsi Maluku</strong>
-                <span>{{ date('Y') }} All Rights Reserved</span>
-            </p>
+            <p>Copyright © E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku {{ date('Y') }}</p>
 
 
         </div>

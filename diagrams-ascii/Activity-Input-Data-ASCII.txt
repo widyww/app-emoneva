@@ -1,0 +1,253 @@
+╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                              ACTIVITY DIAGRAM - INPUT DATA SEKOLAH                                        ║
+║                                    Alur Operator Sekolah                                                  ║
+╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+
+                                        ( START )
+                                            │
+                                            ▼
+                                  ┌──────────────────┐
+                                  │  Login sebagai   │
+                                  │     Operator     │
+                                  └──────────────────┘
+                                            │
+                                            ▼
+                                    ╱────────────╲
+                                   ╱ Autentikasi  ╲
+                                  ╱    Berhasil?   ╲
+                                 ╱                  ╲
+                                ╱                    ╲
+                               ◇ ─────────────────────◇
+                                ╲                    ╱
+                                 ╲                  ╱
+                                  ╲    Tidak      ╱
+                                   ╲             ╱
+                                    ╲───────────╱
+                                      │       │
+                                      │       └──────────┐
+                                      │ Ya               │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │    Dashboard     │         │
+                            │     Operator     │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Pilih Menu:     │         │
+                            │  Identitas       │         │
+                            │  Sekolah         │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Input/Update:   │         │
+                            │  • NPSN          │         │
+                            │  • Nama Sekolah  │         │
+                            │  • Alamat        │         │
+                            │  • Kepala Sekolah│         │
+                            │  • Akreditasi    │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Simpan Data     │         │
+                            │  Identitas       │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Pilih Menu:     │         │
+                            │  Sosial Ekonomi  │         │
+                            │  Budaya          │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Input:          │         │
+                            │  • Kondisi       │         │
+                            │    Geografis     │         │
+                            │  • Kondisi       │         │
+                            │    Sosekbud      │         │
+                            │  • Akses         │         │
+                            │    Transportasi  │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Simpan Data     │         │
+                            │  Sosekbud        │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Pilih Menu:     │         │
+                            │  Bantuan         │         │
+                            │  Sekolah         │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Input:          │         │
+                            │  • Status Bantuan│         │
+                            │  • Nama Lembaga  │         │
+                            │  • Keterangan    │         │
+                            │    Bantuan       │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Simpan Data     │         │
+                            │  Bantuan         │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Pilih Menu:     │         │
+                            │  Fasilitas TIK   │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Input:          │         │
+                            │  • Status Listrik│         │
+                            │  • Jumlah        │         │
+                            │    Komputer      │         │
+                            │  • Status        │         │
+                            │    Internet      │         │
+                            │  • Lab Komputer  │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Simpan Data     │         │
+                            │  Fasilitas       │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Pilih Menu:     │         │
+                            │  Data Guru       │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Input Data Guru:│         │
+                            │  • Identitas     │         │
+                            │  • Kompetensi    │         │
+                            │  • Pelatihan     │         │
+                            │  • Kebutuhan     │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                            ┌──────────────────┐         │
+                            │  Simpan Data     │         │
+                            │  Guru            │         │
+                            └──────────────────┘         │
+                                      │                  │
+                                      ▼                  │
+                                ╱────────────╲            │
+                               ╱     Data     ╲           │
+                              ╱    Lengkap?    ╲          │
+                             ╱                  ╲         │
+                            ╱                    ╲        │
+                           ◇ ─────────────────────◇       │
+                            ╲                    ╱        │
+                             ╲                  ╱         │
+                              ╲     Tidak     ╱           │
+                               ╲             ╱            │
+                                ╲───────────╱             │
+                                  │       │               │
+                                  │       └───────────────┘
+                                  │ Ya
+                                  ▼
+                        ┌──────────────────┐
+                        │  Ajukan          │
+                        │  Verifikasi      │
+                        └──────────────────┘
+                                  │
+                                  ▼
+                        ┌──────────────────┐
+                        │  Update Status:  │
+                        │  status_         │
+                        │  verifikasi =    │
+                        │  'pending'       │
+                        └──────────────────┘
+                                  │
+                                  ▼
+                        ┌──────────────────┐
+                        │  Notifikasi ke   │
+                        │  Verifikator     │
+                        └──────────────────┘
+                                  │
+                                  ▼
+                              ( END )
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+PENJELASAN ALUR:
+
+1. LOGIN
+   └─ Operator login menggunakan NPSN sebagai email dan password
+
+2. DASHBOARD
+   └─ Setelah login berhasil, masuk ke dashboard operator
+
+3. INPUT IDENTITAS SEKOLAH
+   ├─ NPSN (Nomor Pokok Sekolah Nasional)
+   ├─ Nama sekolah
+   ├─ Alamat lengkap
+   ├─ Data kepala sekolah
+   └─ Status akreditasi
+
+4. INPUT SOSIAL EKONOMI BUDAYA
+   ├─ Kondisi geografis sekolah
+   ├─ Kondisi sosial ekonomi budaya
+   └─ Akses transportasi
+
+5. INPUT BANTUAN SEKOLAH
+   ├─ Status penerimaan bantuan
+   ├─ Nama lembaga pemberi bantuan
+   └─ Keterangan detail bantuan
+
+6. INPUT FASILITAS TIK
+   ├─ Status dan sumber listrik
+   ├─ Jumlah komputer
+   ├─ Status dan sumber internet
+   └─ Data laboratorium komputer
+
+7. INPUT DATA GURU
+   ├─ Identitas guru (NIP, NUPTK, dll)
+   ├─ Kompetensi TIK
+   ├─ Riwayat pelatihan
+   └─ Kebutuhan pelatihan
+
+8. VALIDASI KELENGKAPAN
+   └─ Sistem cek apakah semua data sudah lengkap
+
+9. AJUKAN VERIFIKASI
+   ├─ Status berubah menjadi 'pending'
+   └─ Notifikasi dikirim ke verifikator
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+SIMBOL YANG DIGUNAKAN:
+
+( START )           = Titik mulai
+( END )             = Titik selesai
+┌──────────┐        = Proses/Aktivitas
+│          │
+└──────────┘
+    ╱────╲          = Keputusan/Decision
+   ╱      ╲
+  ╱        ╲
+ ◇          ◇
+  ╲        ╱
+   ╲      ╱
+    ╲────╱
+│                   = Alur/Flow
+▼                   = Arah alur
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════

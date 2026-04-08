@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Dashboard Kabalai BTKI EMON & EVA Pake Batik')
+@section('title', 'Dashboard Kabalai BTIK E-Monitoring dan Evaluasi')
 
 @section('content')
     <main>
@@ -35,9 +35,9 @@
                                 <div class="col-xl-8 col-xxl-12">
                                     <div class="text-center text-xl-start text-xxl-center mb-4 mb-xl-0 mb-xxl-4">
                                         <h1 class="text-primary">Selamat Datang!</h1>
-                                        <p class="text-gray-700 mb-0">EMON & EVA PAKE BATIK merupakan apllikasi e-Monitoring
+                                        <p class="text-gray-700 mb-0">E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku merupakan aplikasi e-Monitoring
                                             dan e-Evaluasi Berbasis TIK yang dikembangkan oleh Balai Teknologi Informasi dan
-                                            Komunikasi (BTKI) Dinas Pendidikan dan Kebudayaan Provinsi Maluku</p>
+                                            Komunikasi (BTIK) Dinas Pendidikan dan Kebudayaan Provinsi Maluku</p>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"

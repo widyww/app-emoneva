@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Dashboard Operator Sekolah EMON & EVA Pake Batik')
+@section('title', 'Dashboard Operator Sekolah E-Monitoring dan Evaluasi')
 
 @section('content')
     <main>
@@ -45,9 +45,9 @@
                                     <div class="col-md-8 text-center text-md-start">
                                         <h1 class="text-primary">Selamat Datang!</h1>
                                         <p class="text-gray-700 mb-0">
-                                            EMON & EVA PAKE BATIK merupakan aplikasi e-Monitoring dan e-Evaluasi Berbasis
+                                            E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku merupakan aplikasi e-Monitoring dan e-Evaluasi Berbasis
                                             TIK
-                                            yang dikembangkan oleh Balai Teknologi Informasi dan Komunikasi (BTKI)
+                                            yang dikembangkan oleh Balai Teknologi Informasi dan Komunikasi (BTIK)
                                             Dinas Pendidikan dan Kebudayaan Provinsi Maluku
                                         </p>
                                         <hr>

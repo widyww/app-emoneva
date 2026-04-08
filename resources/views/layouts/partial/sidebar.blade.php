@@ -111,7 +111,7 @@
                     </a>
                 </div>
             @endif
-            {{-- KEPALA BTKI --}}
+            {{-- KEPALA BTIK --}}
             @if (Auth::check() && Auth::user()->role == '4')
                 <div class="nav accordion" id="accordionSidenav">
 
