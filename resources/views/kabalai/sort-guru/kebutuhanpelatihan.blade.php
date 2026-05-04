@@ -1,6 +1,10 @@
 @extends('layouts.navbar')
 @section('title', 'Data Kebutuhan Pelatihan Guru')
 
+@section('styles')
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+@endsection
+
 @section('content')
     <main>
         {{-- HEADER --}}
@@ -54,6 +58,9 @@
         const API_DETAIL = "{{ route('sortgurupelatihan.getdata') }}";
 
         $(document).ready(function() {
+            // Load secara otomatis saat halaman dibuka untuk "Semua Kabupaten/Kota"
+            loadData('');
+
             $('#kota-select').change(function() {
                 loadData($(this).val());
             });

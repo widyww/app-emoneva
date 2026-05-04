@@ -36,7 +36,8 @@
                                     <h3 class="text-uppercase mb-3">Dinas Pendidikan Provinsi Maluku</h3>
 
                                     <p class="text-dark small">
-                                        Bagi Operator Sekolah silakan login menggunakan <strong>NPSN Sekolah</strong>
+                                        Bagi Operator Sekolah silakan login menggunakan <strong>NPSN Sekolah</strong>,
+                                        bagi Guru silakan login menggunakan <strong>NIP</strong>
                                     </p>
                                 </div>
 
@@ -48,9 +49,9 @@
                                         @csrf
                                         <!-- Form Group (email address)-->
                                         <div class="mb-3">
-                                            <label class="small mb-1" for="email">NPSN / Email</label>
+                                            <label class="small mb-1" for="email">NPSN / NIP / Email</label>
                                             <input class="form-control" id="email" type="text" name="email"
-                                                placeholder="Masukkan NPSN atau email" required autofocus />
+                                                placeholder="Masukkan NPSN, NIP, atau email" required autofocus />
                                         </div>
                                         <!-- Form Group (password)-->
                                         <div class="mb-3">

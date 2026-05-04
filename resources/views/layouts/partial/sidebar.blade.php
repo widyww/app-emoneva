@@ -34,6 +34,10 @@
                         <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
                         Operator Sekolah
                     </a>
+                    <a class="nav-link" href="{{ route('user-guru.index') }}">
+                        <div class="nav-link-icon"><i data-feather="users"></i></div>
+                        Guru
+                    </a>
                     <a class="nav-link" href="{{ route('manajemen-user.index') }}">
                         <div class="nav-link-icon"><i data-feather="filter"></i></div>
                         Verifikator & Kabalai
@@ -46,7 +50,7 @@
 
 
                     <div class="sidenav-menu-heading"></div>
-                    <a class="nav-link" href="{{ route('dashboard') }}">
+                    <a class="nav-link" href="{{ route('operator.dashboard') }}">
                         <div class="nav-link-icon"><i data-feather="home"></i></div>
                         Dashboard
                     </a>
@@ -70,12 +74,26 @@
                         Listrik dan Internet
                     </a>
 
+
+                </div>
+            @endif
+            {{-- GURU --}}
+            @if (Auth::check() && Auth::user()->role == '5')
+                <div class="nav accordion" id="accordionSidenav">
+
+
+                    <div class="sidenav-menu-heading"></div>
+                    <a class="nav-link" href="{{ route('guru.dashboard') }}">
+                        <div class="nav-link-icon"><i data-feather="home"></i></div>
+                        Dashboard
+                    </a>
+
                     <div class="sidenav-menu-heading">DATA GURU</div>
-                    <a class="nav-link" href="{{ route('data-guru.index') }}">
+                    <a class="nav-link" href="{{ route('guru-data.index') }}">
                         <div class="nav-link-icon"><i data-feather="eye"></i></div>
                         View
                     </a>
-                    <a class="nav-link" href="{{ route('data-guru.create') }}">
+                    <a class="nav-link" href="{{ route('guru-data.create') }}">
                         <div class="nav-link-icon"><i data-feather="user-plus"></i></div>
                         Input
                     </a>

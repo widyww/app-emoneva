@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Operator Sekolah - Update Data Guru')
+@section('title', 'Edit Data Guru')
 
 @section('content')
     <main>
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('data-guru.update', $guru->id) }}" method="POST">
+                    <form action="{{ route('guru-data.update', $guru->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -136,7 +136,7 @@
                                     <label class="col-sm-4 col-form-label">Status</label>
                                     <div class="col-sm-8">
                                         <select class="form-select" name="status">
-                                            @foreach (['PNS', 'PPPK'] as $status)
+                                            @foreach (['PNS', 'PPPK', 'Honor'] as $status)
                                                 <option value="{{ $status }}"
                                                     {{ old('status', $guru->status) == $status ? 'selected' : '' }}>
                                                     {{ $status }}</option>
@@ -180,7 +180,7 @@
                                     <label class="col-sm-4 col-form-label">TMT PNS</label>
                                     <div class="col-sm-8">
                                         <input type="date" name="tmt_pns_tahun" class="form-control"
-                                            value="{{ old('tmt_pns_tahun', \Carbon\Carbon::parse($guru->tmt_pns_tahun)->format('Y-m-d')) }}">
+                                            value="{{ old('tmt_pns_tahun', $guru->tmt_pns_tahun ? \Carbon\Carbon::parse($guru->tmt_pns_tahun)->format('Y-m-d') : '') }}">
                                     </div>
                                 </div>
 
@@ -314,7 +314,6 @@
                                             </div>
                                         </div>
                                     @empty
-                                        {{-- Jika kosong, tampilkan 1 baris kosong --}}
                                         <div class="row pelatihan_row mb-2">
                                             <div class="col-md-3">
                                                 <input type="text" name="nama_pelatihan[]" class="form-control"
@@ -405,17 +404,12 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </main>
 @endsection
 
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // PASTIKAN BLOK INI BENAR, TERUTAMA JIKA ADA ERROR BLADE YANG MENGANDUNG KARAKTER KHUSUS
         @if (session('success'))
             Swal.fire({
                 icon: 'success',
@@ -428,7 +422,6 @@
 
         @if ($errors->any())
             let errorList = '';
-            // Gunakan js() untuk mencegah karakter khusus merusak sintaks JS
             @foreach ($errors->all() as $error)
                 errorList += `- {{ js($error) }}\n`;
             @endforeach
@@ -444,149 +437,83 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Variabel Elemen ---
             const pelatihanStatus = document.getElementById('pelatihan_status');
             const pelatihanContainer = document.getElementById('pelatihan_container');
-
             const kebutuhanStatus = document.getElementById('pelatihan_kebutuhan');
             const kebutuhanContainer = document.getElementById('kebutuhan_container');
-
             const sertifikasiStatus = document.getElementById('sertifikasi_status');
             const sertifikasiTahunRow = document.getElementById('sertifikasi_tahun_row');
             const sertifikasiAlasanRow = document.getElementById('sertifikasi_alasan_row');
 
-            // --------------------------------------------------------------------------------------------------
-            // --- FUNGSI UTAMA ---
-            // --------------------------------------------------------------------------------------------------
-
-            // 1. Fungsi untuk toggle container Pelatihan (dan mengatur required)
             function togglePelatihanContainer() {
                 const isYa = pelatihanStatus.value === 'Ya';
                 pelatihanContainer.style.display = isYa ? 'block' : 'none';
-
-                // Atur atribut required pada input Pelatihan
                 const inputs = pelatihanContainer.querySelectorAll('input, select');
-                inputs.forEach(input => {
-                    // Set required HANYA jika status "Ya"
-                    input.required = isYa;
-                });
+                inputs.forEach(input => { input.required = isYa; });
             }
 
-            // 2. Fungsi untuk toggle container Kebutuhan Pelatihan (dan mengatur required)
             function toggleKebutuhanContainer() {
                 const isYa = kebutuhanStatus.value === 'Ya';
                 kebutuhanContainer.style.display = isYa ? 'block' : 'none';
-
-                // Atur atribut required pada input Kebutuhan
                 const inputs = kebutuhanContainer.querySelectorAll('input');
-                inputs.forEach(input => {
-                    input.required = isYa;
-                });
+                inputs.forEach(input => { input.required = isYa; });
             }
 
-            // 3. Fungsi untuk toggle Sertifikasi dan Alasan
             function toggleSertifikasiFields() {
                 const status = sertifikasiStatus.value;
-
-                // Hidden by default
                 sertifikasiTahunRow.style.display = 'none';
                 sertifikasiAlasanRow.style.display = 'none';
-
-                // Hapus required default
                 document.getElementById('sertifikasi_tahun').required = false;
                 document.getElementById('sertifikasi_alasan').required = false;
-
                 if (status === 'Ya') {
                     sertifikasiTahunRow.style.display = 'flex';
                     document.getElementById('sertifikasi_tahun').required = true;
-
                 } else if (status === 'Tidak') {
                     sertifikasiAlasanRow.style.display = 'flex';
                     document.getElementById('sertifikasi_alasan').required = true;
                 }
             }
 
-
-            // --------------------------------------------------------------------------------------------------
-            // --- INISIALISASI DAN LISTENER ---
-            // --------------------------------------------------------------------------------------------------
-
-            // Jalankan fungsi saat DOM dimuat
             togglePelatihanContainer();
             toggleKebutuhanContainer();
             toggleSertifikasiFields();
 
-            // Jalankan saat user ganti select
             pelatihanStatus.addEventListener('change', togglePelatihanContainer);
             kebutuhanStatus.addEventListener('change', toggleKebutuhanContainer);
             sertifikasiStatus.addEventListener('change', toggleSertifikasiFields);
 
-            // 4. Tambah baris pelatihan
             document.getElementById('add_pelatihan_row').addEventListener('click', function() {
                 const list = document.getElementById('pelatihan_list');
                 const newRow = document.createElement('div');
                 newRow.classList.add('row', 'pelatihan_row', 'mb-2');
                 newRow.innerHTML = `
-                <div class="col-md-3">
-                    <input type="text" name="nama_pelatihan[]" class="form-control" placeholder="Nama Pelatihan" required>
-                </div>
-                <div class="col-md-2">
-                    <select name="tingkatan[]" class="form-select" required>
-                        <option value="Dasar">Dasar</option>
-                        <option value="Menengah">Menengah</option>
-                        <option value="Mahir">Mahir</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <select name="level[]" class="form-select" required>
-                        <option value="Lokal">Lokal</option>
-                        <option value="Nasional">Nasional</option>
-                        <option value="Internasional">Internasional</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <input type="number" name="tahun_pelatihan[]" class="form-control" placeholder="Tahun" required>
-                </div>
-                <div class="col-md-2">
-                    <input type="number" name="jam_pelatihan[]" class="form-control" placeholder="Jumlah Jam" required>
-                </div>
-                <div class="col-md-1 d-grid">
-                    <button type="button" class="btn btn-danger btn-remove-sm">x</button>
-                </div>
-            `;
+                <div class="col-md-3"><input type="text" name="nama_pelatihan[]" class="form-control" placeholder="Nama Pelatihan" required></div>
+                <div class="col-md-2"><select name="tingkatan[]" class="form-select" required><option value="Dasar">Dasar</option><option value="Menengah">Menengah</option><option value="Mahir">Mahir</option></select></div>
+                <div class="col-md-2"><select name="level[]" class="form-select" required><option value="Lokal">Lokal</option><option value="Nasional">Nasional</option><option value="Internasional">Internasional</option></select></div>
+                <div class="col-md-2"><input type="number" name="tahun_pelatihan[]" class="form-control" placeholder="Tahun" required></div>
+                <div class="col-md-2"><input type="number" name="jam_pelatihan[]" class="form-control" placeholder="Jumlah Jam" required></div>
+                <div class="col-md-1 d-grid"><button type="button" class="btn btn-danger btn-remove-sm">x</button></div>
+                `;
                 list.appendChild(newRow);
             });
 
-            // 5. Tambah baris kebutuhan
             document.getElementById('add_kebutuhan_row').addEventListener('click', function() {
                 const list = document.getElementById('kebutuhan_list');
                 const newRow = document.createElement('div');
                 newRow.classList.add('row', 'kebutuhan_row', 'mb-2');
                 newRow.innerHTML = `
-                <div class="col-md-11">
-                    <input type="text" name="nama_kebutuhan[]" class="form-control" required>
-                </div>
-                <div class="col-md-1 d-grid">
-                    <button type="button" class="btn btn-danger btn-remove-sm">x</button>
-                </div>
-            `;
+                <div class="col-md-11"><input type="text" name="nama_kebutuhan[]" class="form-control" required></div>
+                <div class="col-md-1 d-grid"><button type="button" class="btn btn-danger btn-remove-sm">x</button></div>
+                `;
                 list.appendChild(newRow);
             });
 
-            // 6. Hapus baris (Pelatihan & Kebutuhan)
             document.addEventListener('click', function(e) {
-                // Pastikan target klik adalah tombol dengan class 'btn-remove-sm'
                 if (e.target.classList.contains('btn-remove-sm')) {
                     const row = e.target.closest('.pelatihan_row, .kebutuhan_row');
-
-                    // Selalu hapus baris yang diklik
-                    if (row) {
-                        row.remove();
-                    }
+                    if (row) { row.remove(); }
                 }
             });
-
-            // Pastikan Anda menutup fungsi anonymous, event listener DOMContentLoaded, dan tag script
-        }); // Penutup DOMContentLoaded
+        });
     </script>
 @endsection

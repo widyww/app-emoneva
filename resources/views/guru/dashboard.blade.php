@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Dashboard Operator Sekolah E-Monitoring dan Evaluasi')
+@section('title', 'Dashboard Guru E-Monitoring dan Evaluasi')
 
 @section('content')
     <main>
@@ -10,9 +10,9 @@
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i data-feather="home"></i></div>
-                                Dashboard : {{ Auth::user()->sekolah->nama }}
+                                Dashboard Guru : {{ Auth::user()->name }}
                             </h1>
-                            <div class="page-header-subtitle">Dashboard Operator Sekolah</div>
+                            <div class="page-header-subtitle">Dashboard Guru</div>
                         </div>
                         <div class="col-12 col-xl-auto mt-4">
                             <div class="input-group input-group-joined border-0" style="width: 16.5rem">
@@ -43,7 +43,7 @@
 
                                     <!-- Teks -->
                                     <div class="col-md-8 text-center text-md-start">
-                                        <h1 class="text-primary">Selamat Datang!</h1>
+                                        <h1 class="text-primary">Selamat Datang, {{ Auth::user()->name }}!</h1>
                                         <p class="text-gray-700 mb-0">
                                             E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku merupakan aplikasi e-Monitoring dan e-Evaluasi Berbasis
                                             TIK
@@ -52,33 +52,46 @@
                                         </p>
                                         <hr>
                                         <h1 class="text-primary mt-3">
-                                            Status Verifikasi Data Sekolah:
-                                            @if ($statusSekolah == 0)
-                                                <span class="badge bg-warning">Menunggu Inputan</span>
-                                            @elseif ($statusSekolah == 1)
-                                                <span class="badge bg-success text-white">Menunggu Verifikasi</span>
-                                            @elseif ($statusSekolah == 2)
+                                            Status Verifikasi Data Guru:
+                                            @if (!$hasData)
+                                                <span class="badge bg-secondary">Belum Ada Data</span>
+                                            @elseif ($statusVerifikasi == 0)
+                                                <span class="badge bg-warning">Menunggu Verifikasi</span>
+                                            @elseif ($statusVerifikasi == 1)
                                                 <span class="badge bg-success text-white">
                                                     <i data-feather="check-circle"></i> Terverifikasi
                                                 </span>
-                                            @elseif ($statusSekolah == 3)
-                                                <span class="badge bg-danger">Revisi</span>
+                                            @elseif ($statusVerifikasi == 2)
+                                                <span class="badge bg-danger">Ditolak</span>
+                                            @elseif ($statusVerifikasi == 3)
+                                                <span class="badge bg-primary">Revisi</span>
                                             @else
-                                                <span class="badge bg-success">Menunggu Inputan</span>
+                                                <span class="badge bg-secondary">Belum Ada Data</span>
                                             @endif
-
                                         </h1>
+
+                                        @if ($catatanVerifikasi)
+                                            <div class="alert alert-info mt-3">
+                                                <strong>Catatan Verifikasi:</strong> {{ $catatanVerifikasi }}
+                                            </div>
+                                        @endif
 
                                         <hr>
 
-                                        {{-- Tombol Ajukan Verifikasi --}}
-                                        <form id="formVerifikasi" action="{{ route('sekolah.ajukanVerifikasi') }}"
-                                            method="POST">
-                                            @csrf
-                                            <button type="button" id="btnAjukan" class="btn btn-primary btn-sm">
-                                                <i data-feather="send"></i> Ajukan Verifikasi Data
-                                            </button>
-                                        </form>
+                                        @if (!$hasData)
+                                            <a href="{{ route('guru-data.create') }}" class="btn btn-primary btn-sm">
+                                                <i data-feather="plus-circle"></i> Lengkapi Data Guru
+                                            </a>
+                                        @else
+                                            <a href="{{ route('guru-data.index') }}" class="btn btn-primary btn-sm">
+                                                <i data-feather="eye"></i> Lihat Data Guru
+                                            </a>
+                                            @if ($statusVerifikasi != 1)
+                                                <a href="{{ route('guru-data.edit', $guru->id) }}" class="btn btn-warning btn-sm">
+                                                    <i data-feather="edit"></i> Edit Data Guru
+                                                </a>
+                                            @endif
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -86,30 +99,12 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
 
     {{-- SweetAlert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.getElementById('btnAjukan').addEventListener('click', function() {
-            Swal.fire({
-                title: 'Ajukan Verifikasi Data?',
-                text: 'Pastikan Anda telah melengkapi data Identitas, SOSEKBUD, Bantuan, dan Fasilitas sekolah sebelum mengajukan verifikasi.',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Ajukan Sekarang',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('formVerifikasi').submit();
-                }
-            });
-        });
-
         @if (session('success'))
             Swal.fire({
                 icon: 'success',

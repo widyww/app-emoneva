@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Operator Sekolah - Input Data Guru')
+@section('title', 'Input Data Guru')
 
 @section('content')
     <main>
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('data-guru.store') }}" method="POST">
+                    <form action="{{ route('guru-data.store') }}" method="POST">
                         @csrf
 
                         <div class="row">
@@ -39,14 +39,14 @@
                                 <div class="mb-3 row">
                                     <label for="nama" class="col-sm-4 col-form-label">Nama</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="nama" id="nama">
+                                        <input type="text" class="form-control" name="nama" id="nama" value="{{ Auth::user()->name }}">
                                     </div>
                                 </div>
 
                                 <div class="mb-3 row">
                                     <label for="nip" class="col-sm-4 col-form-label">NIP (PNS/PPPK)</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="nip" id="nip">
+                                        <input type="text" class="form-control" name="nip" id="nip" value="{{ Auth::user()->email }}">
                                     </div>
                                 </div>
 
@@ -351,8 +351,6 @@
                                         <div class="col-md-10">
                                             <input type="text" name="nama_kebutuhan[]" class="form-control"
                                                 placeholder="Nama Pelatihan" required>
-
-
                                         </div>
                                         <div class="col-md-2 d-grid">
                                             <button type="button" class="btn btn-danger btn-remove-sm">x</button>
@@ -367,23 +365,9 @@
                             </div>
 
                     </form>
-
-
-
-
                 </div>
-
-
-
-
             </div>
-
         </div>
-
-
-
-
-
     </main>
 @endsection
 
@@ -411,30 +395,30 @@
                 title: 'Gagal Menyimpan Data',
                 text: 'Periksa inputan Anda.',
                 footer: `<pre style="text-align:left; color:red; font-family:Arial;">${errorList}</pre>`
-
             });
         @endif
     </script>
 
     <script>
-        // Tampilkan atau sembunyikan form pelatihan
         document.getElementById('pelatihan_status').addEventListener('change', function() {
             const container = document.getElementById('pelatihan_container');
-            container.style.display = this.value === 'Ya' ? 'block' : 'none';
+            const inputs = container.querySelectorAll('input, select');
+            if (this.value === 'Ya') {
+                container.style.display = 'block';
+                inputs.forEach(el => el.setAttribute('required', true));
+            } else {
+                container.style.display = 'none';
+                inputs.forEach(el => el.removeAttribute('required'));
+            }
         });
 
-        // Tambah baris pelatihan
         document.getElementById('add_row').addEventListener('click', function() {
             const pelatihanList = document.getElementById('pelatihan_list');
             const newRow = pelatihanList.querySelector('.pelatihan_row').cloneNode(true);
-
-            // Kosongkan semua input di baris baru
             newRow.querySelectorAll('input, select').forEach(el => el.value = '');
-
             pelatihanList.appendChild(newRow);
         });
 
-        // Hapus baris pelatihan
         document.getElementById('pelatihan_list').addEventListener('click', function(e) {
             if (e.target.classList.contains('btn-remove-sm')) {
                 const rows = document.querySelectorAll('.pelatihan_row');
@@ -445,12 +429,12 @@
                 }
             }
         });
+    </script>
 
-        // supaya jangan required
-        document.getElementById('pelatihan_status').addEventListener('change', function() {
-            const container = document.getElementById('pelatihan_container');
-            const inputs = container.querySelectorAll('input, select');
-
+    <script>
+        document.getElementById('pelatihan_kebutuhan').addEventListener('change', function() {
+            const container = document.getElementById('kebutuhan_container');
+            const inputs = container.querySelectorAll('input');
             if (this.value === 'Ya') {
                 container.style.display = 'block';
                 inputs.forEach(el => el.setAttribute('required', true));
@@ -459,27 +443,14 @@
                 inputs.forEach(el => el.removeAttribute('required'));
             }
         });
-    </script>
 
-    <script>
-        // Tampilkan/Sembunyikan kebutuhan pelatihan
-        document.getElementById('pelatihan_kebutuhan').addEventListener('change', function() {
-            const container = document.getElementById('kebutuhan_container');
-            container.style.display = this.value === 'Ya' ? 'block' : 'none';
-        });
-
-        // Tambah baris kebutuhan
         document.getElementById('add_kebutuhan_row').addEventListener('click', function() {
             const kebutuhanList = document.getElementById('kebutuhan_list');
             const newRow = kebutuhanList.querySelector('.kebutuhan_row').cloneNode(true);
-
-            // Kosongkan input di baris baru
             newRow.querySelectorAll('input').forEach(el => el.value = '');
-
             kebutuhanList.appendChild(newRow);
         });
 
-        // Hapus baris kebutuhan
         document.getElementById('kebutuhan_list').addEventListener('click', function(e) {
             if (e.target && e.target.classList.contains('btn-remove-sm')) {
                 const rows = document.querySelectorAll('.kebutuhan_row');
@@ -488,21 +459,6 @@
                 } else {
                     alert('Minimal 1 baris harus ada.');
                 }
-            }
-        });
-
-
-        // supaya jangan required
-        document.getElementById('pelatihan_kebutuhan').addEventListener('change', function() {
-            const container = document.getElementById('kebutuhan_container');
-            const inputs = container.querySelectorAll('input');
-
-            if (this.value === 'Ya') {
-                container.style.display = 'block';
-                inputs.forEach(el => el.setAttribute('required', true));
-            } else {
-                container.style.display = 'none';
-                inputs.forEach(el => el.removeAttribute('required'));
             }
         });
     </script>
@@ -515,8 +471,8 @@
 
             function toggleSertifikasi() {
                 if (select.value === "Ya") {
-                    tahunRow.style.display = "flex"; // tampil
-                    alasanRow.style.display = "none"; // sembunyikan
+                    tahunRow.style.display = "flex";
+                    alasanRow.style.display = "none";
                 } else if (select.value === "Tidak") {
                     alasanRow.style.display = "flex";
                     tahunRow.style.display = "none";
@@ -527,8 +483,6 @@
             }
 
             select.addEventListener("change", toggleSertifikasi);
-
-            // panggil pertama kali saat load
             toggleSertifikasi();
         });
     </script>

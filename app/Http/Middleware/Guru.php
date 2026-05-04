@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Administrator
+class Guru
 {
     /**
      * Handle an incoming request.
@@ -25,7 +25,7 @@ class Administrator
         //ROLE ADMINISTRATOR
         if($userRole == 1)
         {
-            return $next($request);
+            return redirect()->route('dashboard');
         }
         //ROLE VERIFIKATOR
         if($userRole == 2)
@@ -45,8 +45,7 @@ class Administrator
         //ROLE GURU
         if($userRole == 5)
         {
-            return redirect()->route('guru.dashboard');
+            return $next($request);
         }
-
     }
 }

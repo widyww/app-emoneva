@@ -36,6 +36,7 @@ class AuthenticatedSessionController extends Controller
             2 => redirect()->intended(route('verifikator.dashboard', absolute: false)),
             3 => redirect()->intended(route('operator.dashboard', absolute: false)),
             4 => redirect()->intended(route('kabalai.dashboard', absolute: false)),
+            5 => redirect()->intended(route('guru.dashboard', absolute: false)),
             default => redirect()->intended(route('dashboard', absolute: false)),
         };
     }

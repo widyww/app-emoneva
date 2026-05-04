@@ -15,7 +15,8 @@ use App\Http\Controllers\FilterLabkomputerController;
 use App\Http\Controllers\FilterListrikController;
 use App\Http\Controllers\FilterSertifikasiStatusController;
 use App\Http\Controllers\FilterStatusBantuanController;
-use App\Http\Controllers\GuruController;
+use App\Http\Controllers\GuruDashboardController;
+use App\Http\Controllers\GuruDataController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\ManajemenUserController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\SekolahDataController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserGuruController;
 use App\Http\Controllers\USerKabalaiController;
 use App\Http\Controllers\UserVerifikatorController;
 use App\Http\Controllers\VerifikasiGuruController;
@@ -83,6 +85,11 @@ Route::middleware('auth', 'verified', 'Administrator')->group(function () {
     Route::post('/user-manajemen', [ManajemenUserController::class, 'store'])->name('manajemen-user.store');
     Route::put('/user-manajemen/{id}', [ManajemenUserController::class, 'update'])->name('manajemen-user.update');
     Route::delete('/user-manajemen/{id}', [ManajemenUserController::class, 'destroy'])->name('manajemen-user.destroy');
+
+    Route::get('/user-guru', [UserGuruController::class, 'index'])->name('user-guru.index');
+    Route::post('/user-guru', [UserGuruController::class, 'store'])->name('user-guru.store');
+    Route::put('/user-guru/{id}', [UserGuruController::class, 'update'])->name('user-guru.update');
+    Route::delete('/user-guru/{id}', [UserGuruController::class, 'destroy'])->name('user-guru.destroy');
 });
 
 // ROLE OPERATOR SEKOLAH
@@ -100,9 +107,14 @@ Route::middleware('auth', 'verified', 'Operator')->group(function () {
     Route::post('/fasilitas', [FasilitasSekolahController::class, 'store'])->name('fasilitas-sekolah.store');
     Route::delete('/fasilitas-lab/{id}', [FasilitasSekolahController::class, 'destroy_lab'])->name('fasilitas-sekolah-lab.destroy');
 
-    Route::resource('data-guru', GuruController::class);
     Route::post('/sekolah/ajukan-verifikasi', [DataSekolahController::class, 'ajukanVerifikasi'])
         ->name('sekolah.ajukanVerifikasi');
+});
+
+// ROLE GURU
+Route::middleware('auth', 'verified', 'Guru')->group(function () {
+    Route::get('/dashboard-guru', [GuruDashboardController::class, 'index'])->name('guru.dashboard');
+    Route::resource('guru-data', GuruDataController::class);
 });
 
 
