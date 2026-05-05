@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->createMany([
+        collect([
             [
                 'name' => 'Ibu Kabalai',
                 'email' => 'kabalai@gmail.com',
@@ -45,6 +45,11 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('12345678'),
             ],
 
-        ]);
+        ])->each(function (array $user) {
+            User::updateOrCreate(
+                ['email' => $user['email']],
+                $user
+            );
+        });
     }
 }

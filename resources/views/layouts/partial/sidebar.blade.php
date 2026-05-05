@@ -117,7 +117,7 @@
 
 
                     <div class="sidenav-menu-heading"></div>
-                    <a class="nav-link" href="{{ route('dashboard') }}">
+                    <a class="nav-link" href="{{ route('kabalai.dashboard') }}">
                         <div class="nav-link-icon"><i data-feather="home"></i></div>
                         Dashboard
                     </a>
@@ -134,9 +134,13 @@
                         <div class="nav-link-icon"><i data-feather="settings"></i></div>
                         Sertifikasi
                     </a>
-                        <a class="nav-link" href="{{ route('sortgurupelatihan.index') }}">
+                    <a class="nav-link" href="{{ route('sortgurupelatihan.index') }}">
                         <div class="nav-link-icon"><i data-feather="settings"></i></div>
                         Kebutuhan Pelatihan
+                    </a>
+                    <a class="nav-link" href="{{ route('analisisguru.index') }}">
+                        <div class="nav-link-icon"><i data-feather="activity"></i></div>
+                        Hasil Analisis
                     </a>
 
                     

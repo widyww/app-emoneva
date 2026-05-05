@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministratorController;
+use App\Http\Controllers\AnalisisGuruController;
 use App\Http\Controllers\BantuanSekolahController;
 use App\Http\Controllers\DataSekolahController;
 use App\Http\Controllers\DataStatistikGuruController;
@@ -165,6 +166,9 @@ Route::middleware('auth', 'verified', 'Kabalai')->group(function () {
 
     Route::get('/sort-gurupelatihan', [FilterGuruKebutuhanPelatihanController::class, 'index'])->name('sortgurupelatihan.index');
     Route::get('/sort-gurupelatihan/get', [FilterGuruKebutuhanPelatihanController::class, 'getData'])->name('sortgurupelatihan.getdata');
+
+    Route::get('/analisis-guru', [AnalisisGuruController::class, 'index'])->name('analisisguru.index');
+    Route::get('/analisis-guru/get', [AnalisisGuruController::class, 'analyze'])->name('analisisguru.getdata');
 });
 
 
