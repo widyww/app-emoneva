@@ -23,7 +23,6 @@ class User extends Authenticatable
         'role',
         'password',
         'sekolah_id',
-        'guru_id',
     ];
 
     /**
@@ -54,8 +53,4 @@ class User extends Authenticatable
         return $this->belongsTo(Sekolah::class);
     }
 
-    public function guru()
-    {
-        return $this->belongsTo(Guru::class);
-    }
 }

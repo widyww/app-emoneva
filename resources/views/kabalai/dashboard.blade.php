@@ -35,9 +35,12 @@
                                 <div class="col-xl-8 col-xxl-12">
                                     <div class="text-center text-xl-start text-xxl-center mb-4 mb-xl-0 mb-xxl-4">
                                         <h1 class="text-primary">Selamat Datang!</h1>
-                                        <p class="text-gray-700 mb-0">E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku merupakan aplikasi e-Monitoring
+                                        <p class="text-gray-700 mb-4">SISTEM E-MONITORING DAN EVALUASI FASILITAS TEKNOLOGI INFORMASI DAN KOMUNIKASI (TIK) SMA SE-MALUKU PADA BTIK PROVINSI MALUKU merupakan aplikasi e-Monitoring
                                             dan e-Evaluasi Berbasis TIK yang dikembangkan oleh Balai Teknologi Informasi dan
                                             Komunikasi (BTIK) Dinas Pendidikan dan Kebudayaan Provinsi Maluku</p>
+                                        <a href="{{ route('kabalai.download-dataset') }}" class="btn btn-primary btn-sm shadow-sm">
+                                            <i class="me-1" data-feather="download"></i> Download Dataset KNN untuk Keputusan
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
@@ -121,59 +124,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-6 col-xl-3 mb-4">
-                    <div class="card bg-primary text-white h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="me-3">
-                                    <div class="text-white-75 small">TOTAL GURU</div>
-                                    <div class="text-lg fw-bold">{{ $jumlahGuru }}</div>
-                                </div>
-                                <i class="feather-xl text-white-50" data-feather="users"></i>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="#">DETAIL</a>
-                            <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-3 mb-4">
-                    <div class="card bg-warning text-white h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="me-3">
-                                    <div class="text-white-75 small">MENUNGGU VERIFIKASI</div>
-                                    <div class="text-lg fw-bold">{{ $jumlahGuruWaitVerified }}</div>
-                                </div>
-                                <i class="feather-xl text-white-50" data-feather="navigation"></i>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="#">DETAIL</a>
-                            <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-               
-               
-                <div class="col-lg-6 col-xl-3 mb-4">
-                    <div class="card bg-success text-white h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="me-3">
-                                    <div class="text-white-75 small">GURU TERVERIFIKASI</div>
-                                    <div class="text-lg fw-bold">{{ $jumlahGuruVerified }}</div>
-                                </div>
-                                <i class="feather-xl text-white-50" data-feather="check-square"></i>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="#">DETAIL</a>
-                            <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
         </div>

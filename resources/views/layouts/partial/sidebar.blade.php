@@ -34,10 +34,7 @@
                         <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
                         Operator Sekolah
                     </a>
-                    <a class="nav-link" href="{{ route('user-guru.index') }}">
-                        <div class="nav-link-icon"><i data-feather="users"></i></div>
-                        Guru
-                    </a>
+
                     <a class="nav-link" href="{{ route('manajemen-user.index') }}">
                         <div class="nav-link-icon"><i data-feather="filter"></i></div>
                         Verifikator & Kabalai
@@ -77,30 +74,7 @@
 
                 </div>
             @endif
-            {{-- GURU --}}
-            @if (Auth::check() && Auth::user()->role == '5')
-                <div class="nav accordion" id="accordionSidenav">
 
-
-                    <div class="sidenav-menu-heading"></div>
-                    <a class="nav-link" href="{{ route('guru.dashboard') }}">
-                        <div class="nav-link-icon"><i data-feather="home"></i></div>
-                        Dashboard
-                    </a>
-
-                    <div class="sidenav-menu-heading">DATA GURU</div>
-                    <a class="nav-link" href="{{ route('guru-data.index') }}">
-                        <div class="nav-link-icon"><i data-feather="eye"></i></div>
-                        View
-                    </a>
-                    <a class="nav-link" href="{{ route('guru-data.create') }}">
-                        <div class="nav-link-icon"><i data-feather="user-plus"></i></div>
-                        Input
-                    </a>
-
-
-                </div>
-            @endif
             {{-- VERIFIKATOR --}}
             @if (Auth::check() && Auth::user()->role == '2')
                 <div class="nav accordion" id="accordionSidenav">
@@ -111,10 +85,7 @@
                         <div class="nav-link-icon"><i data-feather="home"></i></div>
                         Dashboard
                     </a>
-                    <a class="nav-link" href="{{ route('verifikasi-guru.index') }}">
-                        <div class="nav-link-icon"><i data-feather="check"></i></div>
-                        Verifikasi Data Guru
-                    </a>
+
                     <a class="nav-link" href="{{ route('verifikasi-sekolah.index') }}">
                         <div class="nav-link-icon"><i data-feather="check"></i></div>
                         Verifikasi Data Sekolah
@@ -123,10 +94,7 @@
                         <div class="nav-link-icon"><i data-feather="edit"></i></div>
                         Monev Data Sekolah
                     </a>
-                    <a class="nav-link" href="{{ route('monitoring-guru.index') }}">
-                        <div class="nav-link-icon"><i data-feather="edit"></i></div>
-                        Monev Data Guru
-                    </a>
+
                 </div>
             @endif
             {{-- KEPALA BTIK --}}
@@ -139,23 +107,7 @@
                         <div class="nav-link-icon"><i data-feather="home"></i></div>
                         Dashboard
                     </a>
-                    <div class="sidenav-menu-heading">Data Statistik Guru</div>
-                    <a class="nav-link" href="{{ route('sortgurupendidikan.index') }}">
-                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Pendidikan
-                    </a>
-                    <a class="nav-link" href="{{ route('sortgurustatus.index') }}">
-                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Status
-                    </a>
-                    <a class="nav-link" href="{{ route('sortgurusertifikasi.index') }}">
-                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Sertifikasi
-                    </a>
-                        <a class="nav-link" href="{{ route('sortgurupelatihan.index') }}">
-                        <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                        Kebutuhan Pelatihan
-                    </a>
+
 
                     
 

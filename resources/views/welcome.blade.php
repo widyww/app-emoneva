@@ -96,7 +96,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="hero-content" data-aos="fade-right" data-aos-delay="200">
-                            <h1>E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku</h1>
+                            <h1>SISTEM E-MONITORING DAN EVALUASI FASILITAS TEKNOLOGI INFORMASI DAN KOMUNIKASI (TIK) SMA SE-MALUKU PADA BTIK PROVINSI MALUKU</h1>
                             <p>"Data yang akurat adalah kunci menuju pendidikan yang lebih maju.
                                 Melalui E-monitoring & E-evaluasi, sekolah di Maluku bergerak bersama menuju transformasi digital."</p>
 
@@ -113,7 +113,7 @@
                     <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
                         <div class="hero-image">
                             <img src="{{ asset('images/logo/emnitoringicon.png') }}"
-                                alt="E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru" class="img-fluid">
+                                alt="E-Monitoring dan Evaluasi Fasilitas TIK" class="img-fluid">
                             <div class="image-badge">
                                 <span>Balai Teknologi Informasi dan Komunikasi</span>
                                 <p>Dinas Pendidikan Provinsi Maluku</p>
@@ -143,8 +143,7 @@
                             </p>
                             <p>
                                 Melalui aplikasi ini, seluruh sekolah di Provinsi Maluku dapat menginput dan memantau
-                                data terkait <strong>fasilitas TIK sekolah</strong> serta data <strong>kompetensi
-                                    guru</strong> dalam penguasaan teknologi digital.
+                                data terkait <strong>fasilitas TIK sekolah</strong>.
                                 Aplikasi ini membantu dinas pendidikan dalam melakukan pemetaan kebutuhan,
                                 peningkatan kapasitas, dan perencanaan pengembangan TIK di sekolah-sekolah.
                             </p>
@@ -162,12 +161,7 @@
                                         <p>Sekolah Terdaftar</p>
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="500">
-                                    <div class="achievement-box">
-                                        <h3>5.000+</h3>
-                                        <p>Guru Terdata</p>
-                                    </div>
-                                </div>
+
                                 <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="600">
                                     <div class="achievement-box">
                                         <h3>100%</h3>
@@ -311,7 +305,7 @@
             <div class="row gy-4">
                 <div class="col-lg-5 col-md-12 footer-about">
                     <a href="index.html" class="logo d-flex align-items-center">
-                        <span class="sitename">E-MONITORING DAN EVALUASI FASILITAS TIK DAN KOMPETENSI GURU </span>
+                        <span class="sitename">SISTEM E-MONITORING DAN EVALUASI FASILITAS TIK </span>
                     </a>
                     <p class="lead">
                         <strong>E-monitoring dan Evaluasi</strong> merupakan aplikasi berbasis Teknologi
@@ -351,7 +345,7 @@
         </div>
 
         <div class="container copyright text-center mt-4">
-            <p>Copyright © E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku {{ date('Y') }}</p>
+            <p>Copyright © SISTEM E-MONITORING DAN EVALUASI FASILITAS TEKNOLOGI INFORMASI DAN KOMUNIKASI (TIK) SMA SE-MALUKU PADA BTIK PROVINSI MALUKU {{ date('Y') }}</p>
 
 
         </div>

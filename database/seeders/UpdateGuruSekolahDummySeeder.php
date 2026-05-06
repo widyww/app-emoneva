@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Guru;
 use App\Models\Sekolah;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
@@ -17,44 +16,7 @@ class UpdateGuruSekolahDummySeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        // 1. UPDATE DATA GURU
-        $gurus = Guru::all();
-        $totalGuru = $gurus->count();
-
-        if ($totalGuru > 0) {
-            $chunkSize = ceil($totalGuru / 3);
-            
-            // Chunk 1: Mahir
-            // Chunk 2: Menengah
-            // Chunk 3: Dasar
-            $i = 0;
-            foreach ($gurus as $guru) {
-                if ($i < $chunkSize) {
-                    $kategori = 'Mahir';
-                } elseif ($i < ($chunkSize * 2)) {
-                    $kategori = 'Menengah';
-                } else {
-                    $kategori = 'Dasar';
-                }
-
-                $guru->update([
-                    'kompetensi_word' => $kategori,
-                    'kompetensi_powerpoin' => $kategori,
-                    'kompetensi_excel' => $kategori,
-                    'kompetensi_pemrogramman' => $kategori,
-                    'kompetensi_jaringan' => $kategori,
-                    'kompetensi_multimedia' => $kategori,
-                ]);
-
-                $i++;
-            }
-            $this->command->info("Data Kompetensi Guru (Total: {$totalGuru}) berhasil dibagi menjadi Mahir, Menengah, Dasar!");
-        } else {
-            $this->command->warn("Data Guru kosong.");
-        }
-
-
-        // 2. LENGKAPI IDENTITAS SEKOLAH
+        // 1. LENGKAPI IDENTITAS SEKOLAH
         $sekolahs = Sekolah::all();
         foreach ($sekolahs as $sekolah) {
             $domain = strtolower(Str::slug($sekolah->nama, '')) . '.sch.id';

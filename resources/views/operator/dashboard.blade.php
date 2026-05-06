@@ -45,7 +45,7 @@
                                     <div class="col-md-8 text-center text-md-start">
                                         <h1 class="text-primary">Selamat Datang!</h1>
                                         <p class="text-gray-700 mb-0">
-                                            E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku merupakan aplikasi e-Monitoring dan e-Evaluasi Berbasis
+                                            SISTEM E-MONITORING DAN EVALUASI FASILITAS TEKNOLOGI INFORMASI DAN KOMUNIKASI (TIK) SMA SE-MALUKU PADA BTIK PROVINSI MALUKU merupakan aplikasi e-Monitoring dan e-Evaluasi Berbasis
                                             TIK
                                             yang dikembangkan oleh Balai Teknologi Informasi dan Komunikasi (BTIK)
                                             Dinas Pendidikan dan Kebudayaan Provinsi Maluku

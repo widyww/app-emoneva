@@ -30,14 +30,13 @@
                                     <img src="{{ asset('sbadmin/assets/img/logo_pemprov.png') }}" alt="Logo Pemprov"
                                         class="mb-3" style="max-height: 120px;">
 
-                                    <h1 class="text-uppercase text-dark mb-2">E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku</h1>
+                                    <h1 class="text-uppercase text-dark mb-2">SISTEM E-MONITORING DAN EVALUASI FASILITAS TEKNOLOGI INFORMASI DAN KOMUNIKASI (TIK) SMA SE-MALUKU PADA BTIK PROVINSI MALUKU</h1>
 
                                     <h4 class="text-uppercase">Balai Teknologi Informasi dan Komunikasi</h4>
                                     <h3 class="text-uppercase mb-3">Dinas Pendidikan Provinsi Maluku</h3>
 
                                     <p class="text-dark small">
-                                        Bagi Operator Sekolah silakan login menggunakan <strong>NPSN Sekolah</strong>,
-                                        bagi Guru silakan login menggunakan <strong>NIP</strong>
+                                        Bagi Operator Sekolah silakan login menggunakan <strong>NPSN Sekolah</strong>.
                                     </p>
                                 </div>
 
@@ -49,9 +48,9 @@
                                         @csrf
                                         <!-- Form Group (email address)-->
                                         <div class="mb-3">
-                                            <label class="small mb-1" for="email">NPSN / NIP / Email</label>
+                                            <label class="small mb-1" for="email">NPSN / Email</label>
                                             <input class="form-control" id="email" type="text" name="email"
-                                                placeholder="Masukkan NPSN, NIP, atau email" required autofocus />
+                                                placeholder="Masukkan NPSN atau email" required autofocus />
                                         </div>
                                         <!-- Form Group (password)-->
                                         <div class="mb-3">
@@ -97,7 +96,7 @@
             <footer class="footer-admin mt-auto footer-dark">
                 <div class="container-xl px-4">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright &copy; E-Monitoring dan Evaluasi Fasilitas TIK dan Kompetensi Guru SMA Se-Maluku {{ now()->year }}</div>
+                        <div class="col-md-6 small">Copyright &copy; SISTEM E-MONITORING DAN EVALUASI FASILITAS TEKNOLOGI INFORMASI DAN KOMUNIKASI (TIK) SMA SE-MALUKU PADA BTIK PROVINSI MALUKU {{ now()->year }}</div>
                         <div class="col-md-6 text-md-end small">
                             <a href="#!">Privacy Policy</a>
                             &middot;

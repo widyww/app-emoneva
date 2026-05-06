@@ -3,20 +3,13 @@
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\BantuanSekolahController;
 use App\Http\Controllers\DataSekolahController;
-use App\Http\Controllers\DataStatistikGuruController;
 use App\Http\Controllers\DataStatistikSekolahController;
 use App\Http\Controllers\FasilitasSekolahController;
 use App\Http\Controllers\FilterAkreditasiController;
-use App\Http\Controllers\FilterGuruKebutuhanPelatihanController;
-use App\Http\Controllers\FilterGuruPendidikanController;
-use App\Http\Controllers\FilterGuruStatusController;
 use App\Http\Controllers\FilterKuotaInternetController;
 use App\Http\Controllers\FilterLabkomputerController;
 use App\Http\Controllers\FilterListrikController;
-use App\Http\Controllers\FilterSertifikasiStatusController;
 use App\Http\Controllers\FilterStatusBantuanController;
-use App\Http\Controllers\GuruDashboardController;
-use App\Http\Controllers\GuruDataController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\ManajemenUserController;
@@ -27,10 +20,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\SekolahDataController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserGuruController;
-use App\Http\Controllers\USerKabalaiController;
+use App\Http\Controllers\UserKabalaiController;
 use App\Http\Controllers\UserVerifikatorController;
-use App\Http\Controllers\VerifikasiGuruController;
 use App\Http\Controllers\VerifikasiProsesController;
 use App\Http\Controllers\VerifikatorController;
 use Illuminate\Support\Facades\Route;
@@ -85,11 +76,6 @@ Route::middleware('auth', 'verified', 'Administrator')->group(function () {
     Route::post('/user-manajemen', [ManajemenUserController::class, 'store'])->name('manajemen-user.store');
     Route::put('/user-manajemen/{id}', [ManajemenUserController::class, 'update'])->name('manajemen-user.update');
     Route::delete('/user-manajemen/{id}', [ManajemenUserController::class, 'destroy'])->name('manajemen-user.destroy');
-
-    Route::get('/user-guru', [UserGuruController::class, 'index'])->name('user-guru.index');
-    Route::post('/user-guru', [UserGuruController::class, 'store'])->name('user-guru.store');
-    Route::put('/user-guru/{id}', [UserGuruController::class, 'update'])->name('user-guru.update');
-    Route::delete('/user-guru/{id}', [UserGuruController::class, 'destroy'])->name('user-guru.destroy');
 });
 
 // ROLE OPERATOR SEKOLAH
@@ -111,12 +97,6 @@ Route::middleware('auth', 'verified', 'Operator')->group(function () {
         ->name('sekolah.ajukanVerifikasi');
 });
 
-// ROLE GURU
-Route::middleware('auth', 'verified', 'Guru')->group(function () {
-    Route::get('/dashboard-guru', [GuruDashboardController::class, 'index'])->name('guru.dashboard');
-    Route::resource('guru-data', GuruDataController::class);
-});
-
 
 
 
@@ -127,10 +107,6 @@ Route::middleware('auth', 'verified', 'Verifikator')->group(function () {
 
     Route::resource('verifikasi-sekolah', VerifikasiProsesController::class);
     // Route::put('/verifikasi-sekolah/approve/{id}', [VerifikasiProsesController::class, 'approve'])->name('verifikasi-sekolah.approve');
-
-    Route::resource('verifikasi-guru', VerifikasiGuruController::class);
-    // Route::put('/verifikasi-guru/{id}', [VerifikasiGuruController::class, 'proses_verifikasi'])->name('verifikator.verifikasi.guru');
-    Route::resource('monitoring-guru', MonitoringGuruController::class);
 });
 
 
@@ -161,22 +137,7 @@ Route::middleware('auth', 'verified', 'Kabalai')->group(function () {
     Route::get('/status-labkomputer', [FilterLabkomputerController::class, 'sortLabKomputer'])->name('sekolah.sort.labkomputer');
     Route::get('/datastatuslabkomputer-chart', [FilterLabkomputerController::class, 'getLabKomputer'])->name('labkomputer.getdata');
     Route::get('/datastatuslabkomputer-detail', [FilterLabkomputerController::class, 'getLabKomputerDetail'])->name('labkomputer.getdetail');
-
-    // FILTER GURU
-    Route::get('/sort-gurustatus', [FilterGuruStatusController::class, 'index'])->name('sortgurustatus.index');
-    Route::get('/sort-gurustatus/get', [FilterGuruStatusController::class, 'getData'])->name('sortgurustatus.getdata');
-    Route::get('/sort-gurustatus/detail', [FilterGuruStatusController::class, 'getDetail'])->name('sortgurustatus.getdetail');
-
-    Route::get('/sort-gurupendidikan', [FilterGuruPendidikanController::class, 'index'])->name('sortgurupendidikan.index');
-    Route::get('/sort-gurupendidikan/get', [FilterGuruPendidikanController::class, 'getData'])->name('sortgurupendidikan.getdata');
-    Route::get('/sort-gurupendidikan/detail', [FilterGuruPendidikanController::class, 'getDetail'])->name('sortgurupendidikan.getdetail');
-
-    Route::get('/sort-gurusertifikasi', [FilterSertifikasiStatusController::class, 'index'])->name('sortgurusertifikasi.index');
-    Route::get('/sort-gurusertifikasi/get', [FilterSertifikasiStatusController::class, 'getData'])->name('sortgurusertifikasi.getdata');
-    Route::get('/sort-gurusertifikasi/detail', [FilterSertifikasiStatusController::class, 'getDetail'])->name('sortgurusertifikasi.getdetail');
-
-    Route::get('/sort-gurupelatihan', [FilterGuruKebutuhanPelatihanController::class, 'index'])->name('sortgurupelatihan.index');
-    Route::get('/sort-gurupelatihan/get', [FilterGuruKebutuhanPelatihanController::class, 'getData'])->name('sortgurupelatihan.getdata');
+    Route::get('/kabalai/download-dataset', [App\Http\Controllers\USerKabalaiController::class, 'downloadDataset'])->name('kabalai.download-dataset');
 });
 
 
