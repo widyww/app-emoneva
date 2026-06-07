@@ -1,0 +1,153 @@
+<mxGraphModel dx="1500" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1100" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    
+    <!-- ==================== REGIONAL & SYSTEM MODELS (TOP LEVEL) ==================== -->
+    
+    <!-- Kota (Light Orange Theme) -->
+    <mxCell id="model-kota" value="&lt;center&gt;&lt;b&gt;Kota&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ nama_kota: string&lt;br&gt;+ provinsi: string&lt;hr&gt;+ kecamatan(): hasMany&lt;br&gt;+ sekolahs(): hasMany" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#fff9e6;strokeColor=#e67e22;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="50" y="50" width="180" height="120" as="geometry"/>
+    </mxCell>
+    
+    <!-- Kecamatan (Light Orange Theme) -->
+    <mxCell id="model-kecamatan" value="&lt;center&gt;&lt;b&gt;Kecamatan&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ nama_kecamatan: string&lt;br&gt;+ kota_id: bigint&lt;hr&gt;+ kota(): belongsTo&lt;br&gt;+ sekolahs(): hasMany" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#fff9e6;strokeColor=#e67e22;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="280" y="50" width="180" height="120" as="geometry"/>
+    </mxCell>
+    
+    <!-- Periode (Grey Theme) -->
+    <mxCell id="model-periode" value="&lt;center&gt;&lt;b&gt;Periode&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ nama_periode: string&lt;br&gt;+ status_aktif: boolean&lt;hr&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#f2f4f4;strokeColor=#7f8c8d;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="920" y="50" width="160" height="100" as="geometry"/>
+    </mxCell>
+    
+    
+    <!-- ==================== CORE MODELS (MIDDLE LEVEL) ==================== -->
+    
+    <!-- User (Light Blue Theme) -->
+    <mxCell id="model-user" value="&lt;center&gt;&lt;b&gt;User&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ name: string&lt;br&gt;+ email: string&lt;br&gt;+ phone: string&lt;br&gt;+ role: string&lt;br&gt;+ password: string&lt;br&gt;+ sekolah_id: bigint&lt;br&gt;+ guru_id: bigint&lt;hr&gt;+ sekolah(): belongsTo&lt;br&gt;+ guru(): belongsTo" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#e8f4fd;strokeColor=#2b82c9;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="50" y="250" width="180" height="170" as="geometry"/>
+    </mxCell>
+    
+    <!-- Sekolah (Light Blue Theme) -->
+    <mxCell id="model-sekolah" value="&lt;center&gt;&lt;b&gt;Sekolah&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ npsn: string&lt;br&gt;+ nama: string&lt;br&gt;+ tingkatan: string&lt;br&gt;+ alamat: string&lt;br&gt;+ email: string&lt;br&gt;+ telepon: string&lt;br&gt;+ kepsek_nama: string&lt;br&gt;+ status_sekolah: string&lt;br&gt;+ status_akreditasi: string&lt;br&gt;+ status_verifikasi: int&lt;br&gt;+ kecamatan_id: bigint&lt;br&gt;+ kota_id: bigint&lt;hr&gt;+ users(): hasMany&lt;br&gt;+ guru(): hasMany&lt;br&gt;+ fasilitas(): hasOne&lt;br&gt;+ bantuanStatus(): hasOne&lt;br&gt;+ sekolah_sosekbud(): hasOne&lt;br&gt;+ kecamatan(): belongsTo&lt;br&gt;+ kota(): belongsTo" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#e8f4fd;strokeColor=#2b82c9;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="280" y="250" width="240" height="310" as="geometry"/>
+    </mxCell>
+    
+    <!-- Guru (Light Blue Theme) -->
+    <mxCell id="model-guru" value="&lt;center&gt;&lt;b&gt;Guru&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ nama: string&lt;br&gt;+ status: string&lt;br&gt;+ nuptk: string&lt;br&gt;+ nip: string&lt;br&gt;+ tempat: string&lt;br&gt;+ tgl_lahir: date&lt;br&gt;+ agama: string&lt;br&gt;+ jenis_kelamin: string&lt;br&gt;+ pendidikan_terakhir: string&lt;br&gt;+ telepon: string&lt;br&gt;+ mapel: string&lt;br&gt;+ sertifikasi_status: string&lt;br&gt;+ status_verifikasi: int&lt;br&gt;+ sekolah_id: bigint&lt;hr&gt;+ sekolah(): belongsTo&lt;br&gt;+ pelatihan(): hasMany&lt;br&gt;+ kebutuhanPelatihan(): hasMany&lt;br&gt;+ user(): hasOne" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#e8f4fd;strokeColor=#2b82c9;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="600" y="250" width="240" height="310" as="geometry"/>
+    </mxCell>
+    
+    
+    <!-- ==================== SUB-MODELS (BOTTOM LEVEL) ==================== -->
+    
+    <!-- SekolahSosekbud (Light Green Theme) -->
+    <mxCell id="model-sosekbud" value="&lt;center&gt;&lt;b&gt;SekolahSosekbud&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ sekolah_id: bigint&lt;br&gt;+ potensi_wilayah: string&lt;br&gt;+ hambatan_geografis: string&lt;br&gt;+ kondisi_sosial: string&lt;hr&gt;+ sekolah(): belongsTo" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#eafaf1;strokeColor=#2ec4b6;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="50" y="660" width="160" height="120" as="geometry"/>
+    </mxCell>
+    
+    <!-- SekolahFasilitas (Light Green Theme) -->
+    <mxCell id="model-fasilitas" value="&lt;center&gt;&lt;b&gt;SekolahFasilitas&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ sekolah_id: bigint&lt;br&gt;+ listrik_status: string&lt;br&gt;+ listrik_sumber: string&lt;br&gt;+ listrik_durasi: string&lt;br&gt;+ jumlah_kom: int&lt;br&gt;+ labkom_status: string&lt;br&gt;+ internet_status: string&lt;br&gt;+ internet_sumber: string&lt;br&gt;+ internet_bandwith: string&lt;br&gt;+ topologi_jaringan: string&lt;hr&gt;+ sekolah(): belongsTo&lt;br&gt;+ labs(): hasMany" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#eafaf1;strokeColor=#2ec4b6;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="240" y="660" width="180" height="210" as="geometry"/>
+    </mxCell>
+    
+    <!-- SekolahFasilitasLab (Light Green Theme) -->
+    <mxCell id="model-fasilitaslab" value="&lt;center&gt;&lt;b&gt;SekolahFasilitasLab&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ sekolah_fasilitastik_id: bigint&lt;br&gt;+ nama_lab: string&lt;br&gt;+ jumlah_komputer: int&lt;br&gt;+ kondisi: string&lt;hr&gt;+ fasilitas(): belongsTo" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#eafaf1;strokeColor=#2ec4b6;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="240" y="930" width="180" height="120" as="geometry"/>
+    </mxCell>
+    
+    <!-- SekolahBantuanStatus (Light Purple Theme) -->
+    <mxCell id="model-bantuanstatus" value="&lt;center&gt;&lt;b&gt;SekolahBantuanStatus&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ sekolah_id: bigint&lt;br&gt;+ menerima_bantuan: boolean&lt;br&gt;+ sumber_bantuan: string&lt;hr&gt;+ sekolah(): belongsTo&lt;br&gt;+ details(): hasMany" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#f4eefb;strokeColor=#8e44ad;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="450" y="660" width="180" height="120" as="geometry"/>
+    </mxCell>
+    
+    <!-- SekolahBantuanDetail (Light Purple Theme) -->
+    <mxCell id="model-bantuandetail" value="&lt;center&gt;&lt;b&gt;SekolahBantuanDetail&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ sekolah_bantuan_status_id: bigint&lt;br&gt;+ jenis_bantuan: string&lt;br&gt;+ tahun_terima: year&lt;br&gt;+ status_pemanfaatan: string&lt;hr&gt;+ bantuanStatus(): belongsTo" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#f4eefb;strokeColor=#8e44ad;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="450" y="930" width="180" height="120" as="geometry"/>
+    </mxCell>
+    
+    <!-- GuruPelatihan (Light Purple Theme) -->
+    <mxCell id="model-gurupelatihan" value="&lt;center&gt;&lt;b&gt;GuruPelatihan&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ guru_id: bigint&lt;br&gt;+ nama_pelatihan: string&lt;br&gt;+ tahun: year&lt;br&gt;+ penyelenggara: string&lt;hr&gt;+ guru(): belongsTo" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#f4eefb;strokeColor=#8e44ad;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="720" y="660" width="180" height="120" as="geometry"/>
+    </mxCell>
+    
+    <!-- GuruKebutuhan (Light Purple Theme) -->
+    <mxCell id="model-gurukebutuhan" value="&lt;center&gt;&lt;b&gt;GuruKebutuhan&lt;/b&gt;&lt;/center&gt;&lt;hr&gt;+ id: bigint&lt;br&gt;+ guru_id: bigint&lt;br&gt;+ jenis_pelatihan: string&lt;br&gt;+ prioritas: string&lt;hr&gt;+ guru(): belongsTo" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;spacingBottom=8;fillColor=#f4eefb;strokeColor=#8e44ad;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="930" y="660" width="180" height="120" as="geometry"/>
+    </mxCell>
+    
+    
+    <!-- ==================== RELATIONSHIP CONNECTIONS ==================== -->
+    
+    <!-- Kota -> Kecamatan (1 to many) -->
+    <mxCell id="rel-kota-kec" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="model-kota" target="model-kecamatan">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Kota -> Sekolah (1 to many) -->
+    <mxCell id="rel-kota-sekolah" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=0.5;exitY=1;entryX=0.25;entryY=0;" edge="1" parent="1" source="model-kota" target="model-sekolah">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Kecamatan -> Sekolah (1 to many) -->
+    <mxCell id="rel-kec-sekolah" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=0.5;exitY=1;entryX=0.75;entryY=0;" edge="1" parent="1" source="model-kecamatan" target="model-sekolah">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Sekolah -> User (1 to many) -->
+    <mxCell id="rel-sekolah-user" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=0;exitY=0.25;entryX=1;entryY=0.25;" edge="1" parent="1" source="model-sekolah" target="model-user">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Sekolah -> Guru (1 to many) -->
+    <mxCell id="rel-sekolah-guru" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=1;exitY=0.25;entryX=0;entryY=0.25;" edge="1" parent="1" source="model-sekolah" target="model-guru">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- User -> Guru (1 to 1) -->
+    <mxCell id="rel-user-guru" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=0.5;exitY=0;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="model-user" target="model-guru">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="140" y="210"/>
+          <mxPoint x="720" y="210"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- Sekolah -> SekolahSosekbud (1 to 1) -->
+    <mxCell id="rel-sekolah-sose" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=0.15;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="model-sekolah" target="model-sosekbud">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Sekolah -> SekolahFasilitas (1 to 1) -->
+    <mxCell id="rel-sekolah-fasi" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=0.35;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="model-sekolah" target="model-fasilitas">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Sekolah -> SekolahBantuanStatus (1 to 1) -->
+    <mxCell id="rel-sekolah-bant" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=0.65;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="model-sekolah" target="model-bantuanstatus">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- SekolahFasilitas -> SekolahFasilitasLab (1 to many) -->
+    <mxCell id="rel-fasi-lab" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="model-fasilitas" target="model-fasilitaslab">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- SekolahBantuanStatus -> SekolahBantuanDetail (1 to many) -->
+    <mxCell id="rel-bant-det" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="model-bantuanstatus" target="model-bantuandetail">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Guru -> GuruPelatihan (1 to many) -->
+    <mxCell id="rel-guru-pel" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=0.65;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="model-guru" target="model-gurupelatihan">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Guru -> GuruKebutuhan (1 to many) -->
+    <mxCell id="rel-guru-keb" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4c4c4c;strokeWidth=1.5;endArrow=none;exitX=0.85;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="model-guru" target="model-gurukebutuhan">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+  </root>
+</mxGraphModel>

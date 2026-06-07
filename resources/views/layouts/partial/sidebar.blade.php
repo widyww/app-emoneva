@@ -1,5 +1,12 @@
 <div id="layoutSidenav_nav">
     <nav class="sidenav shadow-right sidenav-light">
+        <!-- Sidenav Brand -->
+        <div class="sidenav-brand d-flex align-items-center pt-1 pb-3 px-4 border-bottom">
+            <a href="{{ route('homepage') }}" class="d-flex align-items-center text-decoration-none">
+                <img src="{{ asset('images/logo/logo_pemprov.png') }}" alt="Logo EMONEV" style="width: 32px; height: 32px; object-fit: contain;" class="me-2">
+                <span class="fs-4 fw-bold" style="letter-spacing: 0.5px; font-family: 'Inter', sans-serif;">EMONEV</span>
+            </a>
+        </div>
         <div class="sidenav-menu">
             {{-- ADMINISTRATOR --}}
             @if (Auth::check() && Auth::user()->role == '1')
@@ -24,11 +31,7 @@
                         <div class="nav-link-icon"><i data-feather="settings"></i></div>
                         Periode
                     </a>
-                    <div class="sidenav-menu-heading">Data Sekolah</div>
-                    <a class="nav-link" href="{{ route('sekolah.index') }}">
-                        <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                        Sekolah
-                    </a>
+
                     <div class="sidenav-menu-heading">Pengguna</div>
                     <a class="nav-link" href="{{ route('operator-sekolah.index') }}">
                         <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
@@ -38,6 +41,10 @@
                         <div class="nav-link-icon"><i data-feather="filter"></i></div>
                         Verifikator & Kabalai
                     </a>
+                    <a class="nav-link" href="{{ route('guru-mandiri.index') }}">
+                        <div class="nav-link-icon"><i data-feather="users"></i></div>
+                        Guru
+                    </a>
                 </div>
             @endif
             {{-- OPERATOR SEKOLAH --}}
@@ -46,7 +53,7 @@
 
 
                     <div class="sidenav-menu-heading"></div>
-                    <a class="nav-link" href="{{ route('dashboard') }}">
+                    <a class="nav-link" href="{{ route('operator.dashboard') }}">
                         <div class="nav-link-icon"><i data-feather="home"></i></div>
                         Dashboard
                     </a>
@@ -69,18 +76,27 @@
                         <div class="nav-link-icon"><i data-feather="battery-charging"></i></div>
                         Listrik dan Internet
                     </a>
-
-                    <div class="sidenav-menu-heading">DATA GURU</div>
                     <a class="nav-link" href="{{ route('data-guru.index') }}">
-                        <div class="nav-link-icon"><i data-feather="eye"></i></div>
-                        View
-                    </a>
-                    <a class="nav-link" href="{{ route('data-guru.create') }}">
-                        <div class="nav-link-icon"><i data-feather="user-plus"></i></div>
-                        Input
+                        <div class="nav-link-icon"><i data-feather="users"></i></div>
+                        Data Guru
                     </a>
 
 
+                </div>
+            @endif
+            {{-- GURU --}}
+            @if (Auth::check() && Auth::user()->role == '5')
+                <div class="nav accordion" id="accordionSidenav">
+                    <div class="sidenav-menu-heading"></div>
+                    <a class="nav-link" href="{{ route('guru.dashboard') }}">
+                        <div class="nav-link-icon"><i data-feather="home"></i></div>
+                        Dashboard
+                    </a>
+                    <div class="sidenav-menu-heading">Manajemen Profil</div>
+                    <a class="nav-link" href="{{ route('guru.profil.edit') }}">
+                        <div class="nav-link-icon"><i data-feather="user"></i></div>
+                        Profil &amp; Kompetensi TIK
+                    </a>
                 </div>
             @endif
             {{-- VERIFIKATOR --}}
@@ -89,7 +105,7 @@
 
 
                     <div class="sidenav-menu-heading"></div>
-                    <a class="nav-link" href="{{ route('dashboard') }}">
+                    <a class="nav-link" href="{{ route('verifikator.dashboard') }}">
                         <div class="nav-link-icon"><i data-feather="home"></i></div>
                         Dashboard
                     </a>
@@ -137,10 +153,6 @@
                     <a class="nav-link" href="{{ route('sortgurupelatihan.index') }}">
                         <div class="nav-link-icon"><i data-feather="settings"></i></div>
                         Kebutuhan Pelatihan
-                    </a>
-                    <a class="nav-link" href="{{ route('analisisguru.index') }}">
-                        <div class="nav-link-icon"><i data-feather="activity"></i></div>
-                        Hasil Analisis
                     </a>
 
                     

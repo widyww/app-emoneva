@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Dashboard Operator Sekolah EMON & EVA Pake Batik')
+@section('title', 'Dashboard Operator Sekolah EMONEV')
 
 @section('content')
     <main>
@@ -45,7 +45,7 @@
                                     <div class="col-md-8 text-center text-md-start">
                                         <h1 class="text-primary">Selamat Datang!</h1>
                                         <p class="text-gray-700 mb-0">
-                                            EMON & EVA PAKE BATIK merupakan aplikasi e-Monitoring dan e-Evaluasi Berbasis
+                                            EMONEV merupakan aplikasi e-Monitoring dan e-Evaluasi Berbasis
                                             TIK
                                             yang dikembangkan oleh Balai Teknologi Informasi dan Komunikasi (BTKI)
                                             Dinas Pendidikan dan Kebudayaan Provinsi Maluku
@@ -87,77 +87,7 @@
                 </div>
             </div>
 
-            <!-- Kartu Statistik -->
-            <div class="row">
-                <div class="col-lg-6 col-xl-3 mb-4">
-                    <div class="card bg-primary text-white h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="me-3">
-                                    <div class="text-white-75 small">JUMLAH DATA GURU :</div>
-                                    <div class="text-lg fw-bold">{{ $totalGuru }}</div>
-                                </div>
-                                <i class="feather-xl text-white-50" data-feather="users"></i>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="{{ route('data-guru.index') }}">DETAIL</a>
-                            <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-3 mb-4">
-                    <div class="card bg-warning text-white h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="me-3">
-                                    <div class="text-white-75 small">DATA GURU TERVERIFIKASI</div>
-                                    <div class="text-lg fw-bold">{{ $terverifikasi }}</div>
-                                </div>
-                                <i class="feather-xl text-white-50" data-feather="user"></i>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="{{ route('data-guru.index') }}">DETAIL</a>
-                            <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-3 mb-4">
-                    <div class="card bg-success text-white h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="me-3">
-                                    <div class="text-white-75 small">DATA GURU HARUS DIREVISI</div>
-                                    <div class="text-lg fw-bold">{{ $perluPerbaikan }}</div>
-                                </div>
-                                <i class="feather-xl text-white-50" data-feather="user"></i>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="{{ route('data-guru.index') }}">DETAIL</a>
-                            <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-3 mb-4">
-                    <div class="card bg-danger text-white h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="me-3">
-                                    <div class="text-white-75 small">DATA GURU MENUNGGU VERIFIKASI</div>
-                                    <div class="text-lg fw-bold">{{ $menunggu }}</div>
-                                </div>
-                                <i class="feather-xl text-white-50" data-feather="user"></i>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="{{ route('data-guru.index') }}">DETAIL</a>
-                            <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
         </div>
     </main>

@@ -33,9 +33,19 @@
                         </div>
                     </div>
 
-                    {{-- TABEL DATA --}}
+                    {{-- CHART --}}
+                    <div id="guru-chart" class="mb-5">
+                        <p class="text-center p-5">
+                            <i class="fas fa-spinner fa-spin"></i> Memuat Chart...
+                        </p>
+                    </div>
+
+                    <hr>
+
+                    {{-- DETAIL TABEL --}}
+                    <h4 id="detail-title">Detail Guru (Klik Chart)</h4>
                     <div id="detail-table-container">
-                        <p class="text-muted">Pilih Kabupaten/Kota untuk menampilkan data guru dan pelatihan.</p>
+                        <p class="text-muted">Klik pada bar chart untuk melihat detail guru.</p>
                     </div>
 
                 </div>
@@ -46,28 +56,158 @@
 
 @section('scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
+        let chart = null;
         let detailTable = null;
-        const API_DETAIL = "{{ route('sortgurupelatihan.getdata') }}";
+
+        const API_CHART = "{{ route('sortgurupelatihan.getdata') }}";
+        const API_DETAIL = "{{ route('sortgurupelatihan.getdetail') }}";
 
         $(document).ready(function() {
-            $('#kota-select').change(function() {
-                loadData($(this).val());
+            loadChart();
+
+            $('#kota-select').on('change', function() {
+                loadChart($(this).val());
+                resetDetail();
             });
         });
 
-        function loadData(kotaId = '') {
-            $('#detail-table-container').html(
-                '<p class="text-center p-4"><i class="fas fa-spinner fa-spin"></i> Memuat data...</p>');
+        function resetDetail() {
+            $('#detail-title').text("Detail Guru (Klik Chart)");
+            $('#detail-table-container').html('<p class="text-muted">Klik pada bar chart untuk melihat detail guru.</p>');
+            if (detailTable) {
+                detailTable.destroy();
+                detailTable = null;
+            }
+        }
 
-            $.getJSON(`${API_DETAIL}?kota_id=${kotaId}`, function(list) {
+        function loadChart(kotaId = '') {
+            $('#guru-chart').html('<p class="text-center p-5"><i class="fas fa-spinner fa-spin"></i> Memuat Chart...</p>');
+
+            $.getJSON(`${API_CHART}?kota_id=${kotaId}`, function(data) {
+
+                if (!data.labels || !data.labels.length) {
+                    $('#guru-chart').html('<div class="alert alert-warning text-center">Tidak ada data kebutuhan pelatihan guru.</div>');
+                    return;
+                }
+
+                // Premium colors
+                const colors = [
+                    '#4c6ef5', '#63e6be', '#ff8787', '#15aabf', '#b197fc',
+                    '#ffc078', '#fcc419', '#e8590c', '#3b5bdb', '#2b8a3e'
+                ];
+
+                const options = {
+                    series: [{
+                        name: 'Jumlah Guru',
+                        data: data.series
+                    }],
+                    chart: {
+                        type: 'bar',
+                        height: 480, // Taller height to give space to 10 horizontal bars
+                        fontFamily: 'Inter, sans-serif',
+                        toolbar: {
+                            show: false
+                        },
+                        events: {
+                            dataPointSelection: function(event, ctx, config) {
+                                const pelatihan = data.labels[config.dataPointIndex];
+                                loadDetail(kotaId, pelatihan);
+                            }
+                        }
+                    },
+                    grid: {
+                        borderColor: '#f1f5f9',
+                        strokeDashArray: 4,
+                        padding: {
+                            right: 40 // Padding so the data labels at the end of the bars don't get cut off
+                        }
+                    },
+                    colors: colors,
+                    plotOptions: {
+                        bar: {
+                            horizontal: true, // Horizontal bar chart
+                            borderRadius: 6,
+                            barHeight: '60%', // Bar thickness
+                            distributed: true,
+                            dataLabels: {
+                                position: 'top' // Place label at the end of the bar
+                            }
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        offsetX: 35, // Position slightly outside the end of the bar
+                        style: {
+                            fontSize: '11px',
+                            fontWeight: 700,
+                            colors: ['#475569'] // Slate-600 color for high readability outside
+                        },
+                        formatter: function(val) {
+                            return val + " Guru";
+                        }
+                    },
+                    legend: {
+                        show: false // Hide cluttered legend
+                    },
+                    xaxis: {
+                        categories: data.labels,
+                        axisBorder: {
+                            show: false
+                        },
+                        axisTicks: {
+                            show: false
+                        },
+                        labels: {
+                            style: {
+                                colors: '#64748b',
+                                fontWeight: 500
+                            }
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                colors: '#475569', // Darker font for y-axis labels
+                                fontWeight: 600,
+                                fontSize: '11px'
+                            },
+                            maxWidth: 250 // Prevent too aggressive truncation of long training names
+                        }
+                    },
+                    tooltip: {
+                        theme: 'light',
+                        y: {
+                            formatter: function(val) {
+                                return val + " guru";
+                            }
+                        }
+                    }
+                };
+
+                $('#guru-chart').html('');
+                if (chart) chart.destroy();
+                chart = new ApexCharts(document.querySelector("#guru-chart"), options);
+                chart.render();
+            }).fail(function() {
+                $('#guru-chart').html('<div class="alert alert-danger text-center">Gagal memuat data chart dari server.</div>');
+            });
+        }
+
+        function loadDetail(kotaId, pelatihan) {
+            $('#detail-title').text(`Detail Guru dengan Kebutuhan Pelatihan: ${pelatihan}`);
+            $('#detail-table-container').html(
+                '<p class="text-center p-4"><i class="fas fa-spinner fa-spin"></i> Memuat detail...</p>');
+
+            $.getJSON(`${API_DETAIL}?kota_id=${kotaId}&pelatihan=${encodeURIComponent(pelatihan)}`, function(list) {
 
                 if (!list.length) {
                     $('#detail-table-container').html(
-                        '<div class="alert alert-warning">Tidak ada data guru di kabupaten/kota ini.</div>');
+                        '<div class="alert alert-warning">Tidak ada guru dengan kebutuhan pelatihan ini.</div>');
                     return;
                 }
 
@@ -106,6 +246,8 @@
                 detailTable = $('#detailTable').DataTable({
                     pageLength: 10
                 });
+            }).fail(function() {
+                $('#detail-table-container').html('<div class="alert alert-danger text-center">Gagal memuat detail guru.</div>');
             });
         }
     </script>

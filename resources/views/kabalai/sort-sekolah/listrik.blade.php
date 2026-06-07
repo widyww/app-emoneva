@@ -96,11 +96,11 @@
             $.getJSON(`${API_CHART}?kota_id=${kotaId}`, function(data) {
 
                 const colorMap = {
-                    'Ada': '#28a745',
-                    'Tidak': '#dc3545'
+                    'Ada': '#63e6be',      // Premium Mint-green
+                    'Tidak': '#ff8787'     // Premium Coral-red
                 };
 
-                const colors = data.labels.map(label => colorMap[label] || '#6c757d');
+                const colors = data.labels.map(label => colorMap[label] || '#64748b');
 
                 const options = {
                     series: [{
@@ -110,19 +110,65 @@
                     chart: {
                         type: 'bar',
                         height: 380,
+                        fontFamily: 'Inter, sans-serif',
+                        toolbar: {
+                            show: false
+                        },
                         events: {
                             dataPointSelection: function(event, ctx, config) {
                                 loadDetail(kotaId, data.labels[config.dataPointIndex]);
                             }
                         }
                     },
+                    grid: {
+                        borderColor: '#f1f5f9',
+                        strokeDashArray: 4
+                    },
                     xaxis: {
-                        categories: data.labels
+                        categories: data.labels,
+                        axisBorder: {
+                            show: false
+                        },
+                        axisTicks: {
+                            show: false
+                        },
+                        labels: {
+                            style: {
+                                colors: '#64748b',
+                                fontWeight: 500
+                            }
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                colors: '#64748b',
+                                fontWeight: 500
+                            }
+                        }
                     },
                     colors: colors,
                     plotOptions: {
                         bar: {
-                            borderRadius: 5
+                            borderRadius: 8,
+                            columnWidth: '40%',
+                            distributed: true
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        style: {
+                            fontSize: '12px',
+                            fontWeight: 700,
+                            colors: ['#ffffff']
+                        }
+                    },
+                    tooltip: {
+                        theme: 'light',
+                        y: {
+                            formatter: function(val) {
+                                return val + " sekolah";
+                            }
                         }
                     }
                 };

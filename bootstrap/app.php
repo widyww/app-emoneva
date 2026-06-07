@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\Administrator;
+use App\Http\Middleware\Guru;
 use App\Http\Middleware\Kabalai;
 use App\Http\Middleware\Operator;
 use App\Http\Middleware\Verifikator;
@@ -20,6 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
              'Operator' => Operator::class,
              'Verifikator' => Verifikator::class,
              'Kabalai' => Kabalai::class,
+             'Guru' => Guru::class,
          ]);
 
     })

@@ -23,9 +23,15 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span>Daftar Operator Sekolah</span>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">
-                        + Tambah
-                    </button>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">
+                            + Tambah
+                        </button>
+                        <button class="btn btn-success btn-sm rounded-pill px-3 d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalUpload" style="background-color: #55d095; border-color: #55d095; color: #fff;">
+                            <i data-feather="upload" style="width: 14px; height: 14px;"></i>
+                            <span>Upload Excel</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -166,6 +172,39 @@
                 </div>
             </div>
         @endforeach
+
+        {{-- Modal Upload Excel --}}
+        <div class="modal fade" id="modalUpload" tabindex="-1">
+            <div class="modal-dialog">
+                <form action="{{ route('operator-sekolah.import') }}" method="POST" enctype="multipart/form-data"
+                    class="modal-content">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title">Upload Data Operator dari Excel</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-3 text-muted">
+                            Pastikan file Excel memiliki susunan kolom sebagai berikut:
+                            <br>
+                            - <strong>Kolom A:</strong> Nama Operator
+                            <br>
+                            - <strong>Kolom B:</strong> NPSN Sekolah
+                            <br>
+                            - <strong>Kolom C:</strong> Telepon/WhatsApp (Opsional)
+                        </p>
+                        <div class="mb-3">
+                            <label class="form-label">Pilih File Excel (.xlsx / .xls)</label>
+                            <input type="file" name="file" accept=".xlsx,.xls" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button class="btn btn-success" type="submit" style="background-color: #55d095; border-color: #55d095;">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 @endsection
 
@@ -181,6 +220,14 @@
                 showConfirmButton: false
             });
         @endif
+
+        @if (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+            });
+        @endif
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -191,6 +238,7 @@
     <script>
         $(document).ready(function() {
             $('#tabel-operator').DataTable();
+            feather.replace();
         });
     </script>
 @endsection

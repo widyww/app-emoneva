@@ -54,5 +54,9 @@ class Guru extends Model
         return $this->belongsTo(Sekolah::class, 'sekolah_id', 'id');
     }
 
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
     
 }

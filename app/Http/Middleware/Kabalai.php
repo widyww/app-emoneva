@@ -25,7 +25,7 @@ class Kabalai
         //ROLE ADMINISTRATOR
         if($userRole == 1)
         {
-            return redirect()->route('administrator.dashboard');
+            return redirect()->route('dashboard');
         }
         //ROLE VERIFIKATOR
         if($userRole == 2)
@@ -42,6 +42,11 @@ class Kabalai
         {
 
             return $next($request);
+        }
+        //ROLE GURU
+        if($userRole == 5)
+        {
+            return redirect()->route('guru.dashboard');
         }
     }
 }

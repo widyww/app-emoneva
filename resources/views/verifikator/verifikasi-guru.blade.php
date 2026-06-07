@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Dashboard Verifikator EMON & EVA Pake Batik')
+@section('title', 'Dashboard Verifikator EMONEV')
 
 @section('content')
     <main>

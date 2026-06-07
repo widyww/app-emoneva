@@ -95,8 +95,8 @@
 
             $.getJSON(`${API_CHART}?kota_id=${kotaId}`, function(data) {
 
-                    // warna tiap bar
-                    const colors = ['#0d6efd', '#198754', '#ffc107', '#dc3545', '#6f42c1', '#0dcaf0'];
+                    // warna tiap bar yang premium
+                    const colors = ['#4c6ef5', '#63e6be', '#ffc078', '#ff8787', '#b197fc', '#15aabf'];
 
                     const options = {
                         series: [{
@@ -106,6 +106,10 @@
                         chart: {
                             type: 'bar',
                             height: 380,
+                            fontFamily: 'Inter, sans-serif',
+                            toolbar: {
+                                show: false
+                            },
                             events: {
                                 dataPointSelection: function(event, ctx, config) {
                                     const level = data.labels[config.dataPointIndex];
@@ -113,19 +117,51 @@
                                 }
                             }
                         },
+                        grid: {
+                            borderColor: '#f1f5f9',
+                            strokeDashArray: 4
+                        },
                         xaxis: {
-                            categories: data.labels
+                            categories: data.labels,
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false
+                            },
+                            labels: {
+                                style: {
+                                    colors: '#64748b',
+                                    fontWeight: 500
+                                }
+                            }
+                        },
+                        yaxis: {
+                            labels: {
+                                style: {
+                                    colors: '#64748b',
+                                    fontWeight: 500
+                                }
+                            }
                         },
                         colors: colors,
                         plotOptions: {
                             bar: {
-                                borderRadius: 6
+                                borderRadius: 6,
+                                columnWidth: '50%',
+                                distributed: true
                             }
                         },
                         dataLabels: {
-                            enabled: true
+                            enabled: true,
+                            style: {
+                                fontSize: '11px',
+                                fontWeight: 700,
+                                colors: ['#ffffff']
+                            }
                         },
                         tooltip: {
+                            theme: 'light',
                             y: {
                                 formatter: function(val) {
                                     return val + " guru";

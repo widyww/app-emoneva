@@ -115,11 +115,11 @@
 
                     // Warna: Sesuai / Tidak
                     const colorMap = {
-                        'Sesuai': '#00A300', // Hijau
-                        'Tidak Sesuai': '#DC3545' // Merah
+                        'Sesuai': '#63e6be',       // Premium Mint-green
+                        'Tidak Sesuai': '#ff8787'  // Premium Coral-red
                     };
 
-                    const chartColors = data.labels.map(label => colorMap[label] || '#6c757d');
+                    const chartColors = data.labels.map(label => colorMap[label] || '#64748b');
 
                     const options = {
                         series: [{
@@ -129,6 +129,10 @@
                         chart: {
                             type: 'bar',
                             height: 400,
+                            fontFamily: 'Inter, sans-serif',
+                            toolbar: {
+                                show: false
+                            },
                             events: {
                                 dataPointSelection: function(e, ctx, config) {
                                     const status = data.labels[config.dataPointIndex];
@@ -136,15 +140,57 @@
                                 }
                             }
                         },
-                        plotOptions: {
-                            bar: {
-                                borderRadius: 4
-                            }
+                        grid: {
+                            borderColor: '#f1f5f9',
+                            strokeDashArray: 4
                         },
                         xaxis: {
-                            categories: data.labels
+                            categories: data.labels,
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false
+                            },
+                            labels: {
+                                style: {
+                                    colors: '#64748b',
+                                    fontWeight: 500
+                            }
+                        }
                         },
-                        colors: chartColors
+                        yaxis: {
+                            labels: {
+                                style: {
+                                    colors: '#64748b',
+                                    fontWeight: 500
+                                }
+                            }
+                        },
+                        plotOptions: {
+                            bar: {
+                                borderRadius: 8,
+                                columnWidth: '40%',
+                                distributed: true
+                            }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            style: {
+                                fontSize: '12px',
+                                fontWeight: 700,
+                                colors: ['#ffffff']
+                            }
+                        },
+                        colors: chartColors,
+                        tooltip: {
+                            theme: 'light',
+                            y: {
+                                formatter: function(val) {
+                                    return val + " sekolah";
+                                }
+                            }
+                        }
                     };
 
                     if (internetChart) {

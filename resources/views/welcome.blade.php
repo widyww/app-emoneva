@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Emon & Eva - E-Monitoring dan Evaluasi Fasilitas TIK Dinas Pendidikan Provinsi Maluku</title>
+    <title>EMONEV - E-Monitoring dan Evaluasi Fasilitas TIK Dinas Pendidikan Provinsi Maluku</title>
     <meta name="description"
-        content="Emon & Eva adalah aplikasi E-Monitoring dan Evaluasi Fasilitas Teknologi Informasi dan Komunikasi (TIK) di bawah Dinas Pendidikan Provinsi Maluku. Sistem ini membantu pemantauan, pelaporan, dan analisis data fasilitas TIK secara efektif dan transparan.">
+        content="EMONEV adalah aplikasi E-Monitoring dan Evaluasi Fasilitas Teknologi Informasi dan Komunikasi (TIK) di bawah Dinas Pendidikan Provinsi Maluku. Sistem ini membantu pemantauan, pelaporan, dan analisis data fasilitas TIK secara efektif dan transparan.">
     <meta name="keywords"
-        content="Emon Eva, E-Monitoring, Evaluasi, Fasilitas TIK, Dinas Pendidikan Maluku, Monitoring Sekolah, Evaluasi TIK, Aplikasi Pendidikan, E-Government, Sistem Informasi Pendidikan">
+        content="EMONEV, E-Monitoring, Evaluasi, Fasilitas TIK, Dinas Pendidikan Maluku, Monitoring Sekolah, Evaluasi TIK, Aplikasi Pendidikan, E-Government, Sistem Informasi Pendidikan">
     <meta name="author" content="Dinas Pendidikan Provinsi Maluku">
 
     <!-- Favicons -->
@@ -16,11 +16,9 @@
     <link href="{{ asset('images/logo/logo_pemprov.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('constructo/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -31,6 +29,460 @@
 
     <!-- Main CSS File -->
     <link href="{{ asset('constructo/assets/css/main.css') }}" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #4c6ef5;
+            --primary-dark: #3b5bdb;
+            --secondary-color: #64748b;
+            --bg-light: #f4f6fc;
+            
+            /* Overriding template variables */
+            --default-font: 'Inter', sans-serif !important;
+            --heading-font: 'Inter', sans-serif !important;
+            --nav-font: 'Inter', sans-serif !important;
+            
+            --background-color: #f4f6fc !important;
+            --default-color: #334155 !important;
+            --heading-color: #0f172a !important;
+            --accent-color: #4c6ef5 !important;
+            --surface-color: #ffffff !important;
+            
+            --nav-color: #475569 !important;
+            --nav-hover-color: #4c6ef5 !important;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif !important;
+            background-color: #f4f6fc !important;
+            color: #334155 !important;
+        }
+
+        .dark-background {
+            --background-color: var(--primary-dark) !important;
+            --default-color: #ffffff !important;
+            --heading-color: #ffffff !important;
+            --accent-color: #ffffff !important;
+            --surface-color: #1e293b !important;
+            --contrast-color: #ffffff !important;
+        }
+
+        /* Topbar & Branding */
+        .header {
+            border-bottom: 1px solid #e2e8f0 !important;
+            box-shadow: 0 4px 20px rgba(76, 110, 245, 0.02) !important;
+        }
+        
+        .header .logo h1 {
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 800 !important;
+            color: var(--primary-color) !important;
+            font-size: 1.6rem !important;
+            letter-spacing: 0.5px;
+        }
+
+        .navmenu a {
+            font-weight: 600 !important;
+            font-size: 0.95rem !important;
+            color: #475569 !important;
+        }
+        
+        .navmenu a:hover, .navmenu .active {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #7c9aff 0%, #4c6ef5 100%) !important;
+            padding: 120px 0 !important;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '' !important;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 900' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-100 200 C300 150 500 450 900 300 C1300 150 1400 400 1600 350 L1600 900 L-100 900 Z' fill='white' fill-opacity='0.06'/%3E%3Cpath d='M-100 400 C400 450 600 200 1000 350 C1400 500 1500 250 1600 300 L1600 900 L-100 900 Z' fill='white' fill-opacity='0.06'/%3E%3C/svg%3E") !important;
+            background-size: cover;
+            background-position: center;
+            pointer-events: none;
+            display: block !important;
+            opacity: 1 !important;
+            z-index: 0;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero .hero-content .subtitle {
+            font-size: 0.85rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 1.5px !important;
+            color: #ffffff !important;
+            background-color: rgba(255, 255, 255, 0.15) !important;
+            padding: 6px 16px !important;
+            border-radius: 50px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            margin-bottom: 20px !important;
+        }
+        
+        .hero .hero-content .subtitle::before {
+            display: none !important;
+        }
+        
+        .hero .hero-content h1 {
+            font-size: 3.2rem !important;
+            font-weight: 800 !important;
+            color: #ffffff !important;
+            line-height: 1.15 !important;
+            margin-bottom: 24px !important;
+        }
+        
+        .hero .hero-content p {
+            font-size: 1.1rem !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+            line-height: 1.6 !important;
+            margin-bottom: 35px !important;
+        }
+        
+        .hero .hero-buttons .btn-primary {
+            background-color: #ffffff !important;
+            color: #4c6ef5 !important;
+            border: none !important;
+            border-radius: 50px !important;
+            padding: 14px 36px !important;
+            font-weight: 700 !important;
+            font-size: 1rem !important;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .hero .hero-buttons .btn-primary:hover {
+            background-color: #f8fafc !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+        }
+        
+        .hero .hero-buttons .btn-secondary {
+            border: 2px solid #ffffff !important;
+            background-color: transparent !important;
+            color: #ffffff !important;
+            border-radius: 50px !important;
+            padding: 14px 36px !important;
+            font-weight: 700 !important;
+            font-size: 1rem !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .hero .hero-buttons .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            transform: translateY(-2px) !important;
+        }
+        
+        .hero .hero-image {
+            border-radius: 24px !important;
+            box-shadow: 0 20px 50px rgba(76, 110, 245, 0.08) !important;
+            background-color: #ffffff;
+            border: 1px solid #f1f5f9;
+        }
+        
+        .hero .hero-image img {
+            border-radius: 24px !important;
+        }
+        
+        .hero .hero-image .image-badge {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
+            border-radius: 16px !important;
+            padding: 18px 24px !important;
+            box-shadow: 0 10px 25px rgba(76, 110, 245, 0.2) !important;
+            bottom: 25px !important;
+            left: 25px !important;
+            border: none !important;
+        }
+        
+        .hero .hero-image .image-badge span {
+            font-size: 1.05rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 4px;
+        }
+        
+        .hero .hero-image .image-badge p {
+            font-size: 0.85rem !important;
+            opacity: 0.9 !important;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0 !important;
+            background-color: #ffffff !important;
+        }
+        
+        .about .about-content h2 {
+            font-size: 2.2rem !important;
+            font-weight: 800 !important;
+            color: #0f172a !important;
+            margin-bottom: 20px !important;
+        }
+        
+        .about .about-content h2::after {
+            display: none !important;
+        }
+        
+        .about .about-content .lead {
+            font-size: 1.15rem !important;
+            color: #334155 !important;
+            font-weight: 500 !important;
+            line-height: 1.6 !important;
+        }
+        
+        .about .about-content p {
+            color: #475569 !important;
+            font-size: 1rem !important;
+        }
+        
+        /* Dashboard-like Statistic Cards for About Section */
+        .achievement-boxes .card {
+            border: none !important;
+            border-radius: 20px !important;
+            transition: all 0.3s ease !important;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        .achievement-boxes .card:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .achievement-boxes .card.bg-primary {
+            background: linear-gradient(135deg, #6c8cff 0%, #4c6ef5 100%) !important;
+            box-shadow: 0 10px 25px rgba(76, 110, 245, 0.25) !important;
+        }
+        
+        .achievement-boxes .card.bg-warning {
+            background: linear-gradient(135deg, #ffc078 0%, #f76707 100%) !important;
+            box-shadow: 0 10px 25px rgba(247, 103, 7, 0.25) !important;
+        }
+        
+        .achievement-boxes .card.bg-success {
+            background: linear-gradient(135deg, #63e6be 0%, #0ca678 100%) !important;
+            box-shadow: 0 10px 25px rgba(12, 166, 120, 0.25) !important;
+        }
+        
+        .achievement-boxes .card.bg-danger {
+            background: linear-gradient(135deg, #ff8787 0%, #e03131 100%) !important;
+            box-shadow: 0 10px 25px rgba(224, 49, 49, 0.25) !important;
+        }
+
+        .achievement-boxes .card .card-body {
+            padding: 1.5rem !important;
+        }
+
+        .achievement-boxes .card .text-white-75 {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-size: 0.725rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.5px !important;
+            text-transform: uppercase;
+        }
+
+        /* Call To Action & Contact */
+        .call-to-action {
+            background-color: #f4f6fc !important;
+            padding: 80px 0 !important;
+        }
+        
+        .call-to-action .cta-hero-content .cta-badge {
+            background-color: rgba(37, 117, 252, 0.1) !important;
+            color: var(--primary-color) !important;
+            border-radius: 50px !important;
+            padding: 6px 16px !important;
+            font-size: 0.85rem !important;
+            font-weight: 700 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+        }
+        
+        .call-to-action .cta-hero-content h2 {
+            font-size: 2.4rem !important;
+            font-weight: 800 !important;
+            color: #0f172a !important;
+            line-height: 1.2 !important;
+            margin-bottom: 20px !important;
+        }
+        
+        .call-to-action .cta-hero-content p {
+            font-size: 1rem !important;
+            color: #475569 !important;
+            line-height: 1.6 !important;
+        }
+        
+        .call-to-action .cta-hero-content .feature-highlights .highlight-item {
+            background-color: #ffffff !important;
+            padding: 16px 20px !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02) !important;
+            border: 1px solid #f1f5f9 !important;
+            margin-bottom: 12px;
+        }
+        
+        .call-to-action .cta-hero-content .feature-highlights .highlight-item i {
+            color: var(--primary-color) !important;
+            font-size: 1.25rem !important;
+        }
+        
+        .call-to-action .cta-hero-content .feature-highlights .highlight-item span {
+            font-size: 0.95rem !important;
+            color: #334155 !important;
+            font-weight: 600 !important;
+            line-height: 1.5 !important;
+        }
+        
+        .call-to-action .cta-form-section .form-container {
+            background-color: #ffffff !important;
+            border-radius: 20px !important;
+            padding: 35px !important;
+            box-shadow: 0 15px 35px rgba(76, 110, 245, 0.04) !important;
+            border: 1px solid #e2e8f0 !important;
+        }
+        
+        .call-to-action .cta-form-section .form-header h3 {
+            font-size: 1.5rem !important;
+            font-weight: 700 !important;
+            color: #0f172a !important;
+            margin-bottom: 6px !important;
+        }
+        
+        .call-to-action .cta-form-section .form-header p {
+            font-size: 0.9rem !important;
+            color: #64748b !important;
+        }
+        
+        .call-to-action .cta-form-section .form-control {
+            border-radius: 12px !important;
+            border: 1.5px solid #f1f5f9 !important;
+            padding: 12px 16px !important;
+            font-size: 0.95rem !important;
+            color: #1e293b !important;
+            background-color: #f8fafc !important;
+            font-weight: 500 !important;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.01), 0 2px 8px rgba(0,0,0,0.02) !important;
+            transition: all 0.2s ease-in-out !important;
+        }
+        
+        .call-to-action .cta-form-section .form-control:focus {
+            background-color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 10px 25px rgba(76, 110, 245, 0.08) !important;
+            outline: none !important;
+        }
+        
+        .call-to-action .cta-form-section button[type="submit"] {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
+            border: none !important;
+            color: #ffffff !important;
+            border-radius: 50px !important;
+            padding: 12px 36px !important;
+            font-weight: 700 !important;
+            font-size: 0.95rem !important;
+            box-shadow: 0 6px 16px rgba(76, 110, 245, 0.2) !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .call-to-action .cta-form-section button[type="submit"]:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 10px 24px rgba(76, 110, 245, 0.3) !important;
+        }
+        
+        .call-to-action .trust-indicators .trust-item {
+            background-color: #ffffff !important;
+            padding: 15px 10px !important;
+            border-radius: 12px !important;
+            border: 1px solid #f1f5f9 !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.01) !important;
+        }
+        
+        .call-to-action .trust-indicators .trust-item i {
+            color: var(--primary-color) !important;
+        }
+        
+        .call-to-action .trust-indicators .trust-item p {
+            color: #475569 !important;
+            font-weight: 600 !important;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0f172a !important;
+            color: #94a3b8 !important;
+            padding: 60px 0 30px !important;
+            border-top: none !important;
+        }
+        
+        .footer .footer-about .logo span {
+            color: #ffffff !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 800 !important;
+        }
+        
+        .footer h4 {
+            color: #ffffff !important;
+            border-bottom: 2px solid #1e293b !important;
+            font-family: 'Inter', sans-serif !important;
+            padding-bottom: 10px !important;
+            margin-bottom: 20px !important;
+        }
+        
+        .footer .footer-links ul li a {
+            color: #94a3b8 !important;
+            transition: color 0.2s ease !important;
+        }
+        
+        .footer .footer-links ul li a:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .footer .social-links a {
+            border: 1px solid #334155 !important;
+            color: #94a3b8 !important;
+            background-color: #1e293b !important;
+        }
+        
+        .footer .social-links a:hover {
+            color: #ffffff !important;
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+        }
+        
+        .footer .copyright {
+            background-color: #020617 !important;
+            border-top: 1px solid #1e293b !important;
+            padding: 20px 0 !important;
+            color: #64748b !important;
+        }
+    </style>
 
 </head>
 
@@ -66,7 +518,7 @@
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <img src="{{ asset('images/logo/logo_pemprov.png') }}"
                         alt="Logo Balai Teknologi Informasi dan Komunikasi" style="width: 40px;">
-                    <h1 class="sitename">EMON & EVA</h1>
+                    <h1 class="sitename">EMONEV</h1>
                 </a>
 
                 <nav id="navmenu" class="navmenu">
@@ -96,10 +548,10 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="hero-content" data-aos="fade-right" data-aos-delay="200">
-                            <span class="subtitle">EMON & EVA</span>
+                            <span class="subtitle">EMONEV</span>
                             <h1>E-Monitoring dan Evaluasi Berbasis TIK</h1>
                             <p>"Data yang akurat adalah kunci menuju pendidikan yang lebih maju.
-                                Melalui Emon & Eva, sekolah di Maluku bergerak bersama menuju transformasi digital."</p>
+                                Melalui EMONEV, sekolah di Maluku bergerak bersama menuju transformasi digital."</p>
 
 
                             <div class="hero-buttons">
@@ -135,9 +587,9 @@
                 <div class="row align-items-center g-5">
                     <div class="col-lg-12">
                         <div class="about-content" data-aos="fade-right" data-aos-delay="200">
-                            <h2 class="fw-bold text-primary">Tentang Emon dan Eva</h2>
+                            <h2 class="fw-bold text-primary">Tentang EMONEV</h2>
                             <p class="lead">
-                                <strong>Emon dan Eva</strong> (Emonitoring dan Evaluasi) merupakan aplikasi berbasis
+                                <strong>EMONEV</strong> (Emonitoring dan Evaluasi) merupakan aplikasi berbasis
                                 Teknologi Informasi dan Komunikasi (TIK)
                                 yang dikembangkan oleh <strong>Balai Teknologi Informasi dan Komunikasi (BTIK)</strong>,
                                 Dinas Pendidikan Provinsi Maluku.
@@ -152,27 +604,55 @@
 
                             <div class="achievement-boxes row g-4 mt-4">
                                 <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
-                                    <div class="achievement-box">
-                                        <h3>11</h3>
-                                        <p>Kab/Kota Terintegrasi</p>
+                                    <div class="card bg-primary text-white h-100">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="me-3">
+                                                    <div class="text-white-75 small">KAB/KOTA</div>
+                                                    <div class="text-lg fw-bold fs-3 mt-1">11</div>
+                                                </div>
+                                                <i class="bi bi-geo-alt fs-2 text-white-50"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
-                                    <div class="achievement-box">
-                                        <h3>1.000+</h3>
-                                        <p>Sekolah Terdaftar</p>
+                                    <div class="card bg-warning text-white h-100">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="me-3">
+                                                    <div class="text-white-75 small">SEKOLAH</div>
+                                                    <div class="text-lg fw-bold fs-3 mt-1">1.000+</div>
+                                                </div>
+                                                <i class="bi bi-building fs-2 text-white-50"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="500">
-                                    <div class="achievement-box">
-                                        <h3>5.000+</h3>
-                                        <p>Guru Terdata</p>
+                                    <div class="card bg-success text-white h-100">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="me-3">
+                                                    <div class="text-white-75 small">GURU TERDATA</div>
+                                                    <div class="text-lg fw-bold fs-3 mt-1">5.000+</div>
+                                                </div>
+                                                <i class="bi bi-people fs-2 text-white-50"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="600">
-                                    <div class="achievement-box">
-                                        <h3>100%</h3>
-                                        <p>Monitoring Digital</p>
+                                    <div class="card bg-danger text-white h-100">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="me-3">
+                                                    <div class="text-white-75 small">MONITORING</div>
+                                                    <div class="text-lg fw-bold fs-3 mt-1">100%</div>
+                                                </div>
+                                                <i class="bi bi-check2-square fs-2 text-white-50"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +670,7 @@
 
 
         <!-- Kontak Kami Section -->
-        <section id="contact" class="contact section light-background">
+        <section id="contact" class="contact call-to-action section light-background">
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
                 <div class="row g-5 align-items-center">
@@ -208,7 +688,7 @@
                             <h2>Butuh Bantuan atau Informasi Lebih Lanjut?</h2>
                             <p>Jika Anda memiliki pertanyaan, saran, atau membutuhkan bantuan teknis terkait penggunaan
                                 aplikasi
-                                <strong>Emon &amp; Eva</strong>, silakan hubungi tim kami melalui formulir berikut atau
+                                <strong>EMONEV</strong>, silakan hubungi tim kami melalui formulir berikut atau
                                 lewat kontak di bawah ini.
                             </p>
 
@@ -313,10 +793,10 @@
             <div class="row gy-4">
                 <div class="col-lg-5 col-md-12 footer-about">
                     <a href="index.html" class="logo d-flex align-items-center">
-                        <span class="sitename">EMON DAN EVA PAKE BATIK</span>
+                        <span class="sitename">EMONEV</span>
                     </a>
                     <p class="lead">
-                        <strong>Emon dan Eva</strong> (Emonitoring dan Evaluasi) merupakan aplikasi berbasis Teknologi
+                        <strong>EMONEV</strong> (Emonitoring dan Evaluasi) merupakan aplikasi berbasis Teknologi
                         Informasi dan Komunikasi (TIK)
                         yang dikembangkan oleh <strong>Balai Teknologi Informasi dan Komunikasi (BTIK)</strong>,
                         Dinas Pendidikan Provinsi Maluku.

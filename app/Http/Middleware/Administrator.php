@@ -42,6 +42,11 @@ class Administrator
         {
             return redirect()->route('kabalai.dashboard');
         }
+        //ROLE GURU
+        if($userRole == 5)
+        {
+            return redirect()->route('guru.dashboard');
+        }
 
 
 

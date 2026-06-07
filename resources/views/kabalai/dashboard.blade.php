@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Dashboard Kabalai BTKI EMON & EVA Pake Batik')
+@section('title', 'Dashboard Kabalai BTKI EMONEV')
 
 @section('content')
     <main>
@@ -35,7 +35,7 @@
                                 <div class="col-xl-8 col-xxl-12">
                                     <div class="text-center text-xl-start text-xxl-center mb-4 mb-xl-0 mb-xxl-4">
                                         <h1 class="text-primary">Selamat Datang!</h1>
-                                        <p class="text-gray-700 mb-0">EMON & EVA PAKE BATIK merupakan apllikasi e-Monitoring
+                                        <p class="text-gray-700 mb-0">EMONEV merupakan aplikasi e-Monitoring
                                             dan e-Evaluasi Berbasis TIK yang dikembangkan oleh Balai Teknologi Informasi dan
                                             Komunikasi (BTKI) Dinas Pendidikan dan Kebudayaan Provinsi Maluku</p>
                                     </div>
@@ -176,7 +176,191 @@
                 </div>
             </div>
 
+            <!-- Charts Section -->
+            <div class="row">
+                <div class="col-xl-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header">Status Verifikasi Data Sekolah</div>
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-4">
+                            <div id="schoolStatusChart" style="width: 100%; min-height: 350px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header">Status Verifikasi Data Guru</div>
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-4">
+                            <div id="guruStatusChart" style="width: 100%; min-height: 350px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // School Chart
+            var schoolOptions = {
+                series: [
+                    {{ $jumlahSekolahNotInput }},
+                    {{ $jumlahSekolahWaitVerified }},
+                    {{ $jumlahSekolahVerified }}
+                ],
+                labels: ['Belum Input', 'Menunggu Verifikasi', 'Terverifikasi'],
+                chart: {
+                    type: 'donut',
+                    height: 350,
+                    fontFamily: 'Inter, sans-serif'
+                },
+                colors: ['#ff8787', '#ffc078', '#63e6be'], // Light-premium red, warning, success
+                stroke: {
+                    show: true,
+                    colors: ['#ffffff'],
+                    width: 3
+                },
+                plotOptions: {
+                    pie: {
+                        donut: {
+                            size: '72%',
+                            labels: {
+                                show: true,
+                                name: {
+                                    show: true,
+                                    fontSize: '13px',
+                                    fontWeight: 600,
+                                    color: '#64748b',
+                                    offsetY: -8
+                                },
+                                value: {
+                                    show: true,
+                                    fontSize: '26px',
+                                    fontWeight: 800,
+                                    color: '#1e293b',
+                                    offsetY: 6,
+                                    formatter: function (w) { return w }
+                                },
+                                total: {
+                                    show: true,
+                                    label: 'Total Sekolah',
+                                    color: '#64748b',
+                                    fontSize: '12px',
+                                    fontWeight: 600,
+                                    formatter: function (w) {
+                                        return w.globals.seriesTotals.reduce((a, b) => a + b, 0)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    position: 'bottom',
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: 500,
+                    labels: {
+                        colors: '#475569'
+                    },
+                    markers: {
+                        radius: 12
+                    }
+                },
+                dropShadow: {
+                    enabled: true,
+                    top: 4,
+                    left: 0,
+                    blur: 10,
+                    opacity: 0.05
+                },
+                tooltip: {
+                    enabled: true
+                }
+            };
+            var schoolChart = new ApexCharts(document.querySelector("#schoolStatusChart"), schoolOptions);
+            schoolChart.render();
+
+            // Teacher Chart
+            var teacherOptions = {
+                series: [
+                    {{ $jumlahGuruWaitVerified }},
+                    {{ $jumlahGuruVerified }}
+                ],
+                labels: ['Menunggu Verifikasi', 'Terverifikasi'],
+                chart: {
+                    type: 'donut',
+                    height: 350,
+                    fontFamily: 'Inter, sans-serif'
+                },
+                colors: ['#ffc078', '#63e6be'], // Light-premium warning, success
+                stroke: {
+                    show: true,
+                    colors: ['#ffffff'],
+                    width: 3
+                },
+                plotOptions: {
+                    pie: {
+                        donut: {
+                            size: '72%',
+                            labels: {
+                                show: true,
+                                name: {
+                                    show: true,
+                                    fontSize: '13px',
+                                    fontWeight: 600,
+                                    color: '#64748b',
+                                    offsetY: -8
+                                },
+                                value: {
+                                    show: true,
+                                    fontSize: '26px',
+                                    fontWeight: 800,
+                                    color: '#1e293b',
+                                    offsetY: 6,
+                                    formatter: function (w) { return w }
+                                },
+                                total: {
+                                    show: true,
+                                    label: 'Total Guru',
+                                    color: '#64748b',
+                                    fontSize: '12px',
+                                    fontWeight: 600,
+                                    formatter: function (w) {
+                                        return w.globals.seriesTotals.reduce((a, b) => a + b, 0)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    position: 'bottom',
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: 500,
+                    labels: {
+                        colors: '#475569'
+                    },
+                    markers: {
+                        radius: 12
+                    }
+                },
+                dropShadow: {
+                    enabled: true,
+                    top: 4,
+                    left: 0,
+                    blur: 10,
+                    opacity: 0.05
+                },
+                tooltip: {
+                    enabled: true
+                }
+            };
+            var teacherChart = new ApexCharts(document.querySelector("#guruStatusChart"), teacherOptions);
+            teacherChart.render();
+        });
+    </script>
 @endsection

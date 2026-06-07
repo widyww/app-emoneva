@@ -1,0 +1,231 @@
+<mxGraphModel dx="1500" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    
+    <!-- System Boundary -->
+    <mxCell id="sys-boundary" value="Sistem EMONEV - Fitur Lengkap Dashboard Verifikator" style="shape=swimlane;startSize=30;verticalAlign=top;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;fillColor=#fdfefe;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=12;fontColor=#c0392b;" vertex="1" parent="1">
+      <mxGeometry x="190" y="20" width="520" height="1060" as="geometry"/>
+    </mxCell>
+    
+    <!-- Actors -->
+    <mxCell id="act-verifikator" value="Verifikator (Dinas/BTKI)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="50" y="470" width="30" height="60" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="act-guru" value="Guru (Pendidik)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="760" y="350" width="30" height="60" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="act-operator" value="Operator Sekolah" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="760" y="660" width="30" height="60" as="geometry"/>
+    </mxCell>
+    
+    <!-- Use Cases inside the Boundary -->
+    
+    <!-- 1. Authentication -->
+    <mxCell id="uc-login" value="Login ke Sistem" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="360" y="50" width="160" height="55" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-logout" value="Logout dari Sistem" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="360" y="120" width="160" height="55" as="geometry"/>
+    </mxCell>
+    
+    <!-- 2. Dashboard Verifikator -->
+    <mxCell id="uc-view-dash" value="Melihat Dashboard Verifikator" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="220" y="200" width="190" height="60" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-mon-stats" value="Memantau Ringkasan Statistik (Sekolah &amp;amp; Guru)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="470" y="200" width="200" height="60" as="geometry"/>
+    </mxCell>
+    
+    <!-- 3. Verifikasi Data Guru -->
+    <mxCell id="uc-verif-guru" value="Mengelola Verifikasi Guru" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="220" y="370" width="190" height="60" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-list-guru" value="Melihat Daftar Guru &amp;amp; Status" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="480" y="310" width="180" height="55" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-detail-guru" value="Melihat Detail Profil &amp;amp; Kompetensi Guru" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="480" y="375" width="180" height="55" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-update-verif-guru" value="Memproses Status Verifikasi Guru" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="480" y="440" width="180" height="55" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-acc-guru" value="Menyetujui Data Guru (Terverifikasi)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="360" y="520" width="150" height="55" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-reject-guru" value="Menolak Data Guru (Revisi + Catatan)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="540" y="520" width="150" height="55" as="geometry"/>
+    </mxCell>
+    
+    <!-- 4. Verifikasi Data Sekolah -->
+    <mxCell id="uc-verif-sekolah" value="Mengelola Verifikasi Sekolah" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="220" y="680" width="190" height="60" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-list-sekolah" value="Melihat Daftar Sekolah &amp;amp; Status" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="480" y="620" width="180" height="55" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-detail-sekolah" value="Melihat Detail Profil &amp;amp; Sarpras Sekolah" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="480" y="685" width="180" height="55" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-update-verif-sekolah" value="Memproses Status Verifikasi Sekolah" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="480" y="750" width="180" height="55" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-acc-sekolah" value="Menyetujui Data Sekolah (Disetujui)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="360" y="830" width="150" height="55" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-reject-sekolah" value="Menolak Data Sekolah (Ditolak + Keterangan)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="540" y="830" width="155" height="55" as="geometry"/>
+    </mxCell>
+    
+    <!-- 5. Monitoring Data Guru -->
+    <mxCell id="uc-monev-guru" value="Memantau Rekap Data Guru (Monev)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="220" y="940" width="190" height="60" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-filter-wilayah" value="Memfilter Berdasarkan Kecamatan &amp;amp; Kota" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2E5B82;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="480" y="910" width="180" height="50" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="uc-print-monev" value="Mencetak / Print Laporan Rekap" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2E5B82;strokeWidth=2;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="480" y="970" width="180" height="50" as="geometry"/>
+    </mxCell>
+    
+    
+    <!-- Associations (Solid Lines) -->
+    <mxCell id="conn-verif-login" style="endArrow=none;html=1;rounded=0;strokeColor=#4c4c4c;strokeWidth=1.5;" edge="1" parent="1" source="act-verifikator" target="uc-login">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="conn-verif-logout" style="endArrow=none;html=1;rounded=0;strokeColor=#4c4c4c;strokeWidth=1.5;" edge="1" parent="1" source="act-verifikator" target="uc-logout">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="conn-verif-view-dash" style="endArrow=none;html=1;rounded=0;strokeColor=#4c4c4c;strokeWidth=1.5;" edge="1" parent="1" source="act-verifikator" target="uc-view-dash">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="conn-verif-verif-guru" style="endArrow=none;html=1;rounded=0;strokeColor=#4c4c4c;strokeWidth=1.5;" edge="1" parent="1" source="act-verifikator" target="uc-verif-guru">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="conn-verif-verif-sekolah" style="endArrow=none;html=1;rounded=0;strokeColor=#4c4c4c;strokeWidth=1.5;" edge="1" parent="1" source="act-verifikator" target="uc-verif-sekolah">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="conn-verif-monev-guru" style="endArrow=none;html=1;rounded=0;strokeColor=#4c4c4c;strokeWidth=1.5;" edge="1" parent="1" source="act-verifikator" target="uc-monev-guru">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Secondary Associations (to indicate who owns the data being viewed) -->
+    <mxCell id="conn-guru-detail" style="endArrow=none;html=1;rounded=0;strokeColor=#a0a0a0;strokeWidth=1;dashed=1;" edge="1" parent="1" source="act-guru" target="uc-detail-guru">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <mxCell id="conn-op-detail" style="endArrow=none;html=1;rounded=0;strokeColor=#a0a0a0;strokeWidth=1;dashed=1;" edge="1" parent="1" source="act-operator" target="uc-detail-sekolah">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    
+    <!-- Include / Extend Relationships (Dashed Arrows) -->
+    
+    <!-- uc-view-dash includes uc-login -->
+    <mxCell id="inc-view-login" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-view-dash" target="uc-login">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-view-dash includes uc-mon-stats -->
+    <mxCell id="inc-view-mon" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-view-dash" target="uc-mon-stats">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-verif-guru includes uc-login -->
+    <mxCell id="inc-vg-login" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-verif-guru" target="uc-login">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-verif-guru includes uc-list-guru -->
+    <mxCell id="inc-vg-list" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-verif-guru" target="uc-list-guru">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-verif-guru includes uc-detail-guru -->
+    <mxCell id="inc-vg-detail" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-verif-guru" target="uc-detail-guru">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-verif-guru includes uc-update-verif-guru -->
+    <mxCell id="inc-vg-upd" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-verif-guru" target="uc-update-verif-guru">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-acc-guru extends uc-update-verif-guru -->
+    <mxCell id="ext-vg-acc" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-acc-guru" target="uc-update-verif-guru">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-reject-guru extends uc-update-verif-guru -->
+    <mxCell id="ext-vg-rej" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-reject-guru" target="uc-update-verif-guru">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-verif-sekolah includes uc-login -->
+    <mxCell id="inc-vs-login" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-verif-sekolah" target="uc-login">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-verif-sekolah includes uc-list-sekolah -->
+    <mxCell id="inc-vs-list" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-verif-sekolah" target="uc-list-sekolah">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-verif-sekolah includes uc-detail-sekolah -->
+    <mxCell id="inc-vs-detail" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-verif-sekolah" target="uc-detail-sekolah">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-verif-sekolah includes uc-update-verif-sekolah -->
+    <mxCell id="inc-vs-upd" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-verif-sekolah" target="uc-update-verif-sekolah">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-acc-sekolah extends uc-update-verif-sekolah -->
+    <mxCell id="ext-vs-acc" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-acc-sekolah" target="uc-update-verif-sekolah">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-reject-sekolah extends uc-update-verif-sekolah -->
+    <mxCell id="ext-vs-rej" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-reject-sekolah" target="uc-update-verif-sekolah">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-monev-guru includes uc-login -->
+    <mxCell id="inc-mg-login" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-monev-guru" target="uc-login">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-filter-wilayah extends uc-monev-guru -->
+    <mxCell id="ext-mg-filt" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-filter-wilayah" target="uc-monev-guru">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- uc-print-monev extends uc-monev-guru -->
+    <mxCell id="ext-mg-prt" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=#7f8c8d;strokeWidth=1.2;fontSize=10;fontStyle=2;labelBackgroundColor=none;" edge="1" parent="1" source="uc-print-monev" target="uc-monev-guru">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+  </root>
+</mxGraphModel>

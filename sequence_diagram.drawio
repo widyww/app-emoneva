@@ -1,0 +1,279 @@
+<mxfile host="65bd71144e">
+    <diagram id="y6j1C3-n1wbG3PTQhy-p" name="Page-1">
+        <mxGraphModel dx="522" dy="254" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1150" pageHeight="1150" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="lifeline-1" value="Guru / Operator&lt;br&gt;(Aktor)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=11;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="40" width="120" height="1060" as="geometry"/>
+                </mxCell>
+                <mxCell id="lifeline-2" value="Form / Dashboard UI&lt;br&gt;(Blade View)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=11;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="40" width="120" height="1060" as="geometry"/>
+                </mxCell>
+                <mxCell id="lifeline-3" value="Controller&lt;br&gt;(Laravel)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=11;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="40" width="120" height="1060" as="geometry"/>
+                </mxCell>
+                <mxCell id="lifeline-4" value="Model&lt;br&gt;(Eloquent)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=11;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="40" width="120" height="1060" as="geometry"/>
+                </mxCell>
+                <mxCell id="lifeline-5" value="Database&lt;br&gt;(MySQL)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=11;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="40" width="120" height="1060" as="geometry"/>
+                </mxCell>
+                <mxCell id="lifeline-6" value="Verifikator&lt;br&gt;(Aktor)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontStyle=1;fontSize=11;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="940" y="40" width="120" height="1060" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-1" value="1. Input data &amp;amp; klik Simpan" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.0849;entryX=0.5;entryY=0.0849;" parent="1" source="lifeline-1" target="lifeline-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-2" value="2. Request updateProfil() / ajukanVerifikasi()" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.1132;entryX=0.5;entryY=0.1132;" parent="1" source="lifeline-2" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-3" value="3. fill() &amp;amp; save()" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.1415;entryX=0.5;entryY=0.1415;" parent="1" source="lifeline-3" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-4" value="4. SQL UPDATE (status_verifikasi=0/1)" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.1698;entryX=0.5;entryY=0.1698;" parent="1" source="lifeline-4" target="lifeline-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-4" value="5. Success response" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.1981;entryX=0.5;entryY=0.1981;" parent="1" source="lifeline-5" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-3" value="6. Success response" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.2264;entryX=0.5;entryY=0.2264;" parent="1" source="lifeline-4" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-2" value="7. Redirect dengan SweetAlert sukses" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.2547;entryX=0.5;entryY=0.2547;" parent="1" source="lifeline-3" target="lifeline-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-1" value="8. Renders status 'Menunggu Verifikasi'" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.2830;entryX=0.5;entryY=0.2830;" parent="1" source="lifeline-2" target="lifeline-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-9" value="9. Request index() Halaman Verifikasi" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.3585;entryX=0.5;entryY=0.3585;" parent="1" source="lifeline-6" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-10" value="10. get() data antrean" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.3868;entryX=0.5;entryY=0.3868;" parent="1" source="lifeline-3" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-11" value="11. SELECT * WHERE status_verifikasi=0/1" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.4151;entryX=0.5;entryY=0.4151;" parent="1" source="lifeline-4" target="lifeline-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-11" value="12. Records data" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.4434;entryX=0.5;entryY=0.4434;" parent="1" source="lifeline-5" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-10" value="13. Collection data" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.4717;entryX=0.5;entryY=0.4717;" parent="1" source="lifeline-4" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-9" value="14. Renders daftar pengajuan sekolah/guru" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.5000;entryX=0.5;entryY=0.5000;" parent="1" source="lifeline-3" target="lifeline-6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-15" value="15. Request show($id) Detail Data" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.5566;entryX=0.5;entryY=0.5566;" parent="1" source="lifeline-6" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-16" value="16. findOrFail() data detail" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.5849;entryX=0.5;entryY=0.5849;" parent="1" source="lifeline-3" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-17" value="17. SELECT detail with relations" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.6132;entryX=0.5;entryY=0.6132;" parent="1" source="lifeline-4" target="lifeline-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-17" value="18. Detailed records" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.6415;entryX=0.5;entryY=0.6415;" parent="1" source="lifeline-5" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-16" value="19. Record detail" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.6698;entryX=0.5;entryY=0.6698;" parent="1" source="lifeline-4" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-15" value="20. Renders detail data &amp;amp; bukti dukung" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.6981;entryX=0.5;entryY=0.6981;" parent="1" source="lifeline-3" target="lifeline-6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-21" value="21. Request update() (Setuju / Tolak + Catatan)" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.7547;entryX=0.5;entryY=0.7547;" parent="1" source="lifeline-6" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-22" value="22. update() status &amp;amp; catatan" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.7830;entryX=0.5;entryY=0.7830;" parent="1" source="lifeline-3" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-23" value="23. SQL UPDATE (status_verifikasi=1/2/3)" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.8113;entryX=0.5;entryY=0.8113;" parent="1" source="lifeline-4" target="lifeline-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-23" value="24. Success response" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.8396;entryX=0.5;entryY=0.8396;" parent="1" source="lifeline-5" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-22" value="25. Success response" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.8679;entryX=0.5;entryY=0.8679;" parent="1" source="lifeline-4" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-21" value="26. Redirect dengan alert sukses" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.8962;entryX=0.5;entryY=0.8962;" parent="1" source="lifeline-3" target="lifeline-6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-27" value="27. Buka kembali halaman Dashboard" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.9340;entryX=0.5;entryY=0.9340;" parent="1" source="lifeline-1" target="lifeline-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-27" value="28. Tampilan status ter-update ('Terverifikasi' / 'Revisi')" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.9623;entryX=0.5;entryY=0.9623;" parent="1" source="lifeline-2" target="lifeline-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="Text" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="240" y="120" width="60" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="GhOVqnuOLB8hubNardqN" name="Page-1">
+        <mxGraphModel dx="522" dy="254" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1150" pageHeight="1300" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="lifeline-1" value="&lt;div style=&quot;margin-top: 50px;&quot;&gt;Guru / Operator&lt;br&gt;(Aktor)&lt;/div&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontStyle=1;fontSize=11;align=center;size=100;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="40" width="120" height="1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="top-icon-1" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#ffffff;strokeColor=#d6b656;strokeWidth=1.5;" parent="lifeline-1" vertex="1">
+                    <mxGeometry x="46" y="8" width="28" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="lifeline-2" value="&lt;div style=&quot;margin-top: 45px; font-size: 10px;&quot;&gt;Form / Dashboard UI&lt;br&gt;(Blade View)&lt;/div&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=11;align=center;size=100;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="40" width="120" height="1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="top-icon-2" value="&lt;span style=&quot;font-size: 7px; font-weight: bold; position: absolute; left: 3px; top: 1px; color: #6c8ebf;&quot;&gt;● ● ●&lt;/span&gt;&lt;hr style=&quot;margin: 7px 0 0 0; border: 0; border-top: 1px solid #6c8ebf;&quot;&gt;" style="shape=rect;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;rounded=1;glass=0;whiteSpace=wrap;html=1;" parent="lifeline-2" vertex="1">
+                    <mxGeometry x="42" y="14" width="36" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="lifeline-3" value="&lt;div style=&quot;margin-top: 45px; font-size: 10px;&quot;&gt;Controller&lt;br&gt;(Laravel)&lt;/div&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=11;align=center;size=100;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="40" width="120" height="1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="top-icon-3" value="" style="shape=component;align=center;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" parent="lifeline-3" vertex="1">
+                    <mxGeometry x="42" y="16" width="36" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="lifeline-4" value="&lt;div style=&quot;margin-top: 45px; font-size: 10px;&quot;&gt;Model&lt;br&gt;(Eloquent)&lt;/div&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=11;align=center;size=100;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="40" width="120" height="1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="top-icon-4" value="" style="shape=component;align=center;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" parent="lifeline-4" vertex="1">
+                    <mxGeometry x="42" y="16" width="36" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="lifeline-5" value="&lt;div style=&quot;margin-top: 50px;&quot;&gt;Database&lt;br&gt;(MySQL)&lt;/div&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=11;align=center;size=100;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="40" width="120" height="1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="top-icon-5" value="" style="shape=datastore;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" parent="lifeline-5" vertex="1">
+                    <mxGeometry x="45" y="14" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="lifeline-6" value="&lt;div style=&quot;margin-top: 50px;&quot;&gt;Verifikator&lt;br&gt;(Aktor)&lt;/div&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontStyle=1;fontSize=11;align=center;size=100;" parent="1" vertex="1">
+                    <mxGeometry x="940" y="40" width="120" height="1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="top-icon-6" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#ffffff;strokeColor=#b85450;strokeWidth=1.5;" parent="lifeline-6" vertex="1">
+                    <mxGeometry x="46" y="8" width="28" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-1" value="1. Input data &amp;amp; klik Simpan" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.1182;entryX=0.5;entryY=0.1182;" parent="1" source="lifeline-1" target="lifeline-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-2" value="2. Request updateProfil() / ajukanVerifikasi()" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.1455;entryX=0.5;entryY=0.1455;" parent="1" source="lifeline-2" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-3" value="3. fill() &amp;amp; save()" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.1727;entryX=0.5;entryY=0.1727;" parent="1" source="lifeline-3" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-4" value="4. SQL UPDATE (status_verifikasi=0/1)" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.2000;entryX=0.5;entryY=0.2000;" parent="1" source="lifeline-4" target="lifeline-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-4" value="5. Success response" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.2273;entryX=0.5;entryY=0.2273;" parent="1" source="lifeline-5" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-3" value="6. Success response" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.2545;entryX=0.5;entryY=0.2545;" parent="1" source="lifeline-4" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-2" value="7. Redirect dengan SweetAlert sukses" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.2818;entryX=0.5;entryY=0.2818;" parent="1" source="lifeline-3" target="lifeline-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-1" value="8. Renders status 'Menunggu Verifikasi'" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.3091;entryX=0.5;entryY=0.3091;" parent="1" source="lifeline-2" target="lifeline-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-9" value="9. Request index() Halaman Verifikasi" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.3818;entryX=0.5;entryY=0.3818;" parent="1" source="lifeline-6" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-10" value="10. get() data antrean" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.4091;entryX=0.5;entryY=0.4091;" parent="1" source="lifeline-3" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-11" value="11. SELECT * WHERE status_verifikasi=0/1" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.4364;entryX=0.5;entryY=0.4364;" parent="1" source="lifeline-4" target="lifeline-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-11" value="12. Records data" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.4636;entryX=0.5;entryY=0.4636;" parent="1" source="lifeline-5" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-10" value="13. Collection data" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.4909;entryX=0.5;entryY=0.4909;" parent="1" source="lifeline-4" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-9" value="14. Renders daftar pengajuan sekolah/guru" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.5182;entryX=0.5;entryY=0.5182;" parent="1" source="lifeline-3" target="lifeline-6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-15" value="15. Request show($id) Detail Data" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.5727;entryX=0.5;entryY=0.5727;" parent="1" source="lifeline-6" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-16" value="16. findOrFail() data detail" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.6000;entryX=0.5;entryY=0.6000;" parent="1" source="lifeline-3" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-17" value="17. SELECT detail with relations" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.6273;entryX=0.5;entryY=0.6273;" parent="1" source="lifeline-4" target="lifeline-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-17" value="18. Detailed records" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.6545;entryX=0.5;entryY=0.6545;" parent="1" source="lifeline-5" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-16" value="19. Record detail" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.6818;entryX=0.5;entryY=0.6818;" parent="1" source="lifeline-4" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-15" value="20. Renders detail data &amp;amp; bukti dukung" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.7091;entryX=0.5;entryY=0.7091;" parent="1" source="lifeline-3" target="lifeline-6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-21" value="21. Request update() (Setuju / Tolak + Catatan)" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.7636;entryX=0.5;entryY=0.7636;" parent="1" source="lifeline-6" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-22" value="22. update() status &amp;amp; catatan" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.7909;entryX=0.5;entryY=0.7909;" parent="1" source="lifeline-3" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-23" value="23. SQL UPDATE (status_verifikasi=1/2/3)" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.8182;entryX=0.5;entryY=0.8182;" parent="1" source="lifeline-4" target="lifeline-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-23" value="24. Success response" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.8455;entryX=0.5;entryY=0.8455;" parent="1" source="lifeline-5" target="lifeline-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-22" value="25. Success response" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.8727;entryX=0.5;entryY=0.8727;" parent="1" source="lifeline-4" target="lifeline-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-21" value="26. Redirect dengan alert sukses" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.9000;entryX=0.5;entryY=0.9000;" parent="1" source="lifeline-3" target="lifeline-6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg-27" value="27. Buka kembali halaman Dashboard" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1.5;strokeColor=#2c3e50;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.9364;entryX=0.5;entryY=0.9364;" parent="1" source="lifeline-1" target="lifeline-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ret-27" value="28. Tampilan status ter-update ('Terverifikasi' / 'Revisi')" style="verticalAlign=bottom;endArrow=open;dashed=1;shadow=0;strokeWidth=1.2;strokeColor=#7f8c8d;fontSize=10;html=1;rounded=0;exitX=0.5;exitY=0.9636;entryX=0.5;entryY=0.9636;" parent="1" source="lifeline-2" target="lifeline-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-1" value="&lt;div style=&quot;margin-top: 50px;&quot;&gt;Guru / Operator&lt;br&gt;(Aktor)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontStyle=1;fontSize=10;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="1140" width="120" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-icon-1" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#ffffff;strokeColor=#d6b656;strokeWidth=1.5;" parent="bottom-1" vertex="1">
+                    <mxGeometry x="46" y="8" width="28" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-2" value="&lt;div style=&quot;margin-top: 45px; font-size: 10px;&quot;&gt;Form / Dashboard UI&lt;br&gt;(Blade View)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=10;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="1140" width="120" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-icon-2" value="&lt;span style=&quot;font-size: 7px; font-weight: bold; position: absolute; left: 3px; top: 1px; color: #6c8ebf;&quot;&gt;● ● ●&lt;/span&gt;&lt;hr style=&quot;margin: 7px 0 0 0; border: 0; border-top: 1px solid #6c8ebf;&quot;&gt;" style="shape=rect;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;rounded=1;glass=0;whiteSpace=wrap;html=1;" parent="bottom-2" vertex="1">
+                    <mxGeometry x="42" y="14" width="36" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-3" value="&lt;div style=&quot;margin-top: 45px; font-size: 10px;&quot;&gt;Controller&lt;br&gt;(Laravel)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=10;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="1140" width="120" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-icon-3" value="" style="shape=component;align=center;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" parent="bottom-3" vertex="1">
+                    <mxGeometry x="42" y="16" width="36" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-4" value="&lt;div style=&quot;margin-top: 45px; font-size: 10px;&quot;&gt;Model&lt;br&gt;(Eloquent)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=10;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="1140" width="120" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-icon-4" value="" style="shape=component;align=center;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" parent="bottom-4" vertex="1">
+                    <mxGeometry x="42" y="16" width="36" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-5" value="&lt;div style=&quot;margin-top: 50px;&quot;&gt;Database&lt;br&gt;(MySQL)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontSize=10;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="1140" width="120" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-icon-5" value="" style="shape=datastore;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" parent="bottom-5" vertex="1">
+                    <mxGeometry x="45" y="14" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-6" value="&lt;div style=&quot;margin-top: 50px;&quot;&gt;Verifikator&lt;br&gt;(Aktor)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontStyle=1;fontSize=10;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="940" y="1140" width="120" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottom-icon-6" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#ffffff;strokeColor=#b85450;strokeWidth=1.5;" parent="bottom-6" vertex="1">
+                    <mxGeometry x="46" y="8" width="28" height="42" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

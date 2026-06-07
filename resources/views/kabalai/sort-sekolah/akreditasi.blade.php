@@ -43,7 +43,7 @@
 
                     {{-- 2. CONTAINER CHART --}}
                     <div id="akreditasi-chart" class="mb-5">
-                        {{-- Chart akan dirender di sini --}}
+                        <p class="text-center text-muted p-5"><i class="fas fa-spinner fa-spin"></i> Memuat Chart...</p>
                     </div>
 
                     <hr class="my-4">
@@ -118,20 +118,23 @@
 
         // FUNGSI RENDER/UPDATE CHART APEXCHARTS
         function renderAkreditasiChart(labels, series) {
+            const colors = ['#4c6ef5', '#63e6be', '#ffc078', '#ff8787']; // Premium Indigo, Mint-green, Orange, Coral-red
+
             const chartOptions = {
                 chart: {
                     type: 'bar',
                     height: 400,
+                    fontFamily: 'Inter, sans-serif',
                     toolbar: {
-                        show: true
+                        show: false
                     },
                     // FUNGSI PENTING: MENGAMBIL DATA SAAT BAR DIKLIK
                     events: {
-                        click: function(event, chartContext, config) {
+                        dataPointSelection: function(event, chartContext, config) {
                             const dataIndex = config.dataPointIndex;
                             if (dataIndex !== undefined && dataIndex > -1) {
                                 // Ambil kategori (status akreditasi) yang diklik
-                                const akreditasiStatus = config.config.xaxis.categories[dataIndex];
+                                const akreditasiStatus = labels[dataIndex];
 
                                 // Panggil fungsi untuk memuat detail tabel
                                 loadSekolahDetail(akreditasiStatus);
@@ -143,32 +146,60 @@
                     name: 'Jumlah Sekolah',
                     data: series
                 }],
+                grid: {
+                    borderColor: '#f1f5f9',
+                    strokeDashArray: 4
+                },
                 xaxis: {
                     categories: labels,
-                    title: {
-                        text: 'Status Akreditasi'
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false
+                    },
+                    labels: {
+                        style: {
+                            colors: '#64748b',
+                            fontWeight: 500
+                        }
                     }
                 },
                 yaxis: {
-                    title: {
-                        text: 'Total Sekolah'
-                    },
                     labels: {
+                        style: {
+                            colors: '#64748b',
+                            fontWeight: 500
+                        },
                         formatter: function(val) {
                             return parseInt(val);
                         }
                     }
                 },
-                title: {
-                    text: 'Distribusi Status Akreditasi (A, B, C, Belum Terakreditasi)',
-                    align: 'left'
-                },
+                colors: colors,
                 plotOptions: {
                     bar: {
                         horizontal: false,
-                        columnWidth: '55%',
-                        endingShape: 'rounded'
+                        columnWidth: '45%',
+                        borderRadius: 8,
+                        distributed: true
                     },
+                },
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: '12px',
+                        fontWeight: 700,
+                        colors: ['#ffffff']
+                    }
+                },
+                tooltip: {
+                    theme: 'light',
+                    y: {
+                        formatter: function(val) {
+                            return val + " sekolah";
+                        }
+                    }
                 }
             };
 
@@ -176,6 +207,7 @@
                 // Update penuh karena opsi events berubah
                 akreditasiChart.updateOptions(chartOptions);
             } else {
+                document.querySelector("#akreditasi-chart").innerHTML = ''; // Hapus loading
                 akreditasiChart = new ApexCharts(document.querySelector("#akreditasi-chart"), chartOptions);
                 akreditasiChart.render();
             }

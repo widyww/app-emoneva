@@ -5,6 +5,7 @@ namespace App\Http\Requests\Auth;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -41,7 +42,48 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        $loginIdentifier = $this->input('email');
+
+        // Cek apakah input berupa NIP atau NUPTK guru di database
+        $guru = \App\Models\Guru::where('nip', $loginIdentifier)
+            ->orWhere('nuptk', $loginIdentifier)
+            ->first();
+
+        if ($guru) {
+            if ($guru->user) {
+                // Jika sudah punya akun, gunakan email akun tersebut untuk otentikasi
+                $loginIdentifier = $guru->user->email;
+            } else {
+                // Jika data guru ada tapi belum memiliki akun user, daftarkan otomatis
+                $email = ($guru->nip ?? $guru->nuptk ?? $guru->id) . '@emoneva.com';
+                
+                // Cari apakah email kebetulan sudah terdaftar di users
+                $existingUser = \App\Models\User::where('email', $email)->first();
+                if (!$existingUser) {
+                    $user = \App\Models\User::create([
+                        'name' => $guru->nama,
+                        'email' => $email,
+                        'phone' => $guru->telepon,
+                        'role' => 5, // Role Guru
+                        'sekolah_id' => $guru->sekolah_id,
+                        'guru_id' => $guru->id,
+                        'password' => Hash::make($this->input('password')), // Password yang diketik akan didaftarkan
+                    ]);
+                    $loginIdentifier = $email;
+                } else {
+                    $loginIdentifier = $existingUser->email;
+                }
+            }
+        } else {
+            // Jika guru belum terdaftar di database, dan input bukan email (tidak mengandung @) serta panjang > 8 (menghindari NPSN)
+            if (!str_contains($loginIdentifier, '@') && strlen($loginIdentifier) > 8) {
+                throw ValidationException::withMessages([
+                    'email' => 'NIP/NUPTK Anda belum didaftarkan oleh Operator Sekolah. Silakan hubungi Operator Sekolah Anda.',
+                ]);
+            }
+        }
+
+        if (! Auth::attempt(['email' => $loginIdentifier, 'password' => $this->input('password')], $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

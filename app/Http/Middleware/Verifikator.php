@@ -25,7 +25,7 @@ class Verifikator
         //ROLE ADMINISTRATOR
         if($userRole == 1)
         {
-            return redirect()->route('administrator.dashboard');
+            return redirect()->route('dashboard');
         }
         //ROLE VERIFIKATOR
         if($userRole == 2)
@@ -41,6 +41,11 @@ class Verifikator
         if($userRole == 4)
         {
             return redirect()->route('kabalai.dashboard');
+        }
+        //ROLE GURU
+        if($userRole == 5)
+        {
+            return redirect()->route('guru.dashboard');
         }
     }
 }

@@ -19,7 +19,7 @@ class FilterAkreditasiController extends Controller
     {
         $kotaId = $request->input('kota_id');
 
-        $query = Sekolah::select('status_akreditasi')
+        $query = Sekolah::selectRaw("COALESCE(NULLIF(status_akreditasi, ''), 'Belum Terakreditasi') as status_akreditasi")
             ->selectRaw('count(*) as jumlah');
 
         if ($kotaId) {
@@ -47,18 +47,16 @@ class FilterAkreditasiController extends Controller
         $akreditasiStatus = trim($request->input('akreditasi'));
 
         try {
-            // =========================================================
-            // LANGKAH 1: TIDAK ADA PEMROSESAN STRING
-            // Karena nilai di DB sudah sama persis dengan yang dikirim chart.
-            // =========================================================
-            $akreditasiFilter = $akreditasiStatus;
+            $query = Sekolah::select('nama', 'npsn', 'tingkatan', 'alamat', 'status_akreditasi');
 
-            // =========================================================
-            // LANGKAH 2: EKSEKUSI QUERY
-            // =========================================================
-            $query = Sekolah::select('nama', 'npsn', 'tingkatan', 'alamat', 'status_akreditasi')
-                // Langsung filter menggunakan nilai asli dari chart
-                ->where('status_akreditasi', $akreditasiFilter);
+            if ($akreditasiStatus === 'Belum Terakreditasi') {
+                $query->where(function($q) {
+                    $q->whereNull('status_akreditasi')
+                      ->orWhere('status_akreditasi', '');
+                });
+            } else {
+                $query->where('status_akreditasi', $akreditasiStatus);
+            }
 
             if ($kotaId) {
                 // Konversi $kotaId ke integer
@@ -67,13 +65,10 @@ class FilterAkreditasiController extends Controller
 
             $sekolahs = $query->limit(50)->get();
 
-            // =========================================================
-            // LANGKAH 3: KEMBALIKAN JSON
-            // =========================================================
             return response()->json($sekolahs);
         } catch (\Exception $e) {
             // Logging
-            Log::error("Gagal getSekolahDetail (Filter Langsung): " . $e->getMessage() . " | Filter Digunakan: " . $akreditasiFilter);
+            Log::error("Gagal getSekolahDetail (Filter Langsung): " . $e->getMessage() . " | Filter Digunakan: " . $akreditasiStatus);
 
             // Kirim respons error JSON
             return response()->json([

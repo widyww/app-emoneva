@@ -89,9 +89,9 @@
             $.getJSON(`${API_CHART}?kota_id=${kotaId}`, function(data) {
 
                 const colorMap = {
-                    'PNS': '#0d6efd',
-                    'PPPK': '#198754',
-                    'Honor': '#dc3545'
+                    'PNS': '#4c6ef5',      // Premium Indigo-blue
+                    'PPPK': '#63e6be',     // Premium Mint-green
+                    'Honor': '#ff8787'     // Premium Coral-red
                 };
 
                 const colors = data.labels.map(label => colorMap[label]);
@@ -104,6 +104,10 @@
                     chart: {
                         type: 'bar',
                         height: 380,
+                        fontFamily: 'Inter, sans-serif',
+                        toolbar: {
+                            show: false
+                        },
                         events: {
                             dataPointSelection: function(event, ctx, config) {
                                 const status = data.labels[config.dataPointIndex];
@@ -111,14 +115,52 @@
                             }
                         }
                     },
+                    grid: {
+                        borderColor: '#f1f5f9',
+                        strokeDashArray: 4
+                    },
                     xaxis: {
-                        categories: data.labels
+                        categories: data.labels,
+                        axisBorder: {
+                            show: false
+                        },
+                        axisTicks: {
+                            show: false
+                        },
+                        labels: {
+                            style: {
+                                colors: '#64748b',
+                                fontWeight: 500
+                            }
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                colors: '#64748b',
+                                fontWeight: 500
+                            }
+                        }
                     },
                     colors: colors,
                     plotOptions: {
                         bar: {
-                            borderRadius: 5
+                            borderRadius: 8,
+                            columnWidth: '45%',
+                            distributed: true
                         }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        style: {
+                            fontSize: '12px',
+                            fontWeight: 700,
+                            colors: ['#ffffff']
+                        },
+                        offsetY: -20
+                    },
+                    tooltip: {
+                        theme: 'light'
                     }
                 };
 

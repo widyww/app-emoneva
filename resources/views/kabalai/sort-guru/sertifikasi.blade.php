@@ -90,7 +90,7 @@
 
             $.getJSON(`${API_CHART}?kota_id=${kotaId}`, function(data) {
 
-                const colors = ['#198754', '#dc3545'];
+                const colors = ['#63e6be', '#ff8787']; // Premium mint-green, coral-red
 
                 const options = {
                     series: [{
@@ -100,6 +100,10 @@
                     chart: {
                         type: 'bar',
                         height: 380,
+                        fontFamily: 'Inter, sans-serif',
+                        toolbar: {
+                            show: false
+                        },
                         events: {
                             dataPointSelection: function(event, ctx, config) {
                                 const status = data.labels[config.dataPointIndex];
@@ -107,19 +111,51 @@
                             }
                         }
                     },
+                    grid: {
+                        borderColor: '#f1f5f9',
+                        strokeDashArray: 4
+                    },
                     xaxis: {
-                        categories: data.labels
+                        categories: data.labels,
+                        axisBorder: {
+                            show: false
+                        },
+                        axisTicks: {
+                            show: false
+                        },
+                        labels: {
+                            style: {
+                                colors: '#64748b',
+                                fontWeight: 500
+                            }
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                colors: '#64748b',
+                                fontWeight: 500
+                            }
+                        }
                     },
                     colors: colors,
                     plotOptions: {
                         bar: {
-                            borderRadius: 6
+                            borderRadius: 6,
+                            columnWidth: '45%',
+                            distributed: true
                         }
                     },
                     dataLabels: {
-                        enabled: true
+                        enabled: true,
+                        style: {
+                            fontSize: '12px',
+                            fontWeight: 700,
+                            colors: ['#ffffff']
+                        }
                     },
                     tooltip: {
+                        theme: 'light',
                         y: {
                             formatter: function(val) {
                                 return val + " guru";

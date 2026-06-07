@@ -125,7 +125,7 @@
                     // Mapping warna untuk status 'Ada' (Hijau) dan 'Tidak Ada' (Merah/Abu-abu)
                     const colorsMap = {};
                     data.labels.forEach(label => {
-                        colorsMap[label] = label === 'Ada' ? '#00A300' : '#DC3545'; // Dark Green / Red
+                        colorsMap[label] = label === 'Ada' ? '#63e6be' : '#ff8787'; // Premium mint-green / coral-red
                     });
                     const seriesColors = data.labels.map(label => colorsMap[label]);
 
@@ -137,8 +137,9 @@
                         chart: {
                             type: 'bar',
                             height: 400,
+                            fontFamily: 'Inter, sans-serif',
                             toolbar: {
-                                show: true
+                                show: false
                             },
                             events: {
                                 dataPointSelection: function(event, chartContext, config) {
@@ -148,35 +149,54 @@
                                 }
                             }
                         },
-                        plotOptions: {
-                            bar: {
-                                horizontal: false,
-                                columnWidth: '55%',
-                                borderRadius: 4,
-                            },
-                        },
-                        dataLabels: {
-                            enabled: false
+                        grid: {
+                            borderColor: '#f1f5f9',
+                            strokeDashArray: 4
                         },
                         xaxis: {
-                            categories: data.labels, // Label: Ada, Tidak Ada
-                            title: {
-                                text: 'Status Kepemilikan Lab Komputer'
+                            categories: data.labels,
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false
+                            },
+                            labels: {
+                                style: {
+                                    colors: '#64748b',
+                                    fontWeight: 500
+                                }
                             }
                         },
                         yaxis: {
-                            title: {
-                                text: 'Jumlah Sekolah'
+                            labels: {
+                                style: {
+                                    colors: '#64748b',
+                                    fontWeight: 500
+                                }
                             }
                         },
-                        fill: {
-                            opacity: 1
+                        plotOptions: {
+                            bar: {
+                                borderRadius: 8,
+                                columnWidth: '40%',
+                                distributed: true
+                            }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            style: {
+                                fontSize: '12px',
+                                fontWeight: 700,
+                                colors: ['#ffffff']
+                            }
                         },
                         colors: seriesColors,
                         tooltip: {
+                            theme: 'light',
                             y: {
                                 formatter: function(val) {
-                                    return val + " sekolah"
+                                    return val + " sekolah";
                                 }
                             }
                         }

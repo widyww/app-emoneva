@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Dashboard Administrator EMON & EVA Pake Batik')
+@section('title', 'Dashboard Administrator EMONEV')
 
 @section('content')
     <main>
@@ -42,7 +42,7 @@
                                 <div class="col-md-8 text-center text-md-start">
                                     <h1 class="text-primary">Selamat Datang!</h1>
                                     <p class="text-gray-700 mb-0">
-                                        EMON & EVA PAKE BATIK merupakan aplikasi e-Monitoring dan e-Evaluasi Berbasis
+                                        EMONEV merupakan aplikasi e-Monitoring dan e-Evaluasi Berbasis
                                         TIK
                                         yang dikembangkan oleh Balai Teknologi Informasi dan Komunikasi (BTKI)
                                         Dinas Pendidikan dan Kebudayaan Provinsi Maluku
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between small">
-                                <a class="text-white stretched-link" href="#">DETAIL</a>
+                                <a class="text-white stretched-link" href="{{ route('guru-mandiri.index') }}">DETAIL</a>
                                 <div class="text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                                 </div>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between small">
-                                <a class="text-white stretched-link" href="#">DETAIL</a>
+                                <a class="text-white stretched-link" href="{{ route('guru-mandiri.index') }}">DETAIL</a>
                                 <div class="text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdministratorController;
-use App\Http\Controllers\AnalisisGuruController;
 use App\Http\Controllers\BantuanSekolahController;
 use App\Http\Controllers\DataSekolahController;
 use App\Http\Controllers\DataStatistikGuruController;
@@ -27,6 +26,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\SekolahDataController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GuruDashboardController;
+use App\Http\Controllers\ManajemenGuruController;
 use App\Http\Controllers\USerKabalaiController;
 use App\Http\Controllers\UserVerifikatorController;
 use App\Http\Controllers\VerifikasiGuruController;
@@ -77,6 +78,7 @@ Route::middleware('auth', 'verified', 'Administrator')->group(function () {
 
     Route::get('/operator-sekolah', [UserController::class, 'index'])->name('operator-sekolah.index');
     Route::post('/operator-sekolah', [UserController::class, 'store'])->name('operator-sekolah.store');
+    Route::post('/operator-sekolah/import', [UserController::class, 'import'])->name('operator-sekolah.import');
     Route::put('/operator-sekolah/{id}', [UserController::class, 'update'])->name('operator-sekolah.update');
     Route::delete('/operator-sekolah/{id}', [UserController::class, 'destroy'])->name('operator-sekolah.destroy');
 
@@ -84,6 +86,12 @@ Route::middleware('auth', 'verified', 'Administrator')->group(function () {
     Route::post('/user-manajemen', [ManajemenUserController::class, 'store'])->name('manajemen-user.store');
     Route::put('/user-manajemen/{id}', [ManajemenUserController::class, 'update'])->name('manajemen-user.update');
     Route::delete('/user-manajemen/{id}', [ManajemenUserController::class, 'destroy'])->name('manajemen-user.destroy');
+
+    Route::get('/guru-mandiri', [ManajemenGuruController::class, 'index'])->name('guru-mandiri.index');
+    Route::post('/guru-mandiri', [ManajemenGuruController::class, 'store'])->name('guru-mandiri.store');
+    Route::post('/guru-mandiri/import', [ManajemenGuruController::class, 'import'])->name('guru-mandiri.import');
+    Route::put('/guru-mandiri/{id}', [ManajemenGuruController::class, 'update'])->name('guru-mandiri.update');
+    Route::delete('/guru-mandiri/{id}', [ManajemenGuruController::class, 'destroy'])->name('guru-mandiri.destroy');
 });
 
 // ROLE OPERATOR SEKOLAH
@@ -166,13 +174,14 @@ Route::middleware('auth', 'verified', 'Kabalai')->group(function () {
 
     Route::get('/sort-gurupelatihan', [FilterGuruKebutuhanPelatihanController::class, 'index'])->name('sortgurupelatihan.index');
     Route::get('/sort-gurupelatihan/get', [FilterGuruKebutuhanPelatihanController::class, 'getData'])->name('sortgurupelatihan.getdata');
-
-    Route::get('/analisis-guru', [AnalisisGuruController::class, 'index'])->name('analisisguru.index');
-    Route::get('/analisis-guru/get', [AnalisisGuruController::class, 'analyze'])->name('analisisguru.getdata');
+    Route::get('/sort-gurupelatihan/detail', [FilterGuruKebutuhanPelatihanController::class, 'getDetail'])->name('sortgurupelatihan.getdetail');
 });
 
-
-
-
+// ROLE GURU
+Route::middleware(['auth', 'verified', 'Guru'])->group(function () {
+    Route::get('/dashboard-guru', [GuruDashboardController::class, 'index'])->name('guru.dashboard');
+    Route::get('/guru/profil', [GuruDashboardController::class, 'editProfil'])->name('guru.profil.edit');
+    Route::put('/guru/profil', [GuruDashboardController::class, 'updateProfil'])->name('guru.profil.update');
+});
 
 require __DIR__ . '/auth.php';

@@ -33,6 +33,7 @@ class AuthenticatedSessionController extends Controller
             '2' => 'verifikator.dashboard',
             '3' => 'operator.dashboard',
             '4' => 'kabalai.dashboard',
+            '5' => 'guru.dashboard',
             default => 'homepage',
         };
 

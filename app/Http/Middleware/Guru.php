@@ -1,0 +1,48 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
+
+class Guru
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $userRole = Auth::user()->role;
+
+        // ROLE ADMINISTRATOR
+        if ($userRole == 1) {
+            return redirect()->route('dashboard');
+        }
+        // ROLE VERIFIKATOR
+        if ($userRole == 2) {
+            return redirect()->route('verifikator.dashboard');
+        }
+        // ROLE OPERATOR
+        if ($userRole == 3) {
+            return redirect()->route('operator.dashboard');
+        }
+        // ROLE KEPALA BALAI / KABALAI
+        if ($userRole == 4) {
+            return redirect()->route('kabalai.dashboard');
+        }
+        // ROLE GURU
+        if ($userRole == 5) {
+            return $next($request);
+        }
+
+        return redirect()->route('homepage');
+    }
+}

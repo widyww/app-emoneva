@@ -106,83 +106,15 @@ class GuruController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'nip' => 'nullable|string|max:50',
-            'tempat' => 'nullable|string|max:100',
-            'agama' => 'nullable|string',
-            'pendidikan_terakhir' => 'nullable|string',
-            'telepon' => 'nullable|string|max:20',
-            'sertifikasi_status' => 'nullable|string',
-            'sertifikasi_alasan' => 'nullable|string',
-            'status' => 'nullable|string',
             'nuptk' => 'nullable|string|max:50',
-            'tgl_lahir' => 'nullable|date',
-            'jenis_kelamin' => 'nullable|string',
-            'bulan' => 'nullable|string',
-            'tahun' => 'nullable|integer',
-            'mapel' => 'nullable|string|max:100',
-            'sertifikasi_tahun' => 'nullable|string|max:10',
-            'pelatihan_status' => 'nullable|string',
-            'pelatihan_kebutuhan' => 'nullable|string',
-
-            // Pelatihan
-            'nama_pelatihan.*' => 'required|string|max:255',
-            'tingkatan.*' => 'required|string',
-            'level.*' => 'required|string',
-            'tahun_pelatihan.*' => 'required|integer',
-            'jam_pelatihan.*' => 'required|integer',
-
-            // Kebutuhan Pelatihan
-            'nama_kebutuhan.*' => 'required|string|max:255',
         ]);
 
-        // Update data guru
+        // Update data guru (hanya Nama, NIP, dan NUPTK)
         $guru->update([
             'nama' => $request->nama,
             'nip' => $request->nip,
-            'tempat' => $request->tempat,
-            'agama' => $request->agama,
-            'pendidikan_terakhir' => $request->pendidikan_terakhir,
-            'telepon' => $request->telepon,
-            'sertifikasi_status' => $request->sertifikasi_status,
-            'sertifikasi_alasan' => $request->sertifikasi_alasan,
-            'status' => $request->status,
             'nuptk' => $request->nuptk,
-            'tgl_lahir' => $request->tgl_lahir,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'bulan' => $request->bulan,
-            'tahun' => $request->tahun,
-            'mapel' => $request->mapel,
-            'sertifikasi_tahun' => $request->sertifikasi_tahun,
-            'status_verifikasi' => 0,
         ]);
-
-        // ===== Update Pelatihan =====
-        // Hapus dulu semua pelatihan lama
-        $guru->pelatihan()->delete();
-
-        // Simpan ulang
-        if ($request->pelatihan_status == 'Ya' && $request->nama_pelatihan) {
-            foreach ($request->nama_pelatihan as $index => $nama) {
-                $guru->pelatihan()->create([
-                    'nama_pelatihan' => $nama,
-                    'tingkatan' => $request->tingkatan[$index],
-                    'level' => $request->level[$index],
-                    'tahun_pelatihan' => $request->tahun_pelatihan[$index],
-                    'jam_pelatihan' => $request->jam_pelatihan[$index],
-                ]);
-            }
-        }
-
-        // ===== Update Kebutuhan Pelatihan =====
-        // Hapus dulu yang lama
-        $guru->kebutuhanPelatihan()->delete();
-
-        if ($request->pelatihan_kebutuhan == 'Ya' && $request->nama_kebutuhan) {
-            foreach ($request->nama_kebutuhan as $nama) {
-                $guru->kebutuhanPelatihan()->create([
-                    'nama_pelatihan' => $nama,
-                ]);
-            }
-        }
 
         return redirect()->route('data-guru.index')->with('success', 'Data guru berhasil diperbarui.');
     }
