@@ -12,11 +12,10 @@ class MonitoringGuruController extends Controller
 {
     public function index()
     {
-        $data = Sekolah::with(['guru', 'kecamatan.kota'])->get();
+        $data = Guru::with(['sekolah.kecamatan'])->get();
         $kecamatan = Kecamatan::orderBy('nama')->get();
-        $kota = Kota::orderBy('nama')->get();
+        $sekolah = Sekolah::orderBy('nama')->get();
 
-        return view('pages.monitoring-guru.index', compact('data', 'kecamatan', 'kota'));
-        
+        return view('pages.monitoring-guru.index', compact('data', 'kecamatan', 'sekolah'));
     }
 }

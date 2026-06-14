@@ -91,7 +91,7 @@ class SekolahController extends Controller
     {
         $request->validate([
             'npsn' => 'required|string|unique:sekolah,npsn',
-            'tingkatan' => 'required|string',
+            'tingkatan' => 'required|string|in:SMK,SMA,SLB,SMALB',
             'nama' => 'required|string',
         ]);
 
@@ -125,7 +125,7 @@ class SekolahController extends Controller
     {
         $request->validate([
             'npsn' => 'required|string|unique:sekolah,npsn,' . $id,
-            'tingkatan' => 'required|string',
+            'tingkatan' => 'required|string|in:SMK,SMA,SLB,SMALB',
             'nama' => 'required|string',
         ]);
 

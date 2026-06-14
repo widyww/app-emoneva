@@ -20,6 +20,7 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\ManajemenUserController;
 use App\Http\Controllers\MonitoringGuruController;
+use App\Http\Controllers\MonitoringSekolahController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\ProfileController;
@@ -128,6 +129,7 @@ Route::middleware('auth', 'verified', 'Verifikator')->group(function () {
     Route::resource('verifikasi-guru', VerifikasiGuruController::class);
     // Route::put('/verifikasi-guru/{id}', [VerifikasiGuruController::class, 'proses_verifikasi'])->name('verifikator.verifikasi.guru');
     Route::resource('monitoring-guru', MonitoringGuruController::class);
+    Route::resource('monitoring-sekolah', MonitoringSekolahController::class);
 });
 
 

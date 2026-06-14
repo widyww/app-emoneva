@@ -118,6 +118,21 @@
 
         // FUNGSI RENDER/UPDATE CHART APEXCHARTS
         function renderAkreditasiChart(labels, series) {
+            const chartContainer = document.querySelector("#akreditasi-chart");
+            
+            // Cek jika data kosong
+            const totalData = series ? series.reduce((a, b) => a + Number(b), 0) : 0;
+            if (totalData === 0) {
+                chartContainer.innerHTML = '<div class="alert alert-warning text-center my-4"><i class="fas fa-exclamation-triangle me-2"></i> Belum ada data sekolah untuk Kabupaten/Kota yang dipilih.</div>';
+                if (akreditasiChart) {
+                    akreditasiChart.destroy();
+                    akreditasiChart = null;
+                }
+                document.getElementById('detail-title').innerText = 'Detail Sekolah Berdasarkan Akreditasi';
+                document.getElementById('sekolah-detail-table-container').innerHTML = '<div class="alert alert-info text-center mt-3"><i class="fas fa-info-circle me-2"></i> Tidak ada data detail yang dapat ditampilkan untuk kriteria ini.</div>';
+                return;
+            }
+
             const colors = ['#4c6ef5', '#63e6be', '#ffc078', '#ff8787']; // Premium Indigo, Mint-green, Orange, Coral-red
 
             const chartOptions = {

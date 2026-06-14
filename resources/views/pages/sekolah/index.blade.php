@@ -94,16 +94,10 @@
                             <label>Tingkatan</label>
                             <select name="tingkatan" class="form-control" required>
                                 <option value="">-- Pilih Tingkatan --</option>
-                                <option value="SD">TK</option>
-                                <option value="SD">SD</option>
-                                <option value="SMP">SMP</option>
-                                <option value="SMA">SMA</option>
                                 <option value="SMK">SMK</option>
-                                <option value="TKLB">TKLB</option>
-                                <option value="SDLB">SDLB</option>
-                                <option value="SMPLB">SMPLB</option>
-                                <option value="SMALB">SMALB</option>
+                                <option value="SMA">SMA</option>
                                 <option value="SLB">SLB</option>
+                                <option value="SMALB">SMALB</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -145,19 +139,10 @@
                             <div class="mb-3">
                                 <label>Tingkatan</label>
                                 <select name="tingkatan" class="form-control" required>
-                                    <option value="TKLB" {{ $item->tingkatan == 'TKLB' ? 'selected' : '' }}>TKLB
-                                    </option>
-                                    <option value="SDLB" {{ $item->tingkatan == 'SDLB' ? 'selected' : '' }}>SDLB
-                                    </option>
-                                    <option value="SMPLB" {{ $item->tingkatan == 'SMPLB' ? 'selected' : '' }}>SMPLB
-                                    </option>
-                                    <option value="SMALB" {{ $item->tingkatan == 'SMALB' ? 'selected' : '' }}>SMALB
-                                    </option>
-                                    <option value="SLB" {{ $item->tingkatan == 'SLB' ? 'selected' : '' }}>SLB</option>
-                                    <option value="SD" {{ $item->tingkatan == 'SD' ? 'selected' : '' }}>SD</option>
-                                    <option value="SMP" {{ $item->tingkatan == 'SMP' ? 'selected' : '' }}>SMP</option>
-                                    <option value="SMA" {{ $item->tingkatan == 'SMA' ? 'selected' : '' }}>SMA</option>
                                     <option value="SMK" {{ $item->tingkatan == 'SMK' ? 'selected' : '' }}>SMK</option>
+                                    <option value="SMA" {{ $item->tingkatan == 'SMA' ? 'selected' : '' }}>SMA</option>
+                                    <option value="SLB" {{ $item->tingkatan == 'SLB' ? 'selected' : '' }}>SLB</option>
+                                    <option value="SMALB" {{ $item->tingkatan == 'SMALB' ? 'selected' : '' }}>SMALB</option>
                                 </select>
                             </div>
 
@@ -243,6 +228,18 @@
                 icon: 'error',
                 title: 'Gagal',
                 text: '{{ session('error') }}',
+            });
+        @endif
+
+        @if ($errors->any())
+            let errorMessages = '';
+            @foreach ($errors->all() as $error)
+                errorMessages += '{{ $error }}\n';
+            @endforeach
+            Swal.fire({
+                icon: 'error',
+                title: 'Validasi Gagal',
+                text: errorMessages,
             });
         @endif
     </script>

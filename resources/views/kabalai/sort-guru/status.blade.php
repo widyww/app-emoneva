@@ -87,6 +87,17 @@
             );
 
             $.getJSON(`${API_CHART}?kota_id=${kotaId}`, function(data) {
+                const totalData = data.series ? data.series.reduce((a, b) => a + Number(b), 0) : 0;
+                    if (totalData === 0) {
+                    $('#guru-chart').html('<div class="alert alert-warning text-center my-4"><i class="fas fa-exclamation-triangle me-2"></i> Belum ada data guru untuk Kabupaten/Kota yang dipilih.</div>');
+                    if (chart) {
+                        chart.destroy();
+                        chart = null;
+                    }
+                    $('#detail-title').text('Detail Guru');
+                    $('#detail-table-container').html('<div class="alert alert-info text-center mt-3"><i class="fas fa-info-circle me-2"></i> Tidak ada data detail yang dapat ditampilkan untuk kriteria ini.</div>');
+                    return;
+                }
 
                 const colorMap = {
                     'PNS': '#4c6ef5',      // Premium Indigo-blue

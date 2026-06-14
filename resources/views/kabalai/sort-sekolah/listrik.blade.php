@@ -94,6 +94,17 @@
                 '<p class="text-center p-5"><i class="fas fa-spinner fa-spin"></i> Memuat Chart...</p>');
 
             $.getJSON(`${API_CHART}?kota_id=${kotaId}`, function(data) {
+                const totalData = data.series ? data.series.reduce((a, b) => a + Number(b), 0) : 0;
+                    if (totalData === 0) {
+                    $('#listrik-chart').html('<div class="alert alert-warning text-center my-4"><i class="fas fa-exclamation-triangle me-2"></i> Belum ada data sekolah untuk Kabupaten/Kota yang dipilih.</div>');
+                    if (chart) {
+                        chart.destroy();
+                        chart = null;
+                    }
+                    $('#detail-title').text('Detail Sekolah Ketersediaan Listrik');
+                    $('#detail-table-container').html('<div class="alert alert-info text-center mt-3"><i class="fas fa-info-circle me-2"></i> Tidak ada data detail yang dapat ditampilkan untuk kriteria ini.</div>');
+                    return;
+                }
 
                 const colorMap = {
                     'Ada': '#63e6be',      // Premium Mint-green

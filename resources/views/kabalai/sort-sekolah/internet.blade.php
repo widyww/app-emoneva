@@ -112,6 +112,17 @@
 
             $.getJSON(url)
                 .done(function(data) {
+                    const totalData = data.series ? data.series.reduce((a, b) => a + Number(b), 0) : 0;
+                    if (totalData === 0) {
+                        $("#internet-chart").html('<div class="alert alert-warning text-center my-4"><i class="fas fa-exclamation-triangle me-2"></i> Belum ada data sekolah untuk Kabupaten/Kota yang dipilih.</div>');
+                        if (internetChart) {
+                            internetChart.destroy();
+                            internetChart = null;
+                        }
+                        $("#detail-title").text('Detail Sekolah Kesesuaian Internet');
+                        $("#internet-detail-table-container").html('<div class="alert alert-info text-center mt-3"><i class="fas fa-info-circle me-2"></i> Tidak ada data detail yang dapat ditampilkan untuk kriteria ini.</div>');
+                        return;
+                    }
 
                     // Warna: Sesuai / Tidak
                     const colorMap = {

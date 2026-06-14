@@ -6,8 +6,10 @@ use App\Models\Guru;
 use App\Models\GuruKebutuhan;
 use App\Models\GuruPelatihan;
 use App\Models\Sekolah;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class GuruController extends Controller
 {
@@ -77,7 +79,21 @@ class GuruController extends Controller
             }
         }
 
-        return redirect()->route('data-guru.index')->with('success', 'Data guru berhasil disimpan.');
+        // 4. Buat Akun User Otomatis untuk Guru
+        $loginUsername = $request->nip ?: ($request->nuptk ?: 'guru' . time());
+        $defaultPassword = $request->nip ?: ($request->nuptk ?: 'password123');
+
+        User::create([
+            'name' => $request->nama,
+            'email' => $loginUsername,
+            'phone' => $request->telepon,
+            'role' => 5, // 5 = Guru
+            'sekolah_id' => Auth::user()->sekolah_id,
+            'guru_id' => $guru->id,
+            'password' => Hash::make($defaultPassword),
+        ]);
+
+        return redirect()->route('data-guru.index')->with('success', 'Data guru dan akun berhasil disimpan.');
     }
 
     public function create()
@@ -116,6 +132,15 @@ class GuruController extends Controller
             'nuptk' => $request->nuptk,
         ]);
 
+        // Update akun user
+        $user = User::where('guru_id', $guru->id)->first();
+        if ($user) {
+            $user->update([
+                'name' => $request->nama,
+                'email' => $request->nip ?: ($request->nuptk ?: $user->email),
+            ]);
+        }
+
         return redirect()->route('data-guru.index')->with('success', 'Data guru berhasil diperbarui.');
     }
 
@@ -124,6 +149,10 @@ class GuruController extends Controller
     {
         try {
             $guru = Guru::with(['pelatihan', 'kebutuhanPelatihan'])->findOrFail($id);
+            
+            // Hapus akun user
+            User::where('guru_id', $guru->id)->delete();
+
             $guru->pelatihan()->delete();
             $guru->kebutuhanPelatihan()->delete();
             $guru->delete();

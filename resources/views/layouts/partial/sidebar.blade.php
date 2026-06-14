@@ -32,6 +32,12 @@
                         Periode
                     </a>
 
+                    <div class="sidenav-menu-heading">Data Utama</div>
+                    <a class="nav-link" href="{{ route('sekolah.index') }}">
+                        <div class="nav-link-icon"><i data-feather="database"></i></div>
+                        Data Sekolah
+                    </a>
+
                     <div class="sidenav-menu-heading">Pengguna</div>
                     <a class="nav-link" href="{{ route('operator-sekolah.index') }}">
                         <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
@@ -117,7 +123,7 @@
                         <div class="nav-link-icon"><i data-feather="check"></i></div>
                         Verifikasi Data Sekolah
                     </a>
-                    <a class="nav-link" href="{{ route('verifikasi-sekolah.index') }}">
+                    <a class="nav-link" href="{{ route('monitoring-sekolah.index') }}">
                         <div class="nav-link-icon"><i data-feather="edit"></i></div>
                         Monev Data Sekolah
                     </a>

@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Monitoring Data Sekolah')
+@section('title', 'Monitoring Data Guru')
 
 @section('content')
     <main>
@@ -9,8 +9,8 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
-                                <div class="page-header-icon"><i data-feather="home"></i></div>
-                                Monitoring Data Sekolah
+                                <div class="page-header-icon"><i data-feather="users"></i></div>
+                                Monitoring Data Guru
                             </h1>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
         <div class="container-xl px-4 mt-n10">
             <div class="card shadow-sm">
                 <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
-                    <span>📊 Daftar Sekolah dan Jumlah Guru</span>
+                    <span>📊 Daftar Seluruh Guru</span>
                     <div class="d-flex align-items-center gap-2">
                         <!-- Filter Kecamatan -->
                         <select id="filterKecamatan" class="form-select form-select-sm" style="width: 200px">
@@ -31,11 +31,11 @@
                             @endforeach
                         </select>
 
-                        <!-- Filter Kota -->
-                        <select id="filterKota" class="form-select form-select-sm" style="width: 200px">
-                            <option value="">Semua Kota/Kabupaten</option>
-                            @foreach ($kota as $k)
-                                <option value="{{ $k->nama }}">{{ $k->nama }}</option>
+                        <!-- Filter Sekolah -->
+                        <select id="filterSekolah" class="form-select form-select-sm" style="width: 200px">
+                            <option value="">Semua Sekolah</option>
+                            @foreach ($sekolah as $s)
+                                <option value="{{ $s->nama }}">{{ $s->nama }}</option>
                             @endforeach
                         </select>
 
@@ -48,44 +48,43 @@
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered align-middle" id="tabel-sekolah">
+                        <table class="table table-bordered align-middle" id="tabel-guru">
                             <thead class="table text-center">
                                 <tr>
                                     <th style="width: 5%">No</th>
-                                    <th>Nama Sekolah</th>
-                                    <th>NPSN</th>
+                                    <th>Nama Guru</th>
+                                    <th>NUPTK</th>
+                                    <th>Asal Sekolah</th>
                                     <th>Kecamatan</th>
-                                    <th>Kota/Kabupaten</th>
-                                    <th>Jumlah Guru</th>
+                                    <th>Status Verifikasi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $totalGuru = 0; @endphp
                                 @foreach ($data as $index => $item)
-                                    @php
-                                        $jumlahGuru = $item->guru->count();
-                                        $totalGuru += $jumlahGuru;
-                                    @endphp
                                     <tr>
                                         <td class="text-center">{{ $index + 1 }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td class="text-center">{{ $item->npsn ?? '-' }}</td>
-                                        <td>{{ $item->kecamatan->nama ?? '-' }}</td>
-                                        <td>{{ $item->kecamatan->kota->nama ?? '-' }}</td>
+                                        <td class="text-center">{{ $item->nuptk ?? '-' }}</td>
+                                        <td>{{ $item->sekolah->nama ?? '-' }}</td>
+                                        <td>{{ $item->sekolah->kecamatan->nama ?? '-' }}</td>
                                         <td class="text-center">
-                                            <span class="badge bg-success">{{ $jumlahGuru }}</span>
+                                            @switch($item->status_verifikasi)
+                                                @case(1)
+                                                    <span class="badge bg-warning">Menunggu Verifikasi</span>
+                                                @break
+                                                @case(2)
+                                                    <span class="badge bg-success">Terverifikasi</span>
+                                                @break
+                                                @case(3)
+                                                    <span class="badge bg-primary">Revisi</span>
+                                                @break
+                                                @default
+                                                    <span class="badge bg-secondary">Menunggu Inputan</span>
+                                            @endswitch
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
-                            @if ($data->count() > 0)
-                                <tfoot class="table-light fw-bold">
-                                    <tr>
-                                        <td colspan="5" class="text-end">Total Guru Seluruh Sekolah:</td>
-                                        <td class="text-center">{{ $totalGuru }}</td>
-                                    </tr>
-                                </tfoot>
-                            @endif
                         </table>
                     </div>
                 </div>
@@ -103,7 +102,7 @@
 
     <script>
         $(document).ready(function() {
-            let table = $('#tabel-sekolah').DataTable({
+            let table = $('#tabel-guru').DataTable({
                 pageLength: 10,
                 order: [
                     [1, 'asc']
@@ -112,16 +111,16 @@
 
             feather.replace();
 
-            // Filter berdasarkan Kecamatan
+            // Filter berdasarkan Kecamatan (Kolom index 4)
             $('#filterKecamatan').on('change', function() {
                 let val = $(this).val();
-                table.column(3).search(val).draw();
+                table.column(4).search(val).draw();
             });
 
-            // Filter berdasarkan Kota/Kabupaten
-            $('#filterKota').on('change', function() {
+            // Filter berdasarkan Sekolah (Kolom index 3)
+            $('#filterSekolah').on('change', function() {
                 let val = $(this).val();
-                table.column(4).search(val).draw();
+                table.column(3).search(val).draw();
             });
         });
     </script>
