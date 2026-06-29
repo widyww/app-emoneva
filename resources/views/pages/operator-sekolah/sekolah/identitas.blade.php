@@ -58,17 +58,17 @@
                                 <div class="mb-3">
                                     <label for="npsn" class="form-label">NPSN</label>
                                     <input type="text" class="form-control" name="npsn" id="npsn"
-                                        value="{{ old('npsn', $sekolah->npsn) }}">
+                                        value="{{ old('npsn', $sekolah->npsn) }}" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="tingkatan" class="form-label">Tingkatan</label>
                                     <input type="text" class="form-control" name="tingkatan" id="tingkatan"
-                                        value="{{ old('tingkatan', $sekolah->tingkatan) }}">
+                                        value="{{ old('tingkatan', $sekolah->tingkatan) }}" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="nama" class="form-label">Nama Sekolah</label>
                                     <input type="text" class="form-control" name="nama" id="nama"
-                                        value="{{ old('nama', $sekolah->nama) }}">
+                                        value="{{ old('nama', $sekolah->nama) }}" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="alamat" class="form-label">Alamat</label>
@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="unbk_status" class="form-label">Status UNBK</label>
-                                    <select name="unbk_status" id="unbk_status" class="form-select">
+                                    <select name="unbk_status" id="unbk_status" class="form-select" required>
                                         <option value="">-- Pilih Status UNBK --</option>
                                         <option value="Mandiri"
                                             {{ old('unbk_status', $sekolah->unbk_status) == 'Mandiri' ? 'selected' : '' }}>
@@ -195,7 +195,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="status_tanah" class="form-label">Status Tanah</label>
-                                    <select name="status_tanah" id="status_tanah" class="form-select" required>
+                                    <select name="status_tanah" id="status_tanah" class="form-select">
                                         <option value="">-- Pilih Status Tanah --</option>
                                         <option value="Sertifikat Hak Milik (SHM)"
                                             {{ old('status_tanah', $sekolah->status_tanah) == 'Sertifikat Hak Milik (SHM)' ? 'selected' : '' }}>
@@ -217,7 +217,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="status_akreditasi" class="form-label">Status Akreditasi</label>
-                                    <select name="status_akreditasi" id="status_akreditasi" class="form-select" required>
+                                    <select name="status_akreditasi" id="status_akreditasi" class="form-select">
                                         <option value="">-- Pilih Status Akreditasi --</option>
                                         <option value="Terakreditasi A"
                                             {{ old('status_akreditasi', $sekolah->status_akreditasi) == 'Terakreditasi A' ? 'selected' : '' }}>
