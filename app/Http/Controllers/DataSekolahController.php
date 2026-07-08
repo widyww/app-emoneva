@@ -136,13 +136,14 @@ class DataSekolahController extends Controller
         ]);
 
         $idsekolah = Auth::user()->sekolah_id;
-        $sekolahSosekbud = SekolahSosekbud::where('sekolah_id', $idsekolah)->first();
-
-        $sekolahSosekbud->update([
-            'kondisi_geografis' => $request->kondisi_geografis,
-            'kondisi_sosekbud' => $request->kondisi_sosekbud,
-            'akses_transportasi' => $request->akses_transportasi,
-        ]);
+        $sekolahSosekbud = SekolahSosekbud::updateOrCreate(
+            ['sekolah_id' => $idsekolah],
+            [
+                'kondisi_geografis' => $request->kondisi_geografis,
+                'kondisi_sosekbud' => $request->kondisi_sosekbud,
+                'akses_transportasi' => $request->akses_transportasi,
+            ]
+        );
 
         return redirect()->back()->with('success', 'Data sekolah berhasil diperbarui');
     }
