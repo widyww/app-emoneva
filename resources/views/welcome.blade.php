@@ -596,10 +596,11 @@
                             </p>
                             <p>
                                 Melalui aplikasi ini, seluruh sekolah di Provinsi Maluku dapat menginput dan memantau
-                                data terkait <strong>fasilitas TIK sekolah</strong> serta data <strong>kompetensi
-                                    guru</strong> dalam penguasaan teknologi digital.
+                                data terkait <strong>fasilitas TIK sekolah</strong> — meliputi kelistrikan,
+                                laboratorium komputer, dan konektivitas internet — beserta kesiapan penyelenggaraan
+                                asesmen berbasis komputer.
                                 Aplikasi ini membantu dinas pendidikan dalam melakukan pemetaan kebutuhan,
-                                peningkatan kapasitas, dan perencanaan pengembangan TIK di sekolah-sekolah.
+                                penyaluran bantuan, dan perencanaan pengembangan TIK di sekolah-sekolah.
                             </p>
 
                             <div class="achievement-boxes row g-4 mt-4">
@@ -634,10 +635,10 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="me-3">
-                                                    <div class="text-white-75 small">GURU TERDATA</div>
-                                                    <div class="text-lg fw-bold fs-3 mt-1">5.000+</div>
+                                                    <div class="text-white-75 small">LAB KOMPUTER</div>
+                                                    <div class="text-lg fw-bold fs-3 mt-1">500+</div>
                                                 </div>
-                                                <i class="bi bi-people fs-2 text-white-50"></i>
+                                                <i class="bi bi-pc-display fs-2 text-white-50"></i>
                                             </div>
                                         </div>
                                     </div>

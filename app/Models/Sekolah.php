@@ -67,11 +67,6 @@ class Sekolah extends Model
         return $this->hasMany(SekolahBantuanDetail::class, 'sekolah_bantuan_status_id', 'id');
     }
 
-    public function guru()
-    {
-        return $this->hasMany(Guru::class, 'sekolah_id', 'id');
-    }
-
     public function sekolah_sosekbud()
     {
         return $this->hasOne(SekolahSosekbud::class, 'sekolah_id');

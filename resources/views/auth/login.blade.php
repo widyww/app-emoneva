@@ -523,7 +523,7 @@
             <div class="panel-right">
                 <div class="header-section">
                     <h2>Login</h2>
-                    <p>Bagi Operator Sekolah gunakan <b>NPSN</b>, dan Guru gunakan <b>NIP</b> untuk login.</p>
+                    <p>Bagi Operator Sekolah gunakan <b>NPSN</b> untuk login, pengguna internal gunakan <b>email</b>.</p>
                 </div>
 
                 <!-- Menampilkan Error jika ada -->
@@ -542,11 +542,11 @@
                     
                     <!-- Email / NPSN / NIP -->
                     <div class="form-group">
-                        <label for="email">Username atau Email / NIP / NPSN</label>
+                        <label for="email">Email atau NPSN</label>
                         <div class="input-wrapper">
                             <i data-feather="user"></i>
                             <input class="form-control" id="email" type="text" name="email"
-                                placeholder="Masukkan NPSN, email atau NIP" required autofocus value="{{ old('email') }}" />
+                                placeholder="Masukkan email atau NPSN" required autofocus value="{{ old('email') }}" />
                         </div>
                     </div>
 

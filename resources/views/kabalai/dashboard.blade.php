@@ -121,76 +121,15 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-6 col-xl-3 mb-4">
-                    <div class="card bg-primary text-white h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="me-3">
-                                    <div class="text-white-75 small">TOTAL GURU</div>
-                                    <div class="text-lg fw-bold">{{ $jumlahGuru }}</div>
-                                </div>
-                                <i class="feather-xl text-white-50" data-feather="users"></i>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="#">DETAIL</a>
-                            <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-3 mb-4">
-                    <div class="card bg-warning text-white h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="me-3">
-                                    <div class="text-white-75 small">MENUNGGU VERIFIKASI</div>
-                                    <div class="text-lg fw-bold">{{ $jumlahGuruWaitVerified }}</div>
-                                </div>
-                                <i class="feather-xl text-white-50" data-feather="navigation"></i>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="#">DETAIL</a>
-                            <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-               
-               
-                <div class="col-lg-6 col-xl-3 mb-4">
-                    <div class="card bg-success text-white h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="me-3">
-                                    <div class="text-white-75 small">GURU TERVERIFIKASI</div>
-                                    <div class="text-lg fw-bold">{{ $jumlahGuruVerified }}</div>
-                                </div>
-                                <i class="feather-xl text-white-50" data-feather="check-square"></i>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="#">DETAIL</a>
-                            <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Charts Section -->
             <div class="row">
-                <div class="col-xl-6 mb-4">
+                <div class="col-xl-12 mb-4">
                     <div class="card h-100">
                         <div class="card-header">Status Verifikasi Data Sekolah</div>
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-4">
                             <div id="schoolStatusChart" style="width: 100%; min-height: 350px;"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header">Status Verifikasi Data Guru</div>
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-4">
-                            <div id="guruStatusChart" style="width: 100%; min-height: 350px;"></div>
                         </div>
                     </div>
                 </div>
@@ -283,84 +222,6 @@
             };
             var schoolChart = new ApexCharts(document.querySelector("#schoolStatusChart"), schoolOptions);
             schoolChart.render();
-
-            // Teacher Chart
-            var teacherOptions = {
-                series: [
-                    {{ $jumlahGuruWaitVerified }},
-                    {{ $jumlahGuruVerified }}
-                ],
-                labels: ['Menunggu Verifikasi', 'Terverifikasi'],
-                chart: {
-                    type: 'donut',
-                    height: 350,
-                    fontFamily: 'Inter, sans-serif'
-                },
-                colors: ['#ffc078', '#63e6be'], // Light-premium warning, success
-                stroke: {
-                    show: true,
-                    colors: ['#ffffff'],
-                    width: 3
-                },
-                plotOptions: {
-                    pie: {
-                        donut: {
-                            size: '72%',
-                            labels: {
-                                show: true,
-                                name: {
-                                    show: true,
-                                    fontSize: '13px',
-                                    fontWeight: 600,
-                                    color: '#64748b',
-                                    offsetY: -8
-                                },
-                                value: {
-                                    show: true,
-                                    fontSize: '26px',
-                                    fontWeight: 800,
-                                    color: '#1e293b',
-                                    offsetY: 6,
-                                    formatter: function (w) { return w }
-                                },
-                                total: {
-                                    show: true,
-                                    label: 'Total Guru',
-                                    color: '#64748b',
-                                    fontSize: '12px',
-                                    fontWeight: 600,
-                                    formatter: function (w) {
-                                        return w.globals.seriesTotals.reduce((a, b) => a + b, 0)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                legend: {
-                    position: 'bottom',
-                    fontFamily: 'Inter, sans-serif',
-                    fontWeight: 500,
-                    labels: {
-                        colors: '#475569'
-                    },
-                    markers: {
-                        radius: 12
-                    }
-                },
-                dropShadow: {
-                    enabled: true,
-                    top: 4,
-                    left: 0,
-                    blur: 10,
-                    opacity: 0.05
-                },
-                tooltip: {
-                    enabled: true
-                }
-            };
-            var teacherChart = new ApexCharts(document.querySelector("#guruStatusChart"), teacherOptions);
-            teacherChart.render();
         });
     </script>
 @endsection

@@ -78,14 +78,14 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="me-3">
-                                        <div class="text-white-75 small">JUMLAH GURU</div>
-                                        <div class="text-lg fw-bold">{{ $jumlahGuru }}</div>
+                                        <div class="text-white-75 small">MENUNGGU VERIFIKASI</div>
+                                        <div class="text-lg fw-bold">{{ $jumlahSekolahWaitVerified }}</div>
                                     </div>
-                                    <i class="feather-xl text-white-50" data-feather="users"></i>
+                                    <i class="feather-xl text-white-50" data-feather="navigation"></i>
                                 </div>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between small">
-                                <a class="text-white stretched-link" href="{{ route('guru-mandiri.index') }}">DETAIL</a>
+                                <a class="text-white stretched-link" href="{{ route('sekolah.index') }}">DETAIL</a>
                                 <div class="text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
@@ -103,23 +103,6 @@
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between small">
                                 <a class="text-white stretched-link" href="{{ route('sekolah.index') }}">DETAIL</a>
-                                <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xl-3 mb-4">
-                        <div class="card bg-danger text-white h-100">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="me-3">
-                                        <div class="text-white-75 small">GURU TERVERIFIKASI</div>
-                                        <div class="text-lg fw-bold">{{ $jumlahGuruVerified }}</div>
-                                    </div>
-                                    <i class="feather-xl text-white-50" data-feather="check-square"></i>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-between small">
-                                <a class="text-white stretched-link" href="{{ route('guru-mandiri.index') }}">DETAIL</a>
                                 <div class="text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>

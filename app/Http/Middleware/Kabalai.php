@@ -43,10 +43,7 @@ class Kabalai
 
             return $next($request);
         }
-        //ROLE GURU
-        if($userRole == 5)
-        {
-            return redirect()->route('guru.dashboard');
-        }
+
+        return redirect()->route('homepage');
     }
 }
