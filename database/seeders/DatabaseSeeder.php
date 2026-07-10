@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Operator SMA',
                 'email' => 'operator@gmail.com',
                 'phone' => '081187651235',
-                'role' => '2',
+                'role' => '3',
                 'password' => bcrypt('12345678'),
             ],
             [
