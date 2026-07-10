@@ -72,6 +72,23 @@ class Sekolah extends Model
         return $this->hasOne(SekolahSosekbud::class, 'sekolah_id');
     }
 
+    /**
+     * Nilai baku status_verifikasi untuk sekolah yang DISETUJUI verifikator.
+     * (Lihat VerifikasiProsesController@update: 2 = Disetujui, 3 = Ditolak.)
+     * Dipakai SPK agar hanya sekolah terverifikasi yang ikut perhitungan.
+     */
+    public const STATUS_VERIFIKASI_DISETUJUI = '2';
+
+    public function scopeTerverifikasi($query)
+    {
+        return $query->where('status_verifikasi', self::STATUS_VERIFIKASI_DISETUJUI);
+    }
+
+    public function spkHasil()
+    {
+        return $this->hasMany(SpkHasil::class, 'sekolah_id');
+    }
+
     public function kecamatan()
     {
         return $this->belongsTo(Kecamatan::class);

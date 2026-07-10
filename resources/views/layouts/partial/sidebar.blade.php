@@ -141,6 +141,16 @@
                         Listrik
                     </a>
 
+                    <div class="sidenav-menu-heading">Pendukung Keputusan (SPK)</div>
+                    <a class="nav-link" href="{{ route('spk.bobot') }}">
+                        <div class="nav-link-icon"><i data-feather="sliders"></i></div>
+                        Bobot Kriteria (AHP)
+                    </a>
+                    <a class="nav-link" href="{{ route('spk.ranking') }}">
+                        <div class="nav-link-icon"><i data-feather="award"></i></div>
+                        Ranking Prioritas
+                    </a>
+
                 </div>
             @endif
 

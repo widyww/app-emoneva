@@ -17,6 +17,7 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SekolahController;
+use App\Http\Controllers\SpkController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\USerKabalaiController;
 use App\Http\Controllers\UserVerifikatorController;
@@ -136,6 +137,13 @@ Route::middleware('auth', 'verified', 'Kabalai')->group(function () {
     Route::get('/status-labkomputer', [FilterLabkomputerController::class, 'sortLabKomputer'])->name('sekolah.sort.labkomputer');
     Route::get('/datastatuslabkomputer-chart', [FilterLabkomputerController::class, 'getLabKomputer'])->name('labkomputer.getdata');
     Route::get('/datastatuslabkomputer-detail', [FilterLabkomputerController::class, 'getLabKomputerDetail'])->name('labkomputer.getdetail');
+
+    // SPK (AHP + SAW)
+    Route::get('/spk/bobot', [SpkController::class, 'bobot'])->name('spk.bobot');
+    Route::post('/spk/bobot', [SpkController::class, 'simpanBobot'])->name('spk.bobot.simpan');
+    Route::post('/spk/hitung', [SpkController::class, 'hitung'])->name('spk.hitung');
+    Route::get('/spk/ranking', [SpkController::class, 'ranking'])->name('spk.ranking');
+    Route::get('/spk/{sekolah}/detail', [SpkController::class, 'detail'])->name('spk.detail');
 });
 
 require __DIR__ . '/auth.php';

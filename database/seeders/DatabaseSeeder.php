@@ -51,5 +51,9 @@ class DatabaseSeeder extends Seeder
                 $user
             );
         });
+
+        $this->call([
+            SpkKriteriaSeeder::class,
+        ]);
     }
 }
