@@ -84,9 +84,18 @@ class Sekolah extends Model
         return $query->where('status_verifikasi', self::STATUS_VERIFIKASI_DISETUJUI);
     }
 
-    public function spkHasil()
+    public function sawHasil()
     {
-        return $this->hasMany(SpkHasil::class, 'sekolah_id');
+        return $this->hasMany(SawHasil::class, 'sekolah_id');
+    }
+
+    /**
+     * Total siswa (pria + wanita). Kolom bertipe string sehingga di-cast ke int.
+     * Dipakai kriteria C1 (rasio komputer:siswa) pada modul SPK AHP-SAW.
+     */
+    public function jumlahSiswa(): int
+    {
+        return (int) $this->jum_siswa_pria + (int) $this->jum_siswa_wanita;
     }
 
     public function kecamatan()

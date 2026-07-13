@@ -2,29 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SpkHasil extends Model
+class SawHasil extends Model
 {
-    use HasFactory;
-
-    protected $table = 'spk_hasil';
+    protected $table = 'saw_hasil';
 
     protected $fillable = [
-        'sekolah_id',
         'periode_id',
+        'sekolah_id',
         'skor',
+        'nilai_vi',
         'peringkat',
-        'kategori',
-        'rincian',
         'dihitung_pada',
     ];
 
     protected $casts = [
-        'skor' => 'decimal:5',
+        'skor' => 'array',
+        'nilai_vi' => 'float',
         'peringkat' => 'integer',
-        'rincian' => 'array',
         'dihitung_pada' => 'datetime',
     ];
 

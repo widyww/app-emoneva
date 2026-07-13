@@ -53,7 +53,10 @@ class DatabaseSeeder extends Seeder
         });
 
         $this->call([
-            SpkKriteriaSeeder::class,
+            // Seeder SPK (AHP-SAW). AhpPerbandinganSeeder butuh periode & kriteria,
+            // jalankan setelah seeder data periode/sekolah tahun lalu (bila ada).
+            KriteriaSeeder::class,
+            AhpPerbandinganSeeder::class,
         ]);
     }
 }

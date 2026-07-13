@@ -47,6 +47,12 @@
                         <div class="nav-link-icon"><i data-feather="filter"></i></div>
                         Verifikator & Kabalai
                     </a>
+
+                    <div class="sidenav-menu-heading">Pendukung Keputusan (SPK)</div>
+                    <a class="nav-link" href="{{ route('spk.ahp.index') }}">
+                        <div class="nav-link-icon"><i data-feather="sliders"></i></div>
+                        Bobot Kriteria (AHP)
+                    </a>
                 </div>
             @endif
             {{-- OPERATOR SEKOLAH --}}
@@ -142,11 +148,7 @@
                     </a>
 
                     <div class="sidenav-menu-heading">Pendukung Keputusan (SPK)</div>
-                    <a class="nav-link" href="{{ route('spk.bobot') }}">
-                        <div class="nav-link-icon"><i data-feather="sliders"></i></div>
-                        Bobot Kriteria (AHP)
-                    </a>
-                    <a class="nav-link" href="{{ route('spk.ranking') }}">
+                    <a class="nav-link" href="{{ route('spk.rank.index') }}">
                         <div class="nav-link-icon"><i data-feather="award"></i></div>
                         Ranking Prioritas
                     </a>

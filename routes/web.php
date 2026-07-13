@@ -17,7 +17,8 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SekolahController;
-use App\Http\Controllers\SpkController;
+use App\Http\Controllers\Spk\AhpController;
+use App\Http\Controllers\Spk\PerangkinganController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\USerKabalaiController;
 use App\Http\Controllers\UserVerifikatorController;
@@ -75,6 +76,10 @@ Route::middleware('auth', 'verified', 'Administrator')->group(function () {
     Route::post('/user-manajemen', [ManajemenUserController::class, 'store'])->name('manajemen-user.store');
     Route::put('/user-manajemen/{id}', [ManajemenUserController::class, 'update'])->name('manajemen-user.update');
     Route::delete('/user-manajemen/{id}', [ManajemenUserController::class, 'destroy'])->name('manajemen-user.destroy');
+
+    // SPK - AHP (input matriks perbandingan & bobot kriteria)
+    Route::get('/spk/ahp', [AhpController::class, 'index'])->name('spk.ahp.index');
+    Route::post('/spk/ahp/hitung', [AhpController::class, 'hitung'])->name('spk.ahp.hitung');
 });
 
 // ROLE OPERATOR SEKOLAH
@@ -138,12 +143,9 @@ Route::middleware('auth', 'verified', 'Kabalai')->group(function () {
     Route::get('/datastatuslabkomputer-chart', [FilterLabkomputerController::class, 'getLabKomputer'])->name('labkomputer.getdata');
     Route::get('/datastatuslabkomputer-detail', [FilterLabkomputerController::class, 'getLabKomputerDetail'])->name('labkomputer.getdetail');
 
-    // SPK (AHP + SAW)
-    Route::get('/spk/bobot', [SpkController::class, 'bobot'])->name('spk.bobot');
-    Route::post('/spk/bobot', [SpkController::class, 'simpanBobot'])->name('spk.bobot.simpan');
-    Route::post('/spk/hitung', [SpkController::class, 'hitung'])->name('spk.hitung');
-    Route::get('/spk/ranking', [SpkController::class, 'ranking'])->name('spk.ranking');
-    Route::get('/spk/{sekolah}/detail', [SpkController::class, 'detail'])->name('spk.detail');
+    // SPK - Perangkingan SAW (hasil prioritas bantuan)
+    Route::get('/spk/perangkingan', [PerangkinganController::class, 'index'])->name('spk.rank.index');
+    Route::post('/spk/perangkingan/hitung', [PerangkinganController::class, 'hitungUlang'])->name('spk.rank.hitung');
 });
 
 require __DIR__ . '/auth.php';
