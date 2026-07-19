@@ -526,6 +526,13 @@
             text-decoration: none !important;
             letter-spacing: 1px !important;
         }
+        /* DataTables Fixes */
+        .dataTables_length select.form-select {
+            width: auto !important;
+            display: inline-block !important;
+            padding: 0.375rem 2.25rem 0.375rem 0.75rem !important;
+            margin: 0 0.5rem !important;
+        }
     </style>
 
 </head>
