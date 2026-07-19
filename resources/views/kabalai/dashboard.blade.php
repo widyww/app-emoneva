@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="{{ route('sekolah.index') }}">DETAIL</a>
+                            <a class="text-white stretched-link" href="#">DETAIL</a>
                             <div class="text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -115,12 +115,31 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between small">
-                            <a class="text-white stretched-link" href="{{ route('sekolah.index') }}">DETAIL</a>
+                            <a class="text-white stretched-link" href="#">DETAIL</a>
                             <div class="text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
                 </div>
                 
+            </div>
+            
+            <!-- SPK Shortcut Section -->
+            <div class="row">
+                <div class="col-xl-12 mb-4">
+                    <div class="card bg-white h-100">
+                        <div class="card-body p-4 d-flex align-items-center justify-content-between">
+                            <div>
+                                <h4 class="text-primary font-weight-bold mb-2">Memantau Hasil SPK & Rekomendasi Bantuan</h4>
+                                <p class="text-muted mb-0">Lihat hasil prioritas sekolah penerima bantuan TIK berdasarkan perhitungan metode AHP-SAW, cetak laporan, dan lihat grafik statistik pendukung.</p>
+                            </div>
+                            <div class="ms-3">
+                                <a href="{{ route('spk.rank.index') }}" class="btn btn-primary">
+                                    <i data-feather="award" class="me-1"></i> Buka Halaman SPK
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Charts Section -->
