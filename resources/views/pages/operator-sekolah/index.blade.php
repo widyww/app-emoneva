@@ -54,12 +54,14 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->sekolah->nama ?? '-' }}</td>
                                         <td>
-                                            <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#modalEdit{{ $item->id }}"><i data-feather="edit"
-                                                    class="me-1"></i>Edit</button>
-                                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#modalHapus{{ $item->id }}"><i data-feather="trash"
-                                                    class="me-1"></i>Hapus</button>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                                                    data-bs-target="#modalEdit{{ $item->id }}"><i data-feather="edit"
+                                                        class="me-1"></i>Edit</button>
+                                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#modalHapus{{ $item->id }}"><i data-feather="trash"
+                                                        class="me-1"></i>Hapus</button>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
