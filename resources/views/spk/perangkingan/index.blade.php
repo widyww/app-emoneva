@@ -76,11 +76,11 @@
                                 <table class="table table-sm table-bordered text-center mb-0">
                                     <thead class="table-light">
                                         <tr>
-                                            <th>C1 (Rasio Siswa:Komputer)</th>
-                                            <th>C2 (Status Akreditasi)</th>
-                                            <th>C3 (Tahun Bantuan Terakhir)</th>
-                                            <th>C4 (Ketersediaan Listrik)</th>
-                                            <th>C5 (Ketersediaan Internet)</th>
+                                            <th>C1 (Ketersediaan komputer)</th>
+                                            <th>C2 (Durasi/ketersediaan daya listrik)</th>
+                                            <th>C3 (Kapasitas jaringan internet)</th>
+                                            <th>C4 (Ketersediaan ruang laboratorium komputer)</th>
+                                            <th>C5 (Riwayat penerimaan bantuan)</th>
                                         </tr>
                                     </thead>
                                     <tbody>

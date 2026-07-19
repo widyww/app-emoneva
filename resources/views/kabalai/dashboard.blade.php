@@ -154,6 +154,59 @@
                 </div>
             </div>
 
+            <!-- SPK Results Summary Table -->
+            <div class="row">
+                <div class="col-xl-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Daftar Prioritas Sekolah Pemerima Bantuan (Top 10)</span>
+                            <a href="{{ route('spk.rank.index') }}" class="btn btn-sm btn-outline-primary">Lihat Selengkapnya</a>
+                        </div>
+                        <div class="card-body p-0">
+                            @if ($hasilSpk->isEmpty())
+                                <div class="p-4 alert alert-info m-4 mb-0">
+                                    Belum ada hasil perangkingan untuk periode ini. 
+                                </div>
+                            @else
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover align-middle mb-0 border-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th class="text-center" style="width: 80px;">Rank</th>
+                                                <th>Nama Sekolah</th>
+                                                <th class="text-center" title="Ketersediaan komputer">C1</th>
+                                                <th class="text-center" title="Durasi/ketersediaan daya listrik">C2</th>
+                                                <th class="text-center" title="Kapasitas jaringan internet">C3</th>
+                                                <th class="text-center" title="Ketersediaan ruang laboratorium komputer">C4</th>
+                                                <th class="text-center" title="Riwayat penerimaan bantuan">C5</th>
+                                                <th class="text-center" style="width: 100px;">Nilai V</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($hasilSpk as $h)
+                                                <tr>
+                                                    <td class="text-center fw-bold">{{ $h->peringkat }}</td>
+                                                    <td>{{ $h->sekolah->nama ?? '-' }}</td>
+                                                    <td class="text-center">{{ $h->skor['C1'] ?? '-' }}</td>
+                                                    <td class="text-center">{{ $h->skor['C2'] ?? '-' }}</td>
+                                                    <td class="text-center">{{ $h->skor['C3'] ?? '-' }}</td>
+                                                    <td class="text-center">{{ $h->skor['C4'] ?? '-' }}</td>
+                                                    <td class="text-center">{{ $h->skor['C5'] ?? '-' }}</td>
+                                                    <td class="text-center fw-bold text-primary">{{ number_format($h->nilai_vi, 4) }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="p-3 bg-light border-top text-muted small">
+                                    <strong>Kriteria SPK:</strong> C1: Ketersediaan komputer | C2: Durasi/ketersediaan daya listrik | C3: Kapasitas jaringan internet | C4: Ketersediaan ruang laboratorium komputer | C5: Riwayat penerimaan bantuan
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
